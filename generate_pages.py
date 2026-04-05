@@ -6,6 +6,13 @@ generate_pages.py
 """
 import os, textwrap
 
+# 导入数据库连接器
+try:
+    from db_connector import get_categories_from_db, DB_AVAILABLE
+except ImportError as e:
+    print(f"[WARN] 无法导入 db_connector: {e}")
+    DB_AVAILABLE = False
+
 BASE   = os.path.dirname(os.path.abspath(__file__))
 WA     = "8618735731692"
 EMAIL  = "18735731692@163.com"
@@ -13,10 +20,76 @@ BRAND  = "SourceSure"
 COMPANY= "Yiwu Juncheng Co., Ltd."
 SLOGAN = "One-Stop Sourcing Service in China"
 
+# 图标基础URL（用于图片类型图标）
+ICON_BASE_URL = "../.."  # 相对路径，根据页面深度调整
+
+def render_icon(icon_data, icon_type='fontawesome', size='md', extra_class='', root=''):
+    """
+    渲染图标 - 支持 FontAwesome 和图片
+    size: 'sm'(w-6 h-6), 'md'(w-10 h-10), 'lg'(w-14 h-14), 'xl'(w-16 h-16)
+    root: 相对根路径，用于图片图标路径转换
+    """
+    size_classes = {
+        'sm': 'w-6 h-6',
+        'md': 'w-10 h-10',
+        'lg': 'w-14 h-14',
+        'xl': 'w-16 h-16'
+    }
+    img_size = size_classes.get(size, 'w-10 h-10')
+    
+    # 判断图标类型
+    is_image = icon_type == 'image' or (icon_data and icon_data.startswith('/static') or icon_data.startswith('http'))
+    
+    if is_image and icon_data:
+        # 图片图标 - 转换 /static 路径为相对路径
+        if icon_data.startswith('/static'):
+            # 移除开头的 /static，添加 root 前缀
+            icon_path = icon_data[1:]  # 移除开头的 /
+            icon_src = f"{root}{icon_path}" if root else icon_data
+        else:
+            icon_src = icon_data
+        return f'<img src="{icon_src}" alt="" class="{img_size} object-contain {extra_class}">'
+    elif icon_data:
+        # FontAwesome 图标 - 使用 fa-solid 前缀（FontAwesome 6 兼容）
+        if icon_data.startswith('fa-'):
+            icon_class = icon_data
+        else:
+            icon_class = f'fa-{icon_data}'
+        icon_size_class = {
+            'sm': 'text-sm',
+            'md': 'text-xl',
+            'lg': 'text-2xl',
+            'xl': 'text-3xl'
+        }.get(size, 'text-xl')
+        return f'<i class="fa-solid {icon_class} {icon_size_class} {extra_class}"></i>'
+    else:
+        # 默认图标
+        return f'<i class="fa-solid fa-box text-xl {extra_class}"></i>'
+
 # ─────────────────────────────────────────────────────────────
-# DATA: 全部 5 大分类 × 5 子分类
+# DATA: 从数据库读取，如果失败则使用默认数据
 # ─────────────────────────────────────────────────────────────
-CATEGORIES = [
+
+def get_categories():
+    """获取分类数据，优先从数据库读取"""
+    if DB_AVAILABLE:
+        print("正在从数据库读取数据...")
+        db_data = get_categories_from_db()
+        if db_data:
+            print(f"成功从数据库读取 {len(db_data)} 个分类")
+            return db_data
+        else:
+            print("数据库读取失败，使用默认数据")
+    else:
+        print("数据库模块不可用，使用默认数据")
+    
+    # 默认数据（硬编码）
+    return get_default_categories()
+
+
+def get_default_categories():
+    """默认分类数据（当数据库不可用时使用）"""
+    return [
   {
     "slug": "home-daily",
     "title": "Home & Daily Essentials",
@@ -379,7 +452,11 @@ CATEGORIES = [
       },
     ]
   },
-]
+  ]
+
+
+# 获取分类数据
+CATEGORIES = get_categories()
 
 # ─────────────────────────────────────────────────────────────
 # HTML BUILDERS
@@ -404,7 +481,7 @@ JS_MODAL = (
 "}\n"
 "function openDetail(card){\n"
 "  const img=card.querySelector('img');\n"
-"  const imgSrc=img?img.src:'';\n"
+"  const imgSrc=img?img.getAttribute('src'):'';\n"
 "  const folder=imgSrc.replace(/main\\.jpg.*/,'');\n"
 "  const name=card.querySelector('h3').textContent;\n"
 "  const ps=card.querySelectorAll('p');\n"
@@ -413,6 +490,7 @@ JS_MODAL = (
 "  const moqEl=card.querySelector('.text-gray-400:last-child');\n"
 "  const moq=moqEl?moqEl.textContent.replace('MOQ: ',''):'';\n"
 "  const sku=ps[0]?ps[0].textContent:'';\n"
+"  const galleryData=card.dataset.gallery;\n"
 "  document.getElementById('modal-name').textContent=name;\n"
 "  document.getElementById('modal-desc').textContent=desc;\n"
 "  document.getElementById('modal-price').textContent=price;\n"
@@ -422,7 +500,14 @@ JS_MODAL = (
 "  document.getElementById('modal-main-img').alt=name;\n"
 "  const tw=document.getElementById('modal-thumbs');\n"
 "  tw.innerHTML='';\n"
-"  [imgSrc,folder+'detail1.jpg',folder+'detail2.jpg',folder+'detail3.jpg',folder+'detail4.jpg'].forEach((src,i)=>{\n"
+"  let imageList=[imgSrc];\n"
+"  if(galleryData){\n"
+"    try{const gallery=JSON.parse(galleryData);if(Array.isArray(gallery)&&gallery.length>0){imageList=imageList.concat(gallery);}}catch(e){}\n"
+"  }\n"
+"  if(imageList.length===1){\n"
+"    [folder+'detail1.jpg',folder+'detail2.jpg',folder+'detail3.jpg',folder+'detail4.jpg'].forEach(src=>{imageList.push(src);});\n"
+"  }\n"
+"  imageList.forEach((src,i)=>{\n"
 "    const im=document.createElement('img');\n"
 "    im.src=src;im.className='thumb w-full h-12 object-cover rounded-lg'+(i===0?' active':'');\n"
 "    im.onerror=function(){this.remove();};\n"
@@ -452,12 +537,11 @@ def modal_html(root):
 <div id="detail-modal" class="hidden fixed inset-0 bg-black/60 z-[999] overflow-y-auto">
   <div class="min-h-screen flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-3xl w-full shadow-2xl relative">
-      <button onclick="closeDetail()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center z-10"><i class="fa fa-times text-gray-600"></i></button>
+      <button onclick="closeDetail()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center z-10"><i class="fa-solid fa-times text-gray-600"></i></button>
       <div class="grid md:grid-cols-2 gap-0">
         <div class="p-6 border-r border-gray-100">
           <div class="rounded-xl overflow-hidden bg-accent h-64 mb-3"><img id="modal-main-img" src="" alt="" class="w-full h-full object-contain"/></div>
           <div id="modal-thumbs" class="grid grid-cols-5 gap-1.5"></div>
-          <p class="text-[10px] text-gray-400 mt-2 text-center">Place detail1~5.jpg in the product folder for multi-view gallery</p>
         </div>
         <div class="p-6">
           <p id="modal-sku" class="text-xs text-gray-400 mb-1"></p>
@@ -472,7 +556,7 @@ def modal_html(root):
             {WA_SVG} Chat on WhatsApp
           </a>
           <a href="{root}index.html#contact" class="flex items-center justify-center gap-2 w-full border-2 border-brand text-brand font-semibold py-2.5 rounded-xl hover:bg-accent text-sm">
-            <i class="fa fa-envelope"></i> Send Email Inquiry
+            <i class="fa-solid fa-envelope"></i> Send Email Inquiry
           </a>
         </div>
       </div>
@@ -502,9 +586,9 @@ def navbar_html(root, parent_title, parent_path, current_title):
     </a>
     <div class="hidden md:flex items-center gap-2 text-sm text-gray-500">
       <a href="{root}index.html" class="hover:text-brand">Home</a>
-      <i class="fa fa-chevron-right text-[10px]"></i>
+      <i class="fa-solid fa-chevron-right text-[10px]"></i>
       <a href="{parent_path}" class="hover:text-brand">{parent_title}</a>
-      <i class="fa fa-chevron-right text-[10px]"></i>
+      <i class="fa-solid fa-chevron-right text-[10px]"></i>
       <span class="text-brand font-medium">{current_title}</span>
     </div>
     <div class="flex items-center gap-3">
@@ -553,11 +637,23 @@ def product_cards_html(products, sku_prefix):
         if "oem" in tags:
             badges += '<span class="absolute top-2 right-2 bg-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">OEM</span>'
         name_escaped = p['name'].replace('"', '&quot;')
+        
+        # 构建图库数据（用于弹窗显示多张图片）
+        # 图库图片已同步为 detail1.jpg, detail2.jpg 等
+        gallery_data = ""
+        if p.get('gallery') and len(p['gallery']) > 0:
+            import json
+            # 构建图库图片URL列表 (detail1.jpg, detail2.jpg, ...)
+            gallery_urls = []
+            for i in range(len(p['gallery'])):
+                gallery_urls.append(f"{sku}/detail{i+1}.jpg")
+            gallery_data = f' data-gallery=\'{json.dumps(gallery_urls)}\''
+        
         cards += f"""
-    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="{tags}" onclick="openDetail(this)">
+    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="{tags}"{gallery_data} onclick="openDetail(this)">
       <div class="relative h-48 overflow-hidden bg-accent">
         <img src="{sku}/main.jpg" alt="{name_escaped}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-             onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;{sku}/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
+             onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;{sku}/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
         {badges}
       </div>
       <div class="p-4">
@@ -582,7 +678,7 @@ def sub_page_html(cat, sub, root):
   <div class="max-w-screen-xl mx-auto">
     <div class="flex items-center gap-3 mb-3">
       <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
-        <i class="fa {sub['icon']} text-xl"></i>
+        {render_icon(sub.get('icon'), sub.get('icon_type', 'fontawesome'), 'md', '', root)}
       </div>
       <h1 class="text-3xl md:text-4xl font-extrabold">{sub['title']}</h1>
     </div>
@@ -634,12 +730,12 @@ def cat_index_html(cat, root):
     <a href="{sub['slug']}/index.html"
        class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-200 flex flex-col items-center text-center gap-3">
       <div class="w-14 h-14 rounded-2xl bg-accent flex items-center justify-center">
-        <i class="fa {sub['icon']} text-2xl text-brand"></i>
+        {render_icon(sub.get('icon'), sub.get('icon_type', 'fontawesome'), 'lg', 'text-brand', root)}
       </div>
       <h3 class="font-bold text-base">{sub['title']}</h3>
       <p class="text-xs text-gray-500 line-clamp-2">{sub['desc']}</p>
       <span class="text-brand text-xs font-semibold mt-auto flex items-center gap-1">
-        View Products <i class="fa fa-arrow-right text-[10px]"></i>
+        View Products <i class="fa-solid fa-arrow-right text-[10px]"></i>
       </span>
     </a>"""
     from urllib.parse import quote
@@ -663,7 +759,7 @@ def cat_index_html(cat, root):
     </a>
     <div class="hidden md:flex items-center gap-2 text-sm text-gray-500">
       <a href="{root}index.html" class="hover:text-brand">Home</a>
-      <i class="fa fa-chevron-right text-[10px]"></i>
+      <i class="fa-solid fa-chevron-right text-[10px]"></i>
       <span class="text-brand font-medium">{cat['title']}</span>
     </div>
     <a href="{root}index.html#contact" class="bg-brand text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Send Inquiry</a>
@@ -673,7 +769,7 @@ def cat_index_html(cat, root):
 <section class="bg-gradient-to-r {cat['color']} text-white py-14 px-4">
   <div class="max-w-screen-xl mx-auto text-center">
     <div class="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center mx-auto mb-4">
-      <i class="fa {cat['icon']} text-3xl"></i>
+      {render_icon(cat.get('icon'), cat.get('icon_type', 'fontawesome'), 'xl', '', root)}
     </div>
     <h1 class="text-4xl font-extrabold mb-3">{cat['title']}</h1>
     <p class="text-white/80 max-w-xl mx-auto text-sm">{cat['desc']}</p>
@@ -742,6 +838,264 @@ for cat in CATEGORIES:
         with open(sub_index_path, "w", encoding="utf-8") as f:
             f.write(sub_page_html(cat, sub, "../../../"))
         generated.append(f"products/{cat['slug']}/{sub['slug']}/index.html")
+
+# ─────────────────────────────────────────────────────────────
+# Update index.html navigation with database data
+# ─────────────────────────────────────────────────────────────
+print("\n[OK] Updating index.html navigation...")
+
+def update_index_navigation():
+    """更新 index.html 的导航菜单"""
+    index_path = os.path.join(BASE, "index.html")
+    if not os.path.exists(index_path):
+        print("  [SKIP] index.html not found")
+        return False
+    
+    with open(index_path, "r", encoding="utf-8") as f:
+        content = f.read()
+    
+    # 生成桌面端导航菜单
+    desktop_nav_items = []
+    for cat in CATEGORIES:
+        cat_link = f"products/{cat['slug']}/index.html"
+        # 子分类链接
+        sub_links = []
+        for sub in cat["subs"]:
+            sub_link = f"products/{cat['slug']}/{sub['slug']}/index.html"
+            sub_icon = sub.get('icon', '')
+            sub_icon_type = sub.get('icon_type', 'fontawesome')
+            sub_icon_html = ''
+            if sub_icon:
+                # 检查是否是图片路径（包含 / 或 .jpg/.png/.svg 等扩展名）
+                is_image_path = '/' in sub_icon or any(sub_icon.endswith(ext) for ext in ['.jpg', '.jpeg', '.png', '.svg', '.gif', '.webp'])
+                if is_image_path:
+                    # 图片路径在静态页面中不可用，使用默认 FontAwesome 图标
+                    sub_icon_html = f'<i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>'
+                elif sub_icon.startswith('fa-'):
+                    sub_icon_html = f'<i class="fa-solid {sub_icon} mr-2 text-brand flex-shrink-0"></i>'
+                else:
+                    # 使用 FontAwesome 图标
+                    icon_class = f'fa-{sub_icon}'
+                    sub_icon_html = f'<i class="fa-solid {icon_class} mr-2 text-brand flex-shrink-0"></i>'
+            else:
+                # 默认使用小圆点
+                sub_icon_html = f'<i class="fa-solid fa-circle text-[6px] mr-2 text-brand/60 flex-shrink-0"></i>'
+            sub_links.append(f'<a href="{sub_link}">{sub_icon_html}{sub["title"]}</a>')
+        
+        # 生成分类图标HTML
+        cat_icon = cat.get('icon', '')
+        cat_icon_type = cat.get('icon_type', 'fontawesome')
+        cat_icon_html = ''
+        if cat_icon:
+            # 检查是否是图片路径（包含 / 或 .jpg/.png/.svg 等扩展名）
+            is_image_path = '/' in cat_icon or any(cat_icon.endswith(ext) for ext in ['.jpg', '.jpeg', '.png', '.svg', '.gif', '.webp'])
+            if is_image_path:
+                # 图片路径在静态页面中不可用，使用默认 FontAwesome 图标
+                cat_icon_html = f'<i class="fa-solid fa-box mr-1.5 text-brand flex-shrink-0"></i>'
+            elif cat_icon.startswith('fa-'):
+                cat_icon_html = f'<i class="fa-solid {cat_icon} mr-1.5 text-brand flex-shrink-0"></i>'
+            else:
+                # 使用 FontAwesome 图标
+                icon_class = f'fa-{cat_icon}'
+                cat_icon_html = f'<i class="fa-solid {icon_class} mr-1.5 text-brand flex-shrink-0"></i>'
+        else:
+            # 默认使用文件夹图标
+            cat_icon_html = f'<i class="fa-solid fa-folder mr-1.5 text-brand flex-shrink-0"></i>'
+        
+        newline = "\n          "
+        nav_item = f'''<li class="nav-item shrink-0">
+        <a href="{cat_link}" class="flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg hover:bg-accent hover:text-brand transition-colors duration-150 text-body whitespace-nowrap">
+          {cat_icon_html}<span class="whitespace-nowrap">{cat["title"]}</span>
+          <i class="fa-solid fa-chevron-down text-[10px] opacity-60 ml-1 flex-shrink-0"></i>
+        </a>
+        <div class="dropdown-menu">
+          {newline.join(sub_links)}
+        </div>
+      </li>'''
+        desktop_nav_items.append(nav_item)
+    
+    desktop_nav_html = "\n      ".join(desktop_nav_items)
+    
+    # 生成移动端导航菜单
+    mobile_nav_items = []
+    for cat in CATEGORIES:
+        cat_link = f"products/{cat['slug']}/index.html"
+        
+        # 生成分类图标HTML
+        cat_icon = cat.get('icon', '')
+        cat_icon_type = cat.get('icon_type', 'fontawesome')
+        cat_icon_html = ''
+        if cat_icon:
+            # 检查是否是图片路径（包含 / 或 .jpg/.png/.svg 等扩展名）
+            is_image_path = '/' in cat_icon or any(cat_icon.endswith(ext) for ext in ['.jpg', '.jpeg', '.png', '.svg', '.gif', '.webp'])
+            if is_image_path:
+                # 图片路径在静态页面中不可用，使用默认 FontAwesome 图标
+                cat_icon_html = f'<i class="fa-solid fa-box mr-2 text-brand flex-shrink-0"></i>'
+            elif cat_icon.startswith('fa-'):
+                cat_icon_html = f'<i class="fa-solid {cat_icon} mr-2 text-brand flex-shrink-0"></i>'
+            else:
+                icon_class = f'fa-{cat_icon}'
+                cat_icon_html = f'<i class="fa-solid {icon_class} mr-2 text-brand flex-shrink-0"></i>'
+        else:
+            cat_icon_html = f'<i class="fa-solid fa-folder mr-2 text-brand flex-shrink-0"></i>'
+        
+        sub_links = []
+        for sub in cat["subs"]:
+            sub_link = f"products/{cat['slug']}/{sub['slug']}/index.html"
+            sub_icon = sub.get('icon', '')
+            sub_icon_type = sub.get('icon_type', 'fontawesome')
+            sub_icon_html = ''
+            if sub_icon:
+                # 检查是否是图片路径
+                is_image_path = '/' in sub_icon or any(sub_icon.endswith(ext) for ext in ['.jpg', '.jpeg', '.png', '.svg', '.gif', '.webp'])
+                if is_image_path:
+                    # 图片路径在静态页面中不可用，使用默认 FontAwesome 图标
+                    sub_icon_html = f'<i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>'
+                elif sub_icon.startswith('fa-'):
+                    sub_icon_html = f'<i class="fa-solid {sub_icon} mr-2 text-brand flex-shrink-0"></i>'
+                else:
+                    icon_class = f'fa-{sub_icon}'
+                    sub_icon_html = f'<i class="fa-solid {icon_class} mr-2 text-brand flex-shrink-0"></i>'
+            else:
+                sub_icon_html = f'<i class="fa-solid fa-circle text-[6px] mr-2 text-brand/60 flex-shrink-0"></i>'
+            sub_links.append(f'<a href="{sub_link}" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand">{sub_icon_html}{sub["title"]}</a>')
+        
+        newline = "\n          "
+        mobile_item = f'''<div class="mobile-nav-group">
+        <button class="mobile-toggle w-full flex justify-between items-center py-2.5 text-sm font-semibold text-body">
+          <span class="flex items-center">{cat_icon_html}{cat["title"]}</span> <i class="fa-solid fa-chevron-down text-[10px] text-brand flex-shrink-0"></i>
+        </button>
+        <div class="mobile-sub pl-4 space-y-1 pb-2">
+          {newline.join(sub_links)}
+        </div>
+      </div>'''
+        mobile_nav_items.append(mobile_item)
+    
+    mobile_nav_html = "\n      ".join(mobile_nav_items)
+    
+    # 替换桌面端导航 (找到 <ul id="desktop-nav"> 和 </ul> 之间的内容)
+    import re
+    
+    # 替换桌面导航 - 使用 id="desktop-nav" 作为标记（支持 justify-start 和 overflow-x-auto 新样式）
+    desktop_pattern = r'(<ul class="hidden lg:flex flex-1 items-center justify-[^"]* gap-0 text-xs xl:gap-1 xl:text-sm font-medium min-w-0[^"]*" id="desktop-nav">)[\s\S]*?(</ul>)'
+    desktop_replacement = f'\\1\n      {desktop_nav_html}\n    \\2'
+    content_new = re.sub(desktop_pattern, desktop_replacement, content, count=1)
+    
+    # 替换移动端导航 - 使用 id="mobile-nav-items" 作为标记
+    mobile_pattern = r'(<div class="space-y-1" id="mobile-nav-items">)[\s\S]*?(</div>\s*<div class="mt-4 pt-4 border-t border-gray-100 grid grid-cols-2 gap-3">)'
+    mobile_replacement = f'\\1\n      {mobile_nav_html}\n    \\2'
+    content_new = re.sub(mobile_pattern, mobile_replacement, content_new, count=1)
+    
+    # 更新页脚链接
+    for cat in CATEGORIES:
+        old_slug = cat['slug'].replace('home-daily-essentials', 'home-daily').replace('pet-daily-needs', 'pet-daily').replace('beauty-personal-care', 'beauty-care')
+        new_slug = cat['slug']
+        # 替换页脚中的链接
+        content_new = content_new.replace(f'products/{old_slug}/index.html', f'products/{new_slug}/index.html')
+    
+    # 更新产品展示区域 - 从数据库读取产品数据
+    print("  [OK] Updating product grid...")
+    
+    # 获取所有产品数据
+    products_data = []
+    for cat in CATEGORIES:
+        cat_code = cat['slug'].split('-')[0]  # home, pet, beauty, craft, other
+        for sub in cat['subs']:
+            for prod in sub['products']:
+                products_data.append({
+                    'name': prod['name'],
+                    'desc': prod['desc'],
+                    'price': prod['price'],
+                    'tags': prod['tags'],
+                    'category': cat_code,
+                    'cat_slug': cat['slug'],
+                    'sub_slug': sub['slug'],
+                    'image': prod.get('image'),  # 从数据库获取的图片文件名
+                    'features': prod.get('features', []),  # 产品特性
+                    'specifications': prod.get('specifications', {})  # 产品规格
+                })
+    
+    # 排序：有实际图片的产品优先显示
+    products_data.sort(key=lambda x: (x.get('image') == 'main.jpg' or x.get('image') is None, x['name']))
+    
+    # 生成产品卡片 HTML (最多显示8个)
+    product_cards = []
+    for i, prod in enumerate(products_data[:8]):
+        # 根据标签确定 badge
+        badge = ""
+        if 'new' in prod['tags'].lower():
+            badge = '<span class="badge-new absolute top-3 left-3 px-2 py-0.5 rounded font-semibold">NEW</span>'
+        elif 'hot' in prod['tags'].lower():
+            badge = '<span class="badge-hot absolute top-3 left-3 px-2 py-0.5 rounded font-semibold">HOT</span>'
+        
+        # 生成图片路径 - 优先使用数据库中的图片文件名
+        if 'image' in prod and prod['image'] and prod['image'] != 'main.jpg':
+            # 使用数据库中的图片文件名（如 product_25_f2d3aa1c.jpg）
+            img_src = f"images/products/{prod['image']}"
+        else:
+            # 回退到默认路径
+            img_src = f"images/products/{prod['cat_slug']}/{prod['sub_slug']}/main.jpg"
+        
+        # 生成特性和规格HTML
+        features_html = ""
+        if prod.get('features') and len(prod['features']) > 0:
+            features_list = ', '.join(prod['features'][:3])  # 最多显示3个特性
+            features_html = f'<p class="text-xs text-green-600 mb-1"><i class="fas fa-check mr-1"></i>{features_list}</p>'
+        
+        specs_html = ""
+        if prod.get('specifications') and len(prod['specifications']) > 0:
+            specs_items = list(prod['specifications'].items())[:2]  # 最多显示2个规格
+            specs_list = ', '.join([f"{k}: {v}" for k, v in specs_items])
+            specs_html = f'<p class="text-xs text-blue-600 mb-1">{specs_list}</p>'
+        
+        # 构建图库数据属性（用于弹窗显示多张图片）
+        # 图库图片已同步为 detail1.jpg, detail2.jpg 等
+        gallery_attr = ""
+        if prod.get('gallery') and len(prod['gallery']) > 0:
+            import json
+            # 构建图库图片URL列表 (使用 products/{cat_slug}/{sub_slug}/{sku}/detailN.jpg 路径)
+            gallery_urls = []
+            for i in range(len(prod['gallery'])):
+                gallery_urls.append(f"products/{prod['cat_slug']}/{prod['sub_slug']}/{sku}/detail{i+1}.jpg")
+            gallery_attr = f" data-gallery='{json.dumps(gallery_urls)}'"
+        
+        card = f'''<!-- Product {i+1} -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="{prod['category']}"{gallery_attr} onclick="openProductModal(this)">
+        <div class="img-wrap relative">
+          <img src="{img_src}" alt="{prod['name']}" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text={prod['name'].replace(' ', '+')[:20]}'"/>
+          {badge}
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-body mb-1 truncate">{prod['name']}</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">{prod['desc'][:60]}...</p>
+          {features_html}
+          {specs_html}
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">{prod['price']}</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
+          </div>
+        </div>
+      </div>'''
+        product_cards.append(card)
+    
+    product_grid_html = "\n\n".join(product_cards)
+    
+    # 替换产品网格 - 匹配到 <!-- /product-grid --> 注释为止
+    product_pattern = r'(<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="product-grid">)[\s\S]*?(</div>\s*<!-- /product-grid -->)'
+    product_replacement = f'\\1\n\n{product_grid_html}\n\n    \\2'
+    content_new = re.sub(product_pattern, product_replacement, content_new, count=1)
+    
+    if content_new != content:
+        with open(index_path, "w", encoding="utf-8") as f:
+            f.write(content_new)
+        print("  [OK] index.html updated (navigation + products)")
+        return True
+    else:
+        print("  [WARN] No changes made to index.html")
+        return False
+
+update_index_navigation()
 
 print(f"\n[OK] Generated {len(generated)} pages:\n")
 for p in generated:

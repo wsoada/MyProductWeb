@@ -77,6 +77,9 @@
     }
     #navbar.scrolled { box-shadow: 0 4px 24px rgba(22,93,255,0.18); }
 
+    /* Hide scrollbar for navigation */
+    #desktop-nav::-webkit-scrollbar { display: none; }
+
     /* Dropdown */
     .nav-item { position: relative; }
     .dropdown-menu {
@@ -317,10 +320,10 @@
      NAVIGATION BAR
 ══════════════════════════════════════════ -->
 <nav id="navbar">
-  <div class="max-w-screen-xl mx-auto px-4 lg:px-8 flex items-center justify-between gap-3 xl:gap-4 h-16">
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8 flex items-center justify-between h-16">
 
     <!-- Logo -->
-    <a href="index.html" class="flex items-center gap-3 flex-shrink-0 min-w-0">
+    <a href="index.html" class="flex items-center gap-3 flex-shrink-0 min-w-0 mr-4">
       <img src="images/logo/logo.png" alt="SourceSure Logo" class="h-10 w-auto"
            onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex';"/>
       <div id="logo-fallback" class="hidden items-center gap-2">
@@ -335,83 +338,85 @@
     </a>
 
     <!-- Desktop nav links -->
-    <ul class="hidden lg:flex flex-1 items-center justify-center gap-0 text-xs xl:gap-1 xl:text-sm font-medium min-w-0" id="desktop-nav">
-
+    <ul class="hidden lg:flex flex-1 items-center justify-start gap-0 text-xs xl:gap-1 xl:text-sm font-medium min-w-0 overflow-x-auto" id="desktop-nav" style="scrollbar-width: none; -ms-overflow-style: none;">
       <li class="nav-item shrink-0">
-        <a href="products/home-daily/index.html" class="flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg hover:bg-accent hover:text-brand transition-colors duration-150 text-body whitespace-nowrap">
-          Home &amp; Daily
-          <i class="fa fa-chevron-down text-[10px] opacity-60"></i>
+        <a href="products/home-daily-essentials/index.html" class="flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg hover:bg-accent hover:text-brand transition-colors duration-150 text-body whitespace-nowrap">
+          <i class="fa-solid fa-box mr-1.5 text-brand flex-shrink-0"></i><span class="whitespace-nowrap">Home & Daily Essentials</span>
+          <i class="fa-solid fa-chevron-down text-[10px] opacity-60 ml-1 flex-shrink-0"></i>
         </a>
         <div class="dropdown-menu">
-          <a href="products/home-daily/kitchenware/index.html"><span class="dot"></span>Kitchenware</a>
-          <a href="products/home-daily/bedding/index.html"><span class="dot"></span>Bedding</a>
-          <a href="products/home-daily/bathroom-supplies/index.html"><span class="dot"></span>Bathroom Supplies</a>
-          <a href="products/home-daily/cleaning-products/index.html"><span class="dot"></span>Cleaning Products</a>
-          <a href="products/home-daily/storage-solutions/index.html"><span class="dot"></span>Storage Solutions</a>
+          <a href="products/home-daily-essentials/kitchenware/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Kitchenware</a>
+          <a href="products/home-daily-essentials/bedding/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Bedding</a>
+          <a href="products/home-daily-essentials/bathroom-supplies/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Bathroom Supplies</a>
+          <a href="products/home-daily-essentials/cleaning-products/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Cleaning Products</a>
+          <a href="products/home-daily-essentials/storage-solutions/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Storage Solutions</a>
         </div>
       </li>
-
       <li class="nav-item shrink-0">
-        <a href="products/pet-daily/index.html" class="flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg hover:bg-accent hover:text-brand transition-colors duration-150 text-body whitespace-nowrap">
-          Pet Supplies
-          <i class="fa fa-chevron-down text-[10px] opacity-60"></i>
+        <a href="products/pet-daily-needs/index.html" class="flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg hover:bg-accent hover:text-brand transition-colors duration-150 text-body whitespace-nowrap">
+          <i class="fa-solid fa-box mr-1.5 text-brand flex-shrink-0"></i><span class="whitespace-nowrap">Pet Daily Needs</span>
+          <i class="fa-solid fa-chevron-down text-[10px] opacity-60 ml-1 flex-shrink-0"></i>
         </a>
         <div class="dropdown-menu">
-          <a href="products/pet-daily/food-treats/index.html"><span class="dot"></span>Food &amp; Treats</a>
-          <a href="products/pet-daily/grooming-tools/index.html"><span class="dot"></span>Grooming Tools</a>
-          <a href="products/pet-daily/toys/index.html"><span class="dot"></span>Toys</a>
-          <a href="products/pet-daily/beds-furniture/index.html"><span class="dot"></span>Beds &amp; Furniture</a>
-          <a href="products/pet-daily/health-care/index.html"><span class="dot"></span>Health Care</a>
+          <a href="products/pet-daily-needs/food-treats/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Food & Treats</a>
+          <a href="products/pet-daily-needs/grooming-tools/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Grooming Tools</a>
+          <a href="products/pet-daily-needs/toys/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Toys</a>
+          <a href="products/pet-daily-needs/beds-furniture/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Beds & Furniture</a>
+          <a href="products/pet-daily-needs/health-care/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Health Care</a>
         </div>
       </li>
-
       <li class="nav-item shrink-0">
-        <a href="products/beauty-care/index.html" class="flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg hover:bg-accent hover:text-brand transition-colors duration-150 text-body whitespace-nowrap">
-          Beauty
-          <i class="fa fa-chevron-down text-[10px] opacity-60"></i>
+        <a href="products/beauty-personal-care/index.html" class="flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg hover:bg-accent hover:text-brand transition-colors duration-150 text-body whitespace-nowrap">
+          <i class="fa-solid fa-box mr-1.5 text-brand flex-shrink-0"></i><span class="whitespace-nowrap">Beauty & Personal Care</span>
+          <i class="fa-solid fa-chevron-down text-[10px] opacity-60 ml-1 flex-shrink-0"></i>
         </a>
         <div class="dropdown-menu">
-          <a href="products/beauty-care/skincare/index.html"><span class="dot"></span>Skincare</a>
-          <a href="products/beauty-care/haircare/index.html"><span class="dot"></span>Haircare</a>
-          <a href="products/beauty-care/makeup/index.html"><span class="dot"></span>Makeup</a>
-          <a href="products/beauty-care/bath-body/index.html"><span class="dot"></span>Bath &amp; Body</a>
-          <a href="products/beauty-care/fragrances/index.html"><span class="dot"></span>Fragrances</a>
+          <a href="products/beauty-personal-care/skincare/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Skincare</a>
+          <a href="products/beauty-personal-care/haircare/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Haircare</a>
+          <a href="products/beauty-personal-care/makeup/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Makeup</a>
+          <a href="products/beauty-personal-care/bath-body/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Bath & Body</a>
+          <a href="products/beauty-personal-care/fragrances/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Fragrances</a>
         </div>
       </li>
-
       <li class="nav-item shrink-0">
         <a href="products/craft-decor/index.html" class="flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg hover:bg-accent hover:text-brand transition-colors duration-150 text-body whitespace-nowrap">
-          Craft &amp; Decor
-          <i class="fa fa-chevron-down text-[10px] opacity-60"></i>
+          <i class="fa-solid fa-box mr-1.5 text-brand flex-shrink-0"></i><span class="whitespace-nowrap">Craft & Decor</span>
+          <i class="fa-solid fa-chevron-down text-[10px] opacity-60 ml-1 flex-shrink-0"></i>
         </a>
         <div class="dropdown-menu">
-          <a href="products/craft-decor/home-decor/index.html"><span class="dot"></span>Home Decor</a>
-          <a href="products/craft-decor/diy-supplies/index.html"><span class="dot"></span>DIY Supplies</a>
-          <a href="products/craft-decor/art-materials/index.html"><span class="dot"></span>Art Materials</a>
-          <a href="products/craft-decor/party-decorations/index.html"><span class="dot"></span>Party Decorations</a>
-          <a href="products/craft-decor/handicrafts/index.html"><span class="dot"></span>Handicrafts</a>
+          <a href="products/craft-decor/home-decor/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Home Decor</a>
+          <a href="products/craft-decor/diy-supplies/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>DIY Supplies</a>
+          <a href="products/craft-decor/art-materials/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Art Materials</a>
+          <a href="products/craft-decor/party-decorations/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Party Decorations</a>
+          <a href="products/craft-decor/handicrafts/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Handicrafts</a>
         </div>
       </li>
-
       <li class="nav-item shrink-0">
         <a href="products/other-supplies/index.html" class="flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg hover:bg-accent hover:text-brand transition-colors duration-150 text-body whitespace-nowrap">
-          More
-          <i class="fa fa-chevron-down text-[10px] opacity-60"></i>
+          <i class="fa-solid fa-box mr-1.5 text-brand flex-shrink-0"></i><span class="whitespace-nowrap">Other Supplies</span>
+          <i class="fa-solid fa-chevron-down text-[10px] opacity-60 ml-1 flex-shrink-0"></i>
         </a>
         <div class="dropdown-menu">
-          <a href="products/other-supplies/stationery/index.html"><span class="dot"></span>Stationery</a>
-          <a href="products/other-supplies/electronics-accessories/index.html"><span class="dot"></span>Electronics Accessories</a>
-          <a href="products/other-supplies/travel-gear/index.html"><span class="dot"></span>Travel Gear</a>
-          <a href="products/other-supplies/sports-equipment/index.html"><span class="dot"></span>Sports Equipment</a>
+          <a href="products/other-supplies/stationery/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Stationery</a>
+          <a href="products/other-supplies/electronics-accessories/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Electronics Accessories</a>
+          <a href="products/other-supplies/travel-gear/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Travel Gear</a>
+          <a href="products/other-supplies/sports-equipment/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Sports Equipment</a>
+        </div>
+      </li>
+      <li class="nav-item shrink-0">
+        <a href="products/xxxxxx/index.html" class="flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg hover:bg-accent hover:text-brand transition-colors duration-150 text-body whitespace-nowrap">
+          <i class="fa-solid fa-box mr-1.5 text-brand flex-shrink-0"></i><span class="whitespace-nowrap">111111</span>
+          <i class="fa-solid fa-chevron-down text-[10px] opacity-60 ml-1 flex-shrink-0"></i>
+        </a>
+        <div class="dropdown-menu">
+          
         </div>
       </li>
     </ul>
 
-    <div class="hidden lg:block w-20 xl:w-28 flex-shrink-0"></div>
-
     <!-- Mobile hamburger -->
-    <button id="hamburger" class="lg:hidden ml-auto p-2 rounded-lg hover:bg-accent transition-colors" aria-label="Open menu">
-      <i class="fa fa-bars text-xl text-brand"></i>
+    <button id="hamburger" class="lg:hidden ml-2 p-2 rounded-lg hover:bg-accent transition-colors flex-shrink-0" aria-label="Open menu">
+      <i class="fa-solid fa-bars text-xl text-brand"></i>
     </button>
   </div>
 
@@ -419,68 +424,71 @@
   <div id="mobile-menu" class="lg:hidden bg-white border-t border-gray-100 px-4 py-3">
     <!-- Mobile categories (accordion) -->
     <div class="space-y-1" id="mobile-nav-items">
-
       <div class="mobile-nav-group">
         <button class="mobile-toggle w-full flex justify-between items-center py-2.5 text-sm font-semibold text-body">
-          Home &amp; Daily Essentials <i class="fa fa-chevron-down text-[10px] text-brand"></i>
+          <span class="flex items-center"><i class="fa-solid fa-box mr-2 text-brand flex-shrink-0"></i>Home & Daily Essentials</span> <i class="fa-solid fa-chevron-down text-[10px] text-brand flex-shrink-0"></i>
         </button>
         <div class="mobile-sub pl-4 space-y-1 pb-2">
-          <a href="products/home-daily/kitchenware/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Kitchenware</a>
-          <a href="products/home-daily/bedding/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Bedding</a>
-          <a href="products/home-daily/bathroom-supplies/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Bathroom Supplies</a>
-          <a href="products/home-daily/cleaning-products/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Cleaning Products</a>
-          <a href="products/home-daily/storage-solutions/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Storage Solutions</a>
+          <a href="products/home-daily-essentials/kitchenware/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Kitchenware</a>
+          <a href="products/home-daily-essentials/bedding/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Bedding</a>
+          <a href="products/home-daily-essentials/bathroom-supplies/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Bathroom Supplies</a>
+          <a href="products/home-daily-essentials/cleaning-products/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Cleaning Products</a>
+          <a href="products/home-daily-essentials/storage-solutions/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Storage Solutions</a>
         </div>
       </div>
-
       <div class="mobile-nav-group">
         <button class="mobile-toggle w-full flex justify-between items-center py-2.5 text-sm font-semibold text-body">
-          Pet Supplies <i class="fa fa-chevron-down text-[10px] text-brand"></i>
+          <span class="flex items-center"><i class="fa-solid fa-box mr-2 text-brand flex-shrink-0"></i>Pet Daily Needs</span> <i class="fa-solid fa-chevron-down text-[10px] text-brand flex-shrink-0"></i>
         </button>
         <div class="mobile-sub pl-4 space-y-1 pb-2">
-          <a href="products/pet-daily/food-treats/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Food &amp; Treats</a>
-          <a href="products/pet-daily/grooming-tools/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Grooming Tools</a>
-          <a href="products/pet-daily/toys/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Toys</a>
-          <a href="products/pet-daily/beds-furniture/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Beds &amp; Furniture</a>
-          <a href="products/pet-daily/health-care/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Health Care</a>
+          <a href="products/pet-daily-needs/food-treats/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Food & Treats</a>
+          <a href="products/pet-daily-needs/grooming-tools/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Grooming Tools</a>
+          <a href="products/pet-daily-needs/toys/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Toys</a>
+          <a href="products/pet-daily-needs/beds-furniture/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Beds & Furniture</a>
+          <a href="products/pet-daily-needs/health-care/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Health Care</a>
         </div>
       </div>
-
       <div class="mobile-nav-group">
         <button class="mobile-toggle w-full flex justify-between items-center py-2.5 text-sm font-semibold text-body">
-          Beauty &amp; Personal Care <i class="fa fa-chevron-down text-[10px] text-brand"></i>
+          <span class="flex items-center"><i class="fa-solid fa-box mr-2 text-brand flex-shrink-0"></i>Beauty & Personal Care</span> <i class="fa-solid fa-chevron-down text-[10px] text-brand flex-shrink-0"></i>
         </button>
         <div class="mobile-sub pl-4 space-y-1 pb-2">
-          <a href="products/beauty-care/skincare/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Skincare</a>
-          <a href="products/beauty-care/haircare/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Haircare</a>
-          <a href="products/beauty-care/makeup/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Makeup</a>
-          <a href="products/beauty-care/bath-body/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Bath &amp; Body</a>
-          <a href="products/beauty-care/fragrances/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Fragrances</a>
+          <a href="products/beauty-personal-care/skincare/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Skincare</a>
+          <a href="products/beauty-personal-care/haircare/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Haircare</a>
+          <a href="products/beauty-personal-care/makeup/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Makeup</a>
+          <a href="products/beauty-personal-care/bath-body/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Bath & Body</a>
+          <a href="products/beauty-personal-care/fragrances/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Fragrances</a>
         </div>
       </div>
-
       <div class="mobile-nav-group">
         <button class="mobile-toggle w-full flex justify-between items-center py-2.5 text-sm font-semibold text-body">
-          Craft &amp; Decor <i class="fa fa-chevron-down text-[10px] text-brand"></i>
+          <span class="flex items-center"><i class="fa-solid fa-box mr-2 text-brand flex-shrink-0"></i>Craft & Decor</span> <i class="fa-solid fa-chevron-down text-[10px] text-brand flex-shrink-0"></i>
         </button>
         <div class="mobile-sub pl-4 space-y-1 pb-2">
-          <a href="products/craft-decor/home-decor/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Home Decor</a>
-          <a href="products/craft-decor/diy-supplies/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">DIY Supplies</a>
-          <a href="products/craft-decor/art-materials/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Art Materials</a>
-          <a href="products/craft-decor/party-decorations/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Party Decorations</a>
-          <a href="products/craft-decor/handicrafts/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Handicrafts</a>
+          <a href="products/craft-decor/home-decor/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Home Decor</a>
+          <a href="products/craft-decor/diy-supplies/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>DIY Supplies</a>
+          <a href="products/craft-decor/art-materials/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Art Materials</a>
+          <a href="products/craft-decor/party-decorations/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Party Decorations</a>
+          <a href="products/craft-decor/handicrafts/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Handicrafts</a>
         </div>
       </div>
-
       <div class="mobile-nav-group">
         <button class="mobile-toggle w-full flex justify-between items-center py-2.5 text-sm font-semibold text-body">
-          Other Supplies <i class="fa fa-chevron-down text-[10px] text-brand"></i>
+          <span class="flex items-center"><i class="fa-solid fa-box mr-2 text-brand flex-shrink-0"></i>Other Supplies</span> <i class="fa-solid fa-chevron-down text-[10px] text-brand flex-shrink-0"></i>
         </button>
         <div class="mobile-sub pl-4 space-y-1 pb-2">
-          <a href="products/other-supplies/stationery/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Stationery</a>
-          <a href="products/other-supplies/electronics-accessories/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Electronics Accessories</a>
-          <a href="products/other-supplies/travel-gear/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Travel Gear</a>
-          <a href="products/other-supplies/sports-equipment/index.html" class="block py-1.5 text-sm text-gray-600 hover:text-brand">Sports Equipment</a>
+          <a href="products/other-supplies/stationery/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Stationery</a>
+          <a href="products/other-supplies/electronics-accessories/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Electronics Accessories</a>
+          <a href="products/other-supplies/travel-gear/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Travel Gear</a>
+          <a href="products/other-supplies/sports-equipment/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Sports Equipment</a>
+        </div>
+      </div>
+      <div class="mobile-nav-group">
+        <button class="mobile-toggle w-full flex justify-between items-center py-2.5 text-sm font-semibold text-body">
+          <span class="flex items-center"><i class="fa-solid fa-box mr-2 text-brand flex-shrink-0"></i>111111</span> <i class="fa-solid fa-chevron-down text-[10px] text-brand flex-shrink-0"></i>
+        </button>
+        <div class="mobile-sub pl-4 space-y-1 pb-2">
+          
         </div>
       </div>
     </div>
@@ -756,145 +764,154 @@
     -->
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="product-grid">
 
-      <!-- Product 1 — Home & Daily -->
-      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="home">
+<!-- Product 1 -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="pet" onclick="openProductModal(this)">
         <div class="img-wrap relative">
-          <!-- Replace src with: images/products/kitchen-set.jpg -->
-          <img src="images/products/kitchen-set.jpg" alt="Premium Kitchen Set" loading="lazy"
-               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Kitchen+Set'"/>
-          <span class="badge-new absolute top-3 left-3 px-2 py-0.5 rounded font-semibold">NEW</span>
+          <img src="images/products/product_24_d45a6168.jpg" alt="Pet Toys Product" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Pet+Toys+Product'"/>
+          
         </div>
         <div class="p-4">
-          <span class="text-xs text-gray-400 uppercase tracking-wide">Kitchenware</span>
-          <h3 class="font-semibold text-sm mt-1 mb-1">Premium 3-Piece Kitchen Set</h3>
-          <p class="text-xs text-gray-500 mb-2 line-clamp-2">BPA-free, heat-resistant material. Dishwasher safe. Ideal for retail & hospitality.</p>
-          <div class="flex items-center justify-between">
-            <span class="text-brand font-bold text-sm">From $2.80/pc</span>
-            <a href="#contact" class="text-xs bg-accent text-brand font-semibold px-3 py-1.5 rounded-lg hover:bg-brand hover:text-white transition-colors">Inquire</a>
+          <h3 class="font-semibold text-body mb-1 truncate">Pet Toys Product</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">right...</p>
+          <p class="text-xs text-green-600 mb-1"><i class="fas fa-check mr-1"></i>13164, asdadqwewqdq</p>
+          <p class="text-xs text-blue-600 mb-1">xx: 21</p>
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">From $25.00/pc</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
           </div>
         </div>
       </div>
 
-      <!-- Product 2 — Home & Daily -->
-      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="home">
+<!-- Product 2 -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="pet" onclick="openProductModal(this)">
         <div class="img-wrap relative">
-          <img src="images/products/bedding-set.jpg" alt="Hotel Bedding Collection" loading="lazy"
-               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Bedding+Set'"/>
-          <span class="badge-hot absolute top-3 left-3 px-2 py-0.5 rounded font-semibold">HOT</span>
+          <img src="images/products/product_26_f06c9582.jpg" alt="yumibangzi" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=yumibangzi'"/>
+          
         </div>
         <div class="p-4">
-          <span class="text-xs text-gray-400 uppercase tracking-wide">Bedding</span>
-          <h3 class="font-semibold text-sm mt-1 mb-1">Hotel-Grade Bedding Collection</h3>
-          <p class="text-xs text-gray-500 mb-2 line-clamp-2">300TC cotton blend. OEKO-TEX certified. Available in 8 standard sizes. Custom embroidery available.</p>
-          <div class="flex items-center justify-between">
-            <span class="text-brand font-bold text-sm">From $8.50/set</span>
-            <a href="#contact" class="text-xs bg-accent text-brand font-semibold px-3 py-1.5 rounded-lg hover:bg-brand hover:text-white transition-colors">Inquire</a>
+          <h3 class="font-semibold text-body mb-1 truncate">yumibangzi</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">yumi...</p>
+          
+          
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">From $12.00/pc</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
           </div>
         </div>
       </div>
 
-      <!-- Product 3 — Pet -->
-      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="pet">
+<!-- Product 3 -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="pet" onclick="openProductModal(this)">
         <div class="img-wrap relative">
-          <img src="images/products/pet-grooming.jpg" alt="Professional Pet Grooming Kit" loading="lazy"
-               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Pet+Grooming'"/>
+          <img src="images/products/product_25_9f4ba23e.jpg" alt="逗猫棒" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=逗猫棒'"/>
+          
         </div>
         <div class="p-4">
-          <span class="text-xs text-gray-400 uppercase tracking-wide">Grooming Tools</span>
-          <h3 class="font-semibold text-sm mt-1 mb-1">Professional Pet Grooming Kit</h3>
-          <p class="text-xs text-gray-500 mb-2 line-clamp-2">Stainless steel, ergonomic handle, suitable for dogs & cats. CE-certified. Retail-ready packaging.</p>
-          <div class="flex items-center justify-between">
-            <span class="text-brand font-bold text-sm">From $4.20/set</span>
-            <a href="#contact" class="text-xs bg-accent text-brand font-semibold px-3 py-1.5 rounded-lg hover:bg-brand hover:text-white transition-colors">Inquire</a>
+          <h3 class="font-semibold text-body mb-1 truncate">逗猫棒</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">High quality product from trusted suppliers....</p>
+          <p class="text-xs text-green-600 mb-1"><i class="fas fa-check mr-1"></i>12221</p>
+          
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">From $12.00/pc</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
           </div>
         </div>
       </div>
 
-      <!-- Product 4 — Pet -->
-      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="pet">
+<!-- Product 4 -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="craft" onclick="openProductModal(this)">
         <div class="img-wrap relative">
-          <img src="images/products/pet-bed.jpg" alt="Luxury Pet Bed" loading="lazy"
-               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Pet+Bed'"/>
-          <span class="badge-new absolute top-3 left-3 px-2 py-0.5 rounded font-semibold">NEW</span>
+          <img src="images/products/craft-decor/art-materials/main.jpg" alt="Art Materials Product" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Art+Materials+Produc'"/>
+          
         </div>
         <div class="p-4">
-          <span class="text-xs text-gray-400 uppercase tracking-wide">Beds &amp; Furniture</span>
-          <h3 class="font-semibold text-sm mt-1 mb-1">Luxury Orthopedic Pet Bed</h3>
-          <p class="text-xs text-gray-500 mb-2 line-clamp-2">Memory foam base, removable washable cover. Available in S/M/L/XL. OEM logo service available.</p>
-          <div class="flex items-center justify-between">
-            <span class="text-brand font-bold text-sm">From $6.90/pc</span>
-            <a href="#contact" class="text-xs bg-accent text-brand font-semibold px-3 py-1.5 rounded-lg hover:bg-brand hover:text-white transition-colors">Inquire</a>
+          <h3 class="font-semibold text-body mb-1 truncate">Art Materials Product</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">High quality product from trusted suppliers....</p>
+          
+          
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">Contact for price</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
           </div>
         </div>
       </div>
 
-      <!-- Product 5 — Beauty -->
-      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="beauty">
+<!-- Product 5 -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="beauty" onclick="openProductModal(this)">
         <div class="img-wrap relative">
-          <img src="images/products/skincare-set.jpg" alt="Vitamin C Skincare Set" loading="lazy"
-               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Skincare+Set'"/>
-          <span class="badge-hot absolute top-3 left-3 px-2 py-0.5 rounded font-semibold">HOT</span>
+          <img src="images/products/beauty-personal-care/bath-body/main.jpg" alt="Bath & Body Product" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Bath+&+Body+Product'"/>
+          
         </div>
         <div class="p-4">
-          <span class="text-xs text-gray-400 uppercase tracking-wide">Skincare</span>
-          <h3 class="font-semibold text-sm mt-1 mb-1">Vitamin C Brightening Set</h3>
-          <p class="text-xs text-gray-500 mb-2 line-clamp-2">Paraben-free formula, dermatologist tested. Private label with your brand name, MOQ 200 sets.</p>
-          <div class="flex items-center justify-between">
-            <span class="text-brand font-bold text-sm">From $5.50/set</span>
-            <a href="#contact" class="text-xs bg-accent text-brand font-semibold px-3 py-1.5 rounded-lg hover:bg-brand hover:text-white transition-colors">Inquire</a>
+          <h3 class="font-semibold text-body mb-1 truncate">Bath & Body Product</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">High quality product from trusted suppliers....</p>
+          
+          
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">Contact for price</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
           </div>
         </div>
       </div>
 
-      <!-- Product 6 — Beauty -->
-      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="beauty">
+<!-- Product 6 -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="home" onclick="openProductModal(this)">
         <div class="img-wrap relative">
-          <img src="images/products/haircare.jpg" alt="Professional Hair Care Series" loading="lazy"
-               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Hair+Care'"/>
+          <img src="images/products/home-daily-essentials/bathroom-supplies/main.jpg" alt="Bathroom Supplies Product" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Bathroom+Supplies+Pr'"/>
+          
         </div>
         <div class="p-4">
-          <span class="text-xs text-gray-400 uppercase tracking-wide">Haircare</span>
-          <h3 class="font-semibold text-sm mt-1 mb-1">Professional Hair Care Series</h3>
-          <p class="text-xs text-gray-500 mb-2 line-clamp-2">Sulfate-free, keratin-infused. Salon &amp; retail grade. Custom fragrance options available.</p>
-          <div class="flex items-center justify-between">
-            <span class="text-brand font-bold text-sm">From $3.80/bottle</span>
-            <a href="#contact" class="text-xs bg-accent text-brand font-semibold px-3 py-1.5 rounded-lg hover:bg-brand hover:text-white transition-colors">Inquire</a>
+          <h3 class="font-semibold text-body mb-1 truncate">Bathroom Supplies Product</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">High quality product from trusted suppliers....</p>
+          
+          
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">Contact for price</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
           </div>
         </div>
       </div>
 
-      <!-- Product 7 — Craft & Decor -->
-      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="craft">
+<!-- Product 7 -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="home" onclick="openProductModal(this)">
         <div class="img-wrap relative">
-          <img src="images/products/home-decor.jpg" alt="Boho Macrame Wall Decor" loading="lazy"
-               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Home+Decor'"/>
-          <span class="badge-new absolute top-3 left-3 px-2 py-0.5 rounded font-semibold">NEW</span>
+          <img src="images/products/home-daily-essentials/bedding/main.jpg" alt="Bedding Product" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Bedding+Product'"/>
+          
         </div>
         <div class="p-4">
-          <span class="text-xs text-gray-400 uppercase tracking-wide">Home Decor</span>
-          <h3 class="font-semibold text-sm mt-1 mb-1">Boho Macrame Wall Hanging</h3>
-          <p class="text-xs text-gray-500 mb-2 line-clamp-2">100% natural cotton rope, handcrafted finish. Gift-box packaging available. Trending on global platforms.</p>
-          <div class="flex items-center justify-between">
-            <span class="text-brand font-bold text-sm">From $1.90/pc</span>
-            <a href="#contact" class="text-xs bg-accent text-brand font-semibold px-3 py-1.5 rounded-lg hover:bg-brand hover:text-white transition-colors">Inquire</a>
+          <h3 class="font-semibold text-body mb-1 truncate">Bedding Product</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">High quality product from trusted suppliers....</p>
+          
+          
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">Contact for price</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
           </div>
         </div>
       </div>
 
-      <!-- Product 8 — Other -->
-      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="other">
+<!-- Product 8 -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="home" onclick="openProductModal(this)">
         <div class="img-wrap relative">
-          <img src="images/products/travel-gear.jpg" alt="Travel Organizer Set" loading="lazy"
-               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Travel+Gear'"/>
-          <span class="badge-hot absolute top-3 left-3 px-2 py-0.5 rounded font-semibold">HOT</span>
+          <img src="images/products/home-daily-essentials/cleaning-products/main.jpg" alt="Cleaning Products Product" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Cleaning+Products+Pr'"/>
+          
         </div>
         <div class="p-4">
-          <span class="text-xs text-gray-400 uppercase tracking-wide">Travel Gear</span>
-          <h3 class="font-semibold text-sm mt-1 mb-1">6-Piece Travel Organizer Set</h3>
-          <p class="text-xs text-gray-500 mb-2 line-clamp-2">Waterproof Oxford fabric, zipper compression system. Suitable for Amazon FBA direct shipment.</p>
-          <div class="flex items-center justify-between">
-            <span class="text-brand font-bold text-sm">From $3.20/set</span>
-            <a href="#contact" class="text-xs bg-accent text-brand font-semibold px-3 py-1.5 rounded-lg hover:bg-brand hover:text-white transition-colors">Inquire</a>
+          <h3 class="font-semibold text-body mb-1 truncate">Cleaning Products Product</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">High quality product from trusted suppliers....</p>
+          
+          
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">Contact for price</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
           </div>
         </div>
       </div>
@@ -909,6 +926,53 @@
 
   </div>
 </section>
+
+<!-- ══════════════════════════════════════════
+     PRODUCT DETAIL MODAL (for homepage products)
+══════════════════════════════════════════ -->
+<div id="product-modal" class="hidden fixed inset-0 bg-black/60 z-[999] overflow-y-auto">
+  <div class="min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-3xl w-full shadow-2xl relative">
+      <button onclick="closeProductModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center z-10">
+        <i class="fa fa-times text-gray-600"></i>
+      </button>
+      <div class="grid md:grid-cols-2 gap-0">
+        <div class="p-6 border-r border-gray-100">
+          <div class="rounded-xl overflow-hidden bg-accent h-64 mb-3">
+            <img id="modal-main-img" src="" alt="" class="w-full h-full object-contain"/>
+          </div>
+          <div id="modal-thumbs" class="grid grid-cols-6 gap-1.5"></div>
+          <p class="text-[10px] text-gray-400 mt-2 text-center">Click thumbnail to switch image</p>
+        </div>
+        <div class="p-6">
+          <p id="modal-sku" class="text-xs text-gray-400 mb-1"></p>
+          <h3 id="modal-name" class="text-xl font-bold mb-3"></h3>
+          <p id="modal-desc" class="text-sm text-gray-500 leading-relaxed mb-4"></p>
+          <div id="modal-features" class="mb-4"></div>
+          <div id="modal-specs" class="mb-4"></div>
+          <div class="bg-accent rounded-xl p-4 mb-4">
+            <div class="flex justify-between text-sm mb-2">
+              <span class="text-gray-500">Unit Price</span>
+              <span id="modal-price" class="font-bold text-brand"></span>
+            </div>
+            <div class="flex justify-between text-sm">
+              <span class="text-gray-500">MOQ</span>
+              <span id="modal-moq" class="font-medium text-gray-700"></span>
+            </div>
+          </div>
+          <a id="modal-wa" href="https://wa.me/8618735731692" target="_blank"
+             class="flex items-center justify-center gap-2 w-full bg-[#25D366] text-white font-bold py-3 rounded-xl mb-2 hover:opacity-90 text-sm">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.570-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.570-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            Chat on WhatsApp
+          </a>
+          <a href="#contact" onclick="closeProductModal()" class="flex items-center justify-center gap-2 w-full border-2 border-brand text-brand font-semibold py-2.5 rounded-xl hover:bg-accent text-sm">
+            <i class="fa fa-envelope"></i> Send Email Inquiry
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <!-- Wave divider -->
@@ -1393,9 +1457,9 @@
       <div>
         <h4 class="font-bold text-sm uppercase tracking-wider mb-4 text-white/80">Product Categories</h4>
         <ul class="space-y-2 text-sm text-white/55">
-          <li><a href="products/home-daily/index.html" class="hover:text-white transition-colors">Home &amp; Daily Essentials</a></li>
-          <li><a href="products/pet-daily/index.html" class="hover:text-white transition-colors">Pet Daily Needs</a></li>
-          <li><a href="products/beauty-care/index.html" class="hover:text-white transition-colors">Beauty &amp; Personal Care</a></li>
+          <li><a href="products/home-daily-essentials/index.html" class="hover:text-white transition-colors">Home &amp; Daily Essentials</a></li>
+          <li><a href="products/pet-daily-needs/index.html" class="hover:text-white transition-colors">Pet Daily Needs</a></li>
+          <li><a href="products/beauty-personal-care/index.html" class="hover:text-white transition-colors">Beauty &amp; Personal Care</a></li>
           <li><a href="products/craft-decor/index.html" class="hover:text-white transition-colors">Craft &amp; Decor</a></li>
           <li><a href="products/other-supplies/index.html" class="hover:text-white transition-colors">Other Supplies</a></li>
         </ul>
@@ -1481,7 +1545,7 @@ const mobileMenu = document.getElementById('mobile-menu');
 hamburger.addEventListener('click', () => {
   mobileMenu.classList.toggle('open');
   hamburger.querySelector('i').classList.toggle('fa-bars');
-  hamburger.querySelector('i').classList.toggle('fa-times');
+  hamburger.querySelector('i').classList.toggle('fa-xmark');
 });
 
 // Mobile accordion sub-menus
@@ -1639,6 +1703,80 @@ document.querySelectorAll('.usp-card, .product-card, .cert-card, .testimonial-ca
   el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
   observer.observe(el);
 });
+
+/* ════════════════════════════════
+   8. Product Modal (for homepage)
+════════════════════════════════ */
+function openProductModal(card) {
+  const img = card.querySelector('img');
+  const imgSrc = img ? img.src : '';
+  const name = card.querySelector('h3').textContent;
+  const descEl = card.querySelector('p.line-clamp-2');
+  const desc = descEl ? descEl.textContent : '';
+  const priceEl = card.querySelector('.text-brand');
+  const price = priceEl ? priceEl.textContent : '';
+  const galleryData = card.dataset.gallery;
+  
+  // Get features and specs from the card
+  const featuresEl = card.querySelector('p.text-green-600');
+  const features = featuresEl ? featuresEl.innerHTML : '';
+  const specsEl = card.querySelector('p.text-blue-600');
+  const specs = specsEl ? specsEl.innerHTML : '';
+  
+  document.getElementById('modal-name').textContent = name;
+  document.getElementById('modal-desc').textContent = desc;
+  document.getElementById('modal-price').textContent = price;
+  document.getElementById('modal-moq').textContent = 'MOQ: Flexible';
+  document.getElementById('modal-sku').textContent = '';
+  document.getElementById('modal-main-img').src = imgSrc;
+  document.getElementById('modal-main-img').alt = name;
+  
+  // Set features and specs
+  document.getElementById('modal-features').innerHTML = features ? `<div class="text-xs text-green-600 mb-2">${features}</div>` : '';
+  document.getElementById('modal-specs').innerHTML = specs ? `<div class="text-xs text-blue-600 mb-2">${specs}</div>` : '';
+  
+  // Build thumbnail gallery
+  const tw = document.getElementById('modal-thumbs');
+  tw.innerHTML = '';
+  
+  let imageList = [imgSrc];
+  if (galleryData) {
+    try {
+      const gallery = JSON.parse(galleryData);
+      if (Array.isArray(gallery) && gallery.length > 0) {
+        imageList = [imgSrc, ...gallery];
+      }
+    } catch (e) {}
+  }
+  
+  imageList.forEach((src, i) => {
+    const im = document.createElement('img');
+    im.src = src;
+    im.className = 'thumb w-full h-12 object-cover rounded-lg cursor-pointer border-2 border-transparent hover:border-brand' + (i === 0 ? ' border-brand' : '');
+    im.onerror = function() { this.remove(); };
+    im.onclick = function(e) {
+      e.stopPropagation();
+      document.getElementById('modal-main-img').src = this.src;
+      tw.querySelectorAll('.thumb').forEach(t => t.classList.remove('border-brand'));
+      this.classList.add('border-brand');
+    };
+    tw.appendChild(im);
+  });
+  
+  document.getElementById('modal-wa').href = 'https://wa.me/8618735731692?text=' + encodeURIComponent('Hi! I am interested in: ' + name + '. Please send pricing and availability.');
+  document.getElementById('product-modal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProductModal() {
+  document.getElementById('product-modal').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('product-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeProductModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProductModal(); });
 
 </script>
 </body>

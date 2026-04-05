@@ -1,4 +1,4 @@
-Product: Professional Acrylic Paint Set (24 colors)
+Product: Art Materials Product
 SKU: AM001
 
 Image files to add:

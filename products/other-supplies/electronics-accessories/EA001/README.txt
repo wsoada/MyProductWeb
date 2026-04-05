@@ -1,4 +1,4 @@
-Product: 65W GaN USB-C Charger (3-Port)
+Product: Electronics Accessories Product
 SKU: EA001
 
 Image files to add:

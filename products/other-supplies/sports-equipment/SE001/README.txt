@@ -1,4 +1,4 @@
-Product: TPE Yoga Mat (6mm, Non-slip)
+Product: Sports Equipment Product
 SKU: SE001
 
 Image files to add:
