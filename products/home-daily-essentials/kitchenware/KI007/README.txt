@@ -1,5 +1,5 @@
-Product: Butter Slicer
-SKU: KI001
+Product:  2-in-1 Plastic Pasta Box with Strainer
+SKU: KI007
 
 Image files to add:
   main.jpg       - Primary product photo (recommended: 800x800px)

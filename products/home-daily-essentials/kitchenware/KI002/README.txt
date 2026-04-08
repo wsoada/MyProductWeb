@@ -1,5 +1,5 @@
-Product: Butter Slicer
-SKU: KI001
+Product: Spice Grinder
+SKU: KI002
 
 Image files to add:
   main.jpg       - Primary product photo (recommended: 800x800px)

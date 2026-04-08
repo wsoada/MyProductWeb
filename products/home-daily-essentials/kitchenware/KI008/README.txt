@@ -1,5 +1,5 @@
-Product: Butter Slicer
-SKU: KI001
+Product: Compressed Black Cellulose Sponge
+SKU: KI008
 
 Image files to add:
   main.jpg       - Primary product photo (recommended: 800x800px)

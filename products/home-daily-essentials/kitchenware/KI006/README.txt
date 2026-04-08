@@ -1,5 +1,5 @@
-Product: Butter Slicer
-SKU: KI001
+Product: Multi-Use Food Clip
+SKU: KI006
 
 Image files to add:
   main.jpg       - Primary product photo (recommended: 800x800px)

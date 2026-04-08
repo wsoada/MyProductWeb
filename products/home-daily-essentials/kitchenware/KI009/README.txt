@@ -1,5 +1,5 @@
-Product: Butter Slicer
-SKU: KI001
+Product: Potato Cutter, French Fry Cutter
+SKU: KI009
 
 Image files to add:
   main.jpg       - Primary product photo (recommended: 800x800px)
