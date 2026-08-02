@@ -121,18 +121,22 @@
     /* ════════════════════════════════
        Hero Slideshow
     ════════════════════════════════ */
-    #hero { position: relative; overflow: hidden; background: #0a1628; }
+    #hero { position: relative; overflow: hidden; background: #1a1a2e; }
     .slide {
       position: absolute; inset: 0;
-      opacity: 0; transition: opacity 0.8s ease;
-      background-size: cover; background-position: center;
+      opacity: 0; transition: opacity 1.2s ease-in-out;
     }
     .slide.active { opacity: 1; position: relative; }
+    .slide img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block;
+    }
 
-    /* Slide overlay gradient */
+    /* Slide overlay gradient — subtle dark tint for text readability */
     .slide-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(22,93,255,0.72) 0%, rgba(10,22,40,0.50) 100%);
+      background: linear-gradient(135deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.40) 100%);
     }
 
     /* Slide indicators */
@@ -403,15 +407,7 @@
           <a href="products/other-supplies/sports-equipment/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Sports Equipment</a>
         </div>
       </li>
-      <li class="nav-item shrink-0">
-        <a href="products/xxxxxx/index.html" class="flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg hover:bg-accent hover:text-brand transition-colors duration-150 text-body whitespace-nowrap">
-          <i class="fa-solid fa-box mr-1.5 text-brand flex-shrink-0"></i><span class="whitespace-nowrap">111111</span>
-          <i class="fa-solid fa-chevron-down text-[10px] opacity-60 ml-1 flex-shrink-0"></i>
-        </a>
-        <div class="dropdown-menu">
-          
-        </div>
-      </li>
+
     </ul>
 
     <!-- Mobile hamburger -->
@@ -519,30 +515,30 @@
 
     <!-- Slide 1 — replace src with: images/slides/slide1.jpg -->
     <div class="slide active"
-         style="background-image: url('images/slides/slide1.jpg'); background-color: #0a2a6e;"
          data-title="China Sourcing. World Delivered."
          data-desc="Over 5,000 SKUs across 5 categories — matched with trusted large-scale factories, quality-checked, and shipped globally.">
+      <img src="images/slides/slide1.jpg" alt="China Sourcing" />
     </div>
 
     <!-- Slide 2 — replace src with: images/slides/slide2.jpg -->
     <div class="slide"
-         style="background-image: url('images/slides/slide2.jpg'); background-color: #0e3566;"
          data-title="Home &amp; Daily Essentials"
          data-desc="Kitchenware, bedding, bathroom supplies and more — built for everyday comfort and international market standards.">
+      <img src="images/slides/slide2.jpg" alt="Home Daily Essentials" />
     </div>
 
     <!-- Slide 3 — replace src with: images/slides/slide3.jpg -->
     <div class="slide"
-         style="background-image: url('images/slides/slide3.jpg'); background-color: #122a5e;"
-         data-title="Beauty &amp; Pet Collections"
-         data-desc="Trendy skincare lines and premium pet care products — OEM/ODM available with your branding on every unit.">
+         data-title="Pet Daily Needs"
+         data-desc="Premium pet food, toys, grooming tools and accessories — sourced from certified factories, ready for global retail.">
+      <img src="images/slides/slide3.jpg" alt="Pet Daily Needs" />
     </div>
 
     <!-- Slide 4 — replace src with: images/slides/slide4.jpg -->
     <div class="slide"
-         style="background-image: url('images/slides/slide4.jpg'); background-color: #0d2040;"
-         data-title="Certified Quality. Competitive Pricing."
-         data-desc="ISO-certified processes, CE/RoHS compliance, and rigorous QC at every production stage.">
+         data-title="Beauty &amp; Personal Care"
+         data-desc="Skincare, haircare, makeup and fragrance lines — OEM/ODM with private label support for global brands.">
+      <img src="images/slides/slide4.jpg" alt="Beauty Personal Care" />
     </div>
 
   </div><!-- /slide-container -->
@@ -620,8 +616,8 @@
 
       <!-- Card: Customization -->
       <div class="usp-card bg-accent p-6 text-center">
-        <div class="w-14 h-14 rounded-2xl bg-brand/10 flex items-center justify-center mx-auto mb-4">
-          <i class="fa fa-pencil-ruler text-2xl text-brand"></i>
+        <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto mb-4 overflow-hidden">
+          <img src="images/icons/oem-odm.png" alt="OEM / ODM" class="w-full h-full object-contain" />
         </div>
         <h3 class="font-bold text-base mb-2">OEM / ODM</h3>
         <p class="text-gray-500 text-xs leading-relaxed">Custom branding, packaging design, and private-label manufacturing tailored to your requirements.</p>
@@ -629,8 +625,8 @@
 
       <!-- Card: Quality Control -->
       <div class="usp-card bg-accent p-6 text-center">
-        <div class="w-14 h-14 rounded-2xl bg-brand/10 flex items-center justify-center mx-auto mb-4">
-          <i class="fa fa-shield-halved text-2xl text-brand"></i>
+        <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto mb-4 overflow-hidden">
+          <img src="images/icons/quality-control.png" alt="Quality Control" class="w-full h-full object-contain" />
         </div>
         <h3 class="font-bold text-base mb-2">Quality Control</h3>
         <p class="text-gray-500 text-xs leading-relaxed">Inline inspection, pre-shipment audits, and third-party lab testing to guarantee product compliance.</p>
@@ -638,8 +634,8 @@
 
       <!-- Card: Logistics -->
       <div class="usp-card bg-accent p-6 text-center">
-        <div class="w-14 h-14 rounded-2xl bg-brand/10 flex items-center justify-center mx-auto mb-4">
-          <i class="fa fa-ship text-2xl text-brand"></i>
+        <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto mb-4 overflow-hidden">
+          <img src="images/icons/global-logistics.png" alt="Global Logistics" class="w-full h-full object-contain" />
         </div>
         <h3 class="font-bold text-base mb-2">Global Logistics</h3>
         <p class="text-gray-500 text-xs leading-relaxed">Sea freight, air freight, express — we coordinate door-to-door delivery to 80+ countries worldwide.</p>
@@ -647,8 +643,8 @@
 
       <!-- Card: After-sales -->
       <div class="usp-card bg-accent p-6 text-center">
-        <div class="w-14 h-14 rounded-2xl bg-brand/10 flex items-center justify-center mx-auto mb-4">
-          <i class="fa fa-headset text-2xl text-brand"></i>
+        <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto mb-4 overflow-hidden">
+          <img src="images/icons/after-sales.png" alt="After-Sales Support" class="w-full h-full object-contain" />
         </div>
         <h3 class="font-bold text-base mb-2">After-Sales Support</h3>
         <p class="text-gray-500 text-xs leading-relaxed">Dedicated account manager, warranty handling, and fast replacement policy for every order.</p>
@@ -656,8 +652,8 @@
 
       <!-- Card: Sourcing -->
       <div class="usp-card bg-accent p-6 text-center">
-        <div class="w-14 h-14 rounded-2xl bg-brand/10 flex items-center justify-center mx-auto mb-4">
-          <i class="fa fa-magnifying-glass text-2xl text-brand"></i>
+        <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto mb-4 overflow-hidden">
+          <img src="images/icons/product-sourcing.png" alt="Product Sourcing" class="w-full h-full object-contain" />
         </div>
         <h3 class="font-bold text-base mb-2">Product Sourcing</h3>
         <p class="text-gray-500 text-xs leading-relaxed">Can't find what you need? Send us a request — our sourcing team will locate it within 48 hours.</p>
@@ -665,8 +661,8 @@
 
       <!-- Card: Low MOQ -->
       <div class="usp-card bg-accent p-6 text-center">
-        <div class="w-14 h-14 rounded-2xl bg-brand/10 flex items-center justify-center mx-auto mb-4">
-          <i class="fa fa-boxes-stacked text-2xl text-brand"></i>
+        <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto mb-4 overflow-hidden">
+          <img src="images/icons/flexible-moq.png" alt="Flexible MOQ" class="w-full h-full object-contain" />
         </div>
         <h3 class="font-bold text-base mb-2">Flexible MOQ</h3>
         <p class="text-gray-500 text-xs leading-relaxed">We support small starter orders with competitive pricing — perfect for new market testing.</p>
@@ -674,8 +670,8 @@
 
       <!-- Card: Compliance -->
       <div class="usp-card bg-accent p-6 text-center">
-        <div class="w-14 h-14 rounded-2xl bg-brand/10 flex items-center justify-center mx-auto mb-4">
-          <i class="fa fa-certificate text-2xl text-brand"></i>
+        <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto mb-4 overflow-hidden">
+          <img src="images/icons/certifications.png" alt="Certifications" class="w-full h-full object-contain" />
         </div>
         <h3 class="font-bold text-base mb-2">Certifications</h3>
         <p class="text-gray-500 text-xs leading-relaxed">ISO 9001, CE, RoHS, FDA, and more — we help you meet the compliance requirements of your target market.</p>
@@ -683,8 +679,8 @@
 
       <!-- Card: Trade Assurance -->
       <div class="usp-card bg-accent p-6 text-center">
-        <div class="w-14 h-14 rounded-2xl bg-brand/10 flex items-center justify-center mx-auto mb-4">
-          <i class="fa fa-lock text-2xl text-brand"></i>
+        <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto mb-4 overflow-hidden">
+          <img src="images/icons/trade-assurance.png" alt="Trade Assurance" class="w-full h-full object-contain" />
         </div>
         <h3 class="font-bold text-base mb-2">Trade Assurance</h3>
         <p class="text-gray-500 text-xs leading-relaxed">Secure payment terms, clear contracts, and on-time delivery guarantees backed by our track record.</p>
@@ -731,7 +727,7 @@
       <h2 class="section-title">Featured <span>Product Lines</span></h2>
       <div class="divider-line"></div>
       <p class="mt-5 text-gray-500 max-w-xl mx-auto text-sm">
-        Browse our best-selling items across all categories. New arrivals updated weekly.
+        Browse our best-selling items across all categories.
       </p>
     </div>
 
@@ -776,6 +772,25 @@
       </div>
 
 <!-- Product 2 -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="pet" onclick="openProductModal(this)">
+        <div class="img-wrap relative">
+          <img src="images/products/product_37_b66099c3.webp" alt="Bunny Toy Loofah Pet Rabbit Toys" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Bunny+Toy+Loofah+Pet'"/>
+          
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-body mb-1 truncate">Bunny Toy Loofah Pet Rabbit Toys</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">Bunny Toy Loofah Pet Rabbit Toys provide a fun, safe, and be...</p>
+          
+          
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">From $1.00/pc</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
+          </div>
+        </div>
+      </div>
+
+<!-- Product 3 -->
       <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="home" onclick="openProductModal(this)">
         <div class="img-wrap relative">
           <img src="images/products/product_27_c883589b.jpg" alt="Butter Slicer" loading="lazy"
@@ -794,7 +809,26 @@
         </div>
       </div>
 
-<!-- Product 3 -->
+<!-- Product 4 -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="pet" onclick="openProductModal(this)">
+        <div class="img-wrap relative">
+          <img src="images/products/product_38_0962ffb8.webp" alt="Cat House Bed Cute Pet Cave Dog Bed" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Cat+House+Bed+Cute+P'"/>
+          
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-body mb-1 truncate">Cat House Bed Cute Pet Cave Dog Bed</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">offers a cozy and playful retreat for pets with its house-sh...</p>
+          
+          
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">From $30.00/pc</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
+          </div>
+        </div>
+      </div>
+
+<!-- Product 5 -->
       <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="home" onclick="openProductModal(this)">
         <div class="img-wrap relative">
           <img src="images/products/product_34_27b799b0.jpg" alt="Compressed Black Cellulose Sponge" loading="lazy"
@@ -813,7 +847,7 @@
         </div>
       </div>
 
-<!-- Product 4 -->
+<!-- Product 6 -->
       <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="home" onclick="openProductModal(this)">
         <div class="img-wrap relative">
           <img src="images/products/product_36_bd635672.jpg" alt="Food Grade Silicone Cleaning Gloves" loading="lazy"
@@ -832,7 +866,7 @@
         </div>
       </div>
 
-<!-- Product 5 -->
+<!-- Product 7 -->
       <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="home" onclick="openProductModal(this)">
         <div class="img-wrap relative">
           <img src="images/products/product_32_0f268d43.jpg" alt="Multi-Use Food Clip" loading="lazy"
@@ -851,7 +885,7 @@
         </div>
       </div>
 
-<!-- Product 6 -->
+<!-- Product 8 -->
       <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="home" onclick="openProductModal(this)">
         <div class="img-wrap relative">
           <img src="images/products/product_35_7866194c.jpg" alt="Potato Cutter, French Fry Cutter" loading="lazy"
@@ -861,44 +895,6 @@
         <div class="p-4">
           <h3 class="font-semibold text-body mb-1 truncate">Potato Cutter, French Fry Cutter</h3>
           <p class="text-xs text-gray-500 mb-2 line-clamp-2">- Multifunctional cutter for making perfect fries, sticks of...</p>
-          
-          
-          <div class="flex items-center justify-between mt-2">
-            <span class="text-brand font-bold text-sm">From $2.00/pc</span>
-            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
-          </div>
-        </div>
-      </div>
-
-<!-- Product 7 -->
-      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="home" onclick="openProductModal(this)">
-        <div class="img-wrap relative">
-          <img src="images/products/product_28_13bd341a.jpg" alt="Spice Grinder" loading="lazy"
-               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Spice+Grinder'"/>
-          
-        </div>
-        <div class="p-4">
-          <h3 class="font-semibold text-body mb-1 truncate">Spice Grinder</h3>
-          <p class="text-xs text-gray-500 mb-2 line-clamp-2">Clear Acrylic Manual Spice Grinder | Adjustable Ceramic Core...</p>
-          
-          
-          <div class="flex items-center justify-between mt-2">
-            <span class="text-brand font-bold text-sm">From $3.00/pc</span>
-            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
-          </div>
-        </div>
-      </div>
-
-<!-- Product 8 -->
-      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="home" onclick="openProductModal(this)">
-        <div class="img-wrap relative">
-          <img src="images/products/product_31_1ef5ec14.jpg" alt="Stainless Steel Flatware Set" loading="lazy"
-               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Stainless+Steel+Flat'"/>
-          
-        </div>
-        <div class="p-4">
-          <h3 class="font-semibold text-body mb-1 truncate">Stainless Steel Flatware Set</h3>
-          <p class="text-xs text-gray-500 mb-2 line-clamp-2">- Made of high-quality stainless steel, durable, rust-resist...</p>
           
           
           <div class="flex items-center justify-between mt-2">
@@ -1585,6 +1581,35 @@ mobileMenu.querySelectorAll('a').forEach(a => {
     dotsWrap.appendChild(dot);
   });
 
+  // Preload all slide images before starting the slideshow
+  let loadedCount = 0;
+  const totalSlides = slides.length;
+  
+  slides.forEach(function(slide) {
+    const imgEl = slide.querySelector('img');
+    if (imgEl) {
+      const preloader = new Image();
+      preloader.onload = function() {
+        loadedCount++;
+        if (loadedCount >= totalSlides) {
+          startTimer();
+        }
+      };
+      preloader.onerror = function() {
+        loadedCount++;
+        if (loadedCount >= totalSlides) {
+          startTimer();
+        }
+      };
+      preloader.src = imgEl.src;
+    } else {
+      loadedCount++;
+      if (loadedCount >= totalSlides) {
+        startTimer();
+      }
+    }
+  });
+
   function goTo(idx) {
     slides[current].classList.remove('active');
     dotsWrap.children[current].classList.remove('active');
@@ -1618,7 +1643,6 @@ mobileMenu.querySelectorAll('a').forEach(a => {
     if (Math.abs(dx) > 50) { goTo(dx < 0 ? current + 1 : current - 1); startTimer(); }
   });
 
-  startTimer();
 })();
 
 /* ════════════════════════════════

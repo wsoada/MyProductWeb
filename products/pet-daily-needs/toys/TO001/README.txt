@@ -1,4 +1,4 @@
-Product: Pet Toys Product
+Product: Bunny Toy Loofah Pet Rabbit Toys
 SKU: TO001
 
 Image files to add:

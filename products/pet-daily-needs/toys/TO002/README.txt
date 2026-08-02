@@ -1,4 +1,4 @@
-Product: 逗猫棒
+Product: Cat House Bed Cute Pet Cave Dog Bed
 SKU: TO002
 
 Image files to add:

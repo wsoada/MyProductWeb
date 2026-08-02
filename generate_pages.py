@@ -669,9 +669,43 @@ def product_cards_html(products, sku_prefix):
     return cards
 
 def sub_page_html(cat, sub, root):
-    cards = product_cards_html(sub["products"], sub["sku_prefix"])
     from urllib.parse import quote
     wa_msg = quote(f"Hi! I am interested in your {sub['title']} products. Please send catalog and pricing.")
+    wa_empty_msg = quote(f"Hi! I'm interested in your {sub['title']} products. This category is empty on your site — can you share your latest catalog and pricing?")
+    
+    has_products = len(sub["products"]) > 0
+    
+    if has_products:
+        cards = product_cards_html(sub["products"], sub["sku_prefix"])
+        product_section = f"""
+  <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+    <p class="text-sm text-gray-500"><span class="font-semibold text-gray-800">{sub['title']}</span> — All Products</p>
+    <div class="flex gap-2 flex-wrap">
+      <button onclick="filterProd('all',this)" class="filter-btn active text-xs px-4 py-1.5 rounded-full border-2 border-brand bg-brand text-white font-medium">All</button>
+      <button onclick="filterProd('new',this)" class="filter-btn text-xs px-4 py-1.5 rounded-full border-2 border-gray-200 text-gray-500 font-medium hover:border-brand hover:text-brand">New Arrivals</button>
+      <button onclick="filterProd('hot',this)" class="filter-btn text-xs px-4 py-1.5 rounded-full border-2 border-gray-200 text-gray-500 font-medium hover:border-brand hover:text-brand">Best Sellers</button>
+      <button onclick="filterProd('oem',this)" class="filter-btn text-xs px-4 py-1.5 rounded-full border-2 border-gray-200 text-gray-500 font-medium hover:border-brand hover:text-brand">OEM Available</button>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="prod-grid">
+    {cards}
+  </div>"""
+    else:
+        product_section = f"""
+  <div class="max-w-md mx-auto bg-white rounded-2xl shadow-sm border border-gray-100 px-8 py-10 text-center">
+    <div class="w-16 h-16 rounded-full bg-accent flex items-center justify-center mx-auto mb-5">
+      <i class="fa-solid fa-box-open text-2xl text-brand"></i>
+    </div>
+    <h2 class="text-lg font-bold text-gray-800 mb-2">No products listed yet</h2>
+    <p class="text-sm text-gray-500 mb-6 leading-relaxed">
+      This category is being prepared. Send us your requirements — our team will get back to you within 2 hours with the right options.
+    </p>
+    <a href="https://wa.me/{WA}?text={wa_empty_msg}" target="_blank"
+       class="inline-flex items-center gap-2 bg-[#25D366] text-white font-semibold px-5 py-2.5 rounded-xl text-sm hover:opacity-90 shadow-sm transition-all">
+      {WA_SVG_SM} Chat on WhatsApp
+    </a>
+  </div>"""
+
     return f"""{head_html(sub['title'])}
 {navbar_html(root, cat['title'], f"{root}products/{cat['slug']}/index.html", sub['title'])}
 <section class="bg-gradient-to-r from-brand to-blue-500 text-white py-12 px-4">
@@ -692,18 +726,7 @@ def sub_page_html(cat, sub, root):
   </div>
 </section>
 <main class="max-w-screen-xl mx-auto px-4 lg:px-8 py-12">
-  <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
-    <p class="text-sm text-gray-500"><span class="font-semibold text-gray-800">{sub['title']}</span> — All Products</p>
-    <div class="flex gap-2 flex-wrap">
-      <button onclick="filterProd('all',this)" class="filter-btn active text-xs px-4 py-1.5 rounded-full border-2 border-brand bg-brand text-white font-medium">All</button>
-      <button onclick="filterProd('new',this)" class="filter-btn text-xs px-4 py-1.5 rounded-full border-2 border-gray-200 text-gray-500 font-medium hover:border-brand hover:text-brand">New Arrivals</button>
-      <button onclick="filterProd('hot',this)" class="filter-btn text-xs px-4 py-1.5 rounded-full border-2 border-gray-200 text-gray-500 font-medium hover:border-brand hover:text-brand">Best Sellers</button>
-      <button onclick="filterProd('oem',this)" class="filter-btn text-xs px-4 py-1.5 rounded-full border-2 border-gray-200 text-gray-500 font-medium hover:border-brand hover:text-brand">OEM Available</button>
-    </div>
-  </div>
-  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="prod-grid">
-    {cards}
-  </div>
+  {product_section}
   <div class="mt-12 bg-accent rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-5">
     <div>
       <h3 class="font-bold text-lg mb-1">Need a Custom {sub['title']} Solution?</h3>
