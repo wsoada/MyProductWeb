@@ -1,4 +1,4 @@
-Product: Cleaning Products Product
+Product: Microfiber Cleaning Cloth Set (12-Piece)
 SKU: CP001
 
 Image files to add:

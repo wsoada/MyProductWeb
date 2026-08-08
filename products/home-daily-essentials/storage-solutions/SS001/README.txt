@@ -1,4 +1,4 @@
-Product: Storage Solutions Product
+Product: Collapsible Fabric Storage Box Set (6-Piece)
 SKU: SS001
 
 Image files to add:

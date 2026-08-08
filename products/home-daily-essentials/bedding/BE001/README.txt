@@ -1,4 +1,4 @@
-Product: Bedding Product
+Product: Hotel Grade 4-Piece Bedding Set
 SKU: BE001
 
 Image files to add:

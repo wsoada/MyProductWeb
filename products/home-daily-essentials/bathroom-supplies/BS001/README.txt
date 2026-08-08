@@ -1,4 +1,4 @@
-Product: Bathroom Supplies Product
+Product: Egyptian Cotton Bath Towel Set (6-Piece)
 SKU: BS001
 
 Image files to add:
