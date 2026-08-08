@@ -5,6 +5,7 @@ generate_pages.py
 运行: python generate_pages.py
 """
 import os, textwrap
+from datetime import datetime
 
 # 导入数据库连接器
 try:
@@ -600,18 +601,50 @@ def navbar_html(root, parent_title, parent_path, current_title):
   </div>
 </nav>"""
 
-def head_html(title):
+SITE_URL = "https://www.sourcesure888.com"
+
+def seo_meta(title, description, canonical, image, page_type="website"):
+    """生成 SEO 元标签（description / canonical / Open Graph / Twitter Card）。"""
+    desc_escaped = description.replace('"', "&quot;")
+    og_title = title.replace('"', "&quot;")
+    return f"""  <meta name="description" content="{desc_escaped}"/>
+  <link rel="canonical" href="{canonical}"/>
+  <meta property="og:type" content="{page_type}"/>
+  <meta property="og:site_name" content="{BRAND}"/>
+  <meta property="og:title" content="{og_title}"/>
+  <meta property="og:description" content="{desc_escaped}"/>
+  <meta property="og:url" content="{canonical}"/>
+  <meta property="og:image" content="{image}"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="{og_title}"/>
+  <meta name="twitter:description" content="{desc_escaped}"/>
+  <meta name="twitter:image" content="{image}"/>"""
+
+def json_ld_org():
+    """组织信息结构化数据（Organization）。"""
+    return f"""<script type="application/ld+json">
+{{"@context":"https://schema.org","@type":"Organization","name":"{BRAND}","alternateName":"{COMPANY}","url":"{SITE_URL}/","logo":"{SITE_URL}/images/logo/logo.png","description":"One-stop sourcing service in China connecting global buyers with trusted factories.","contactPoint":[{{"@type":"ContactPoint","telephone":"+86 18735731692","contactType":"sales","email":"{EMAIL}","availableLanguage":["English","Chinese"]}}],"sameAs":["https://wa.me/{WA}"]}}
+</script>"""
+
+def head_html(title, description=SLOGAN, canonical=None, image=None, page_type="website"):
     script_open = "<script"
     script_close = "<" + "/script>"
+    if canonical is None:
+        canonical = f"{SITE_URL}/"
+    if image is None:
+        image = f"{SITE_URL}/images/logo/logo.png"
+    seo = seo_meta(title, description, canonical, image, page_type)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{title} — {BRAND} | {COMPANY}</title>
+  {seo}
   {script_open} src="https://cdn.tailwindcss.com">{script_close}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
   {script_open}>tailwind.config={{theme:{{extend:{{colors:{{brand:{{DEFAULT:'#165DFF',dark:'#0E3ECC'}},accent:'#F0F7FF'}},fontFamily:{{sans:['Inter','sans-serif']}}}}}}}}{script_close}
+  {json_ld_org()}
   <style>
     body{{font-family:'Inter',sans-serif;color:#333}}
     .thumb{{cursor:pointer;border:2px solid transparent;border-radius:8px;transition:border-color 0.2s}}
@@ -706,7 +739,10 @@ def sub_page_html(cat, sub, root):
     </a>
   </div>"""
 
-    return f"""{head_html(sub['title'])}
+    sub_desc = f"{sub['title']} {cat['title'].lower()} products. {BRAND} supplies wholesale {sub['title'].lower()} from certified Chinese factories with OEM/private label. Request a quote."
+    sub_canon = f"{SITE_URL}/products/{cat['slug']}/{sub['slug']}/"
+    sub_img = f"{SITE_URL}/images/{cat['slug']}/{sub['slug']}/SK001/main.jpg"
+    return f"""{head_html(f"{sub['title']} {cat['title']}", sub_desc, sub_canon, sub_img)}
 {navbar_html(root, cat['title'], f"{root}products/{cat['slug']}/index.html", sub['title'])}
 <section class="bg-gradient-to-r from-brand to-blue-500 text-white py-12 px-4">
   <div class="max-w-screen-xl mx-auto">
@@ -763,7 +799,10 @@ def cat_index_html(cat, root):
     </a>"""
     from urllib.parse import quote
     wa_msg = quote(f"Hi! I am interested in your {cat['title']} products. Please send catalog.")
-    return f"""{head_html(cat['title'])}
+    cat_desc = f"{cat['title']} sourcing & manufacturing. {BRAND} connects global buyers with trusted Chinese factories for {cat['title'].lower()} products. OEM, private label, flexible MOQ. Request a quote."
+    cat_canon = f"{SITE_URL}/products/{cat['slug']}/"
+    cat_img = f"{SITE_URL}/images/{cat['slug']}/{cat['slug']}_1.jpg"
+    return f"""{head_html(cat['title'], cat_desc, cat_canon, cat_img)}
 <div class="bg-brand text-white text-xs py-2 px-4 text-center">
   🚢 Trusted Factory Network · Global Shipping · MOQ Flexible
 </div>
@@ -1124,4 +1163,46 @@ print(f"\n[OK] Generated {len(generated)} pages:\n")
 for p in generated:
     print(f"  {p}")
 print("\n[OK] Product SKU folders with README.txt created for all products.")
+
+# ─────────────────────────────────────────────────────────────
+# Generate sitemap.xml & robots.txt for SEO
+# ─────────────────────────────────────────────────────────────
+sitemap_pages = [("", "1.0", "daily")]  # (path, priority, changefreq)
+for cat in CATEGORIES:
+    sitemap_pages.append((f"products/{cat['slug']}/index.html", "0.9", "weekly"))
+    for sub in cat["subs"]:
+        sitemap_pages.append((f"products/{cat['slug']}/{sub['slug']}/index.html", "0.8", "weekly"))
+
+sitemap_entries = []
+for path, priority, changefreq in sitemap_pages:
+    if path:
+        loc = f"{SITE_URL}/{path}"
+        lastmod = datetime.now().strftime("%Y-%m-%d")
+    else:
+        loc = SITE_URL
+        lastmod = datetime.now().strftime("%Y-%m-%d")
+    sitemap_entries.append(f"""  <url>
+    <loc>{loc}</loc>
+    <lastmod>{lastmod}</lastmod>
+    <changefreq>{changefreq}</changefreq>
+    <priority>{priority}</priority>
+  </url>""")
+
+sitemap_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{chr(10).join(sitemap_entries)}
+</urlset>"""
+with open(os.path.join(BASE, "sitemap.xml"), "w", encoding="utf-8") as f:
+    f.write(sitemap_xml)
+print(f"[OK] sitemap.xml generated ({len(sitemap_pages)} URLs)")
+
+robots_txt = f"""User-agent: *
+Allow: /
+
+Sitemap: {SITE_URL}/sitemap.xml
+"""
+with open(os.path.join(BASE, "robots.txt"), "w", encoding="utf-8") as f:
+    f.write(robots_txt)
+print("[OK] robots.txt generated")
+
 print("Done!")
