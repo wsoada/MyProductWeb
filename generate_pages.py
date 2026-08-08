@@ -657,7 +657,7 @@ def head_html(title, description=SLOGAN, canonical=None, image=None, page_type="
 </head>
 <body class="bg-gray-50">"""
 
-def product_cards_html(products, sku_prefix):
+def product_cards_html(products, sku_prefix, cat=None, sub=None):
     cards = ""
     for i, p in enumerate(products, 1):
         sku = f"{sku_prefix}{i:03d}"
@@ -679,14 +679,15 @@ def product_cards_html(products, sku_prefix):
             # 构建图库图片URL列表 (detail1.jpg, detail2.jpg, ...)
             gallery_urls = []
             for i in range(len(p['gallery'])):
-                gallery_urls.append(f"{sku}/detail{i+1}.jpg")
+                gallery_urls.append(f"/images/{cat['slug']}/{sub['slug']}/{sku}/detail{i+1}.jpg")
             gallery_data = f' data-gallery=\'{json.dumps(gallery_urls)}\''
         
+        img_src = f"/images/{cat['slug']}/{sub['slug']}/{sku}/main.jpg"
         cards += f"""
     <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="{tags}"{gallery_data} onclick="openDetail(this)">
       <div class="relative h-48 overflow-hidden bg-accent">
-        <img src="{sku}/main.jpg" alt="{name_escaped}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-             onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;{sku}/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
+        <img src="{img_src}" alt="{name_escaped}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+             onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;{sku}&lt;/span&gt;&lt;/div&gt;'"/>
         {badges}
       </div>
       <div class="p-4">
@@ -709,7 +710,7 @@ def sub_page_html(cat, sub, root):
     has_products = len(sub["products"]) > 0
     
     if has_products:
-        cards = product_cards_html(sub["products"], sub["sku_prefix"])
+        cards = product_cards_html(sub["products"], sub["sku_prefix"], cat, sub)
         product_section = f"""
   <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
     <p class="text-sm text-gray-500"><span class="font-semibold text-gray-800">{sub['title']}</span> — All Products</p>
