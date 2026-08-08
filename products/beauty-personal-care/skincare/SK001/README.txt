@@ -1,4 +1,4 @@
-Product: Skincare Product
+Product: Hyaluronic Acid Vitamin C Serum
 SKU: SK001
 
 Image files to add:

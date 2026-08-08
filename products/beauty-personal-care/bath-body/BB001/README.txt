@@ -1,4 +1,4 @@
-Product: Bath & Body Product
+Product: Lavender Bath Bomb Gift Set (6-Pack)
 SKU: BB001
 
 Image files to add:

@@ -1,4 +1,4 @@
-Product: Haircare Product
+Product: Argan Oil Hair Repair Shampoo & Conditioner Set
 SKU: HA001
 
 Image files to add:

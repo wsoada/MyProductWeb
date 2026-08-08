@@ -1,4 +1,4 @@
-Product: Fragrance Product
+Product: Luxury Eau de Parfum (100ml)
 SKU: FR001
 
 Image files to add:

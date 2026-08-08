@@ -1,4 +1,4 @@
-Product: Makeup Product
+Product: Matte Lipstick Set (6 Colors)
 SKU: MA001
 
 Image files to add:
