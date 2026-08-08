@@ -392,63 +392,33 @@ def get_default_categories():
     ]
   },
   {
-    "slug": "other-supplies",
-    "title": "Other Supplies",
-    "desc": "Stationery, electronics accessories, travel gear, and sports equipment for global buyers.",
-    "icon": "fa-boxes-stacked",
-    "color": "from-orange-500 to-amber-400",
+    "slug": "tech-gadget",
+    "title": "Tech & Gadget Supplies",
+    "desc": "From car accessories to consumer electronics and smart gadgets — certified tech products sourced through trusted factory partners, OEM & private label ready.",
+    "icon": "fa-microchip",
+    "color": "from-slate-700 to-cyan-500",
     "depth": 2,
     "subs": [
       {
-        "slug": "stationery",
-        "title": "Stationery",
-        "desc": "Office and school stationery — pens, notebooks, planners. Custom branding available.",
-        "icon": "fa-pen-to-square",
-        "sku_prefix": "SN",
+        "slug": "car-accessories",
+        "title": "Car Accessories",
+        "desc": "Premium car accessories and auto parts — chargers, mounts, interior & exterior upgrades. CE/FCC certified, OEM & private label ready.",
+        "icon": "fa-car-side",
+        "sku_prefix": "CA",
         "products": [
-          {"name":"Gel Pen Set (48pcs, Assorted Colors)","desc":"0.5mm tip, quick-dry ink. For journal, bullet planner, sketch. OEM barrel printing.","price":"From $0.18/pc","moq":"MOQ: 1000pcs","tags":"hot oem"},
-          {"name":"A5 Hardcover Dot-Grid Notebook","desc":"160 pages, 100gsm paper, lay-flat binding. 6 cover colours. Custom deboss logo.","price":"From $2.80/pc","moq":"MOQ: 200pcs","tags":"new oem"},
-          {"name":"Desk Organizer Set (6pcs, Acrylic)","desc":"Clear acrylic, modular layout. Pen holder, tray, file stand. Office & retail grade.","price":"From $5.50/set","moq":"MOQ: 100sets","tags":"hot"},
-          {"name":"Washi Tape Collection (20 rolls)","desc":"20 assorted designs, 15mm wide, 10m per roll. For planners, scrapbooking, packaging.","price":"From $3.20/set","moq":"MOQ: 100sets","tags":"oem"},
+          {"name":"Wireless Car Charger Mount (15W)","desc":"Auto-clamp infrared sensor, 15W Qi fast charge. Anti-slip silicone. CE/FCC certified. OEM logo.","price":"From $9.80/pc","moq":"MOQ: 100pcs","tags":"hot oem"},
+          {"name":"Dual USB Car Charger (PD 36W)","desc":"Dual-port USB car charger, 36W total output. PD 30W + QC 18W. Compact zinc alloy body. CE/FCC certified. OEM logo.","price":"From $5.20/pc","moq":"MOQ: 200pcs","tags":"new oem"},
         ]
       },
       {
-        "slug": "electronics-accessories",
-        "title": "Electronics Accessories",
-        "desc": "Phone cases, charging cables, power banks and laptop accessories. CE/RoHS certified.",
+        "slug": "consumer-electronics",
+        "title": "Consumer Electronics",
+        "desc": "Smart consumer electronics and gadgets — audio, charging, smart home and portable devices. CE/RoHS/FCC certified, retail-ready packaging.",
         "icon": "fa-plug-circle-bolt",
-        "sku_prefix": "EA",
+        "sku_prefix": "CE",
         "products": [
-          {"name":"65W GaN USB-C Charger (3-Port)","desc":"65W total output, PD 3.0 + QC 4.0. Foldable plug. CE/FCC/RoHS certified. OEM logo.","price":"From $8.50/pc","moq":"MOQ: 100pcs","tags":"hot oem"},
-          {"name":"Braided USB-C to USB-C Cable (2m)","desc":"100W fast charge, 10Gbps data. Nylon braided, zinc alloy connectors. OEM packaging.","price":"From $1.80/pc","moq":"MOQ: 500pcs","tags":"new"},
-          {"name":"10000mAh Slim Power Bank","desc":"22.5W fast charge, dual output, LED indicator. 12mm slim. Airline approved. OEM print.","price":"From $9.20/pc","moq":"MOQ: 50pcs","tags":"hot oem"},
-          {"name":"Laptop Stand (Adjustable, Aluminium)","desc":"6 angle adjustments, foldable, 10–17 inch compatible. 1kg max load. Anti-slip pads.","price":"From $7.80/pc","moq":"MOQ: 50pcs","tags":"oem"},
-        ]
-      },
-      {
-        "slug": "travel-gear",
-        "title": "Travel Gear",
-        "desc": "Packing cubes, toiletry bags and travel organizers — Amazon FBA-ready packaging.",
-        "icon": "fa-suitcase-rolling",
-        "sku_prefix": "TG",
-        "products": [
-          {"name":"6-Piece Travel Packing Cube Set","desc":"Waterproof Oxford fabric, zip compression. S/M/L/XL + shoe bag + laundry bag.","price":"From $3.20/set","moq":"MOQ: 100sets","tags":"hot oem"},
-          {"name":"Hanging Toiletry Organizer Bag","desc":"Oxford fabric, waterproof lining, hook. 6 compartments. 4 colours. OEM logo.","price":"From $4.50/pc","moq":"MOQ: 100pcs","tags":"new oem"},
-          {"name":"Portable Luggage Scale (Digital)","desc":"Up to 50kg, 0.1g precision. Auto-off. Foldable handle. CE certified. Retail box.","price":"From $3.80/pc","moq":"MOQ: 100pcs","tags":"hot"},
-          {"name":"Travel Neck Pillow (Memory Foam)","desc":"Ergonomic contour, machine-washable velour cover. Snap buckle. Carry pouch included.","price":"From $4.20/pc","moq":"MOQ: 100pcs","tags":"oem"},
-        ]
-      },
-      {
-        "slug": "sports-equipment",
-        "title": "Sports Equipment",
-        "desc": "Fitness, outdoor and yoga equipment. Safety certified, Amazon and retail-ready.",
-        "icon": "fa-dumbbell",
-        "sku_prefix": "SE",
-        "products": [
-          {"name":"TPE Yoga Mat (6mm, Non-slip)","desc":"Eco-friendly TPE, 183×61cm, 6mm cushion. Alignment lines. Carry strap. OEM print.","price":"From $5.80/pc","moq":"MOQ: 50pcs","tags":"hot oem"},
-          {"name":"Resistance Band Set (5 levels)","desc":"Natural latex, door anchor + handles included. 10–50lb resistance. OEM packaging.","price":"From $3.50/set","moq":"MOQ: 100sets","tags":"new oem"},
-          {"name":"Adjustable Dumbbell Set (2×5kg)","desc":"Rubber-coated cast iron. Knurled grip handle. Weight plates: 0.5/1/1.5/2kg. Pair.","price":"From $14.50/pair","moq":"MOQ: 20pairs","tags":"hot"},
-          {"name":"Foam Roller (60cm, High Density)","desc":"High-density EVA foam. 30cm/45cm/60cm options. Smooth & textured surface. OEM label.","price":"From $4.20/pc","moq":"MOQ: 50pcs","tags":"oem"},
+          {"name":"Mini Bluetooth Speaker (10W, IPX5)","desc":"10W driver, IPX5 waterproof, 12h playtime. TWS pairing. CE/RoHS/FCC certified. Retail box.","price":"From $6.90/pc","moq":"MOQ: 100pcs","tags":"hot oem"},
+          {"name":"True Wireless Earbuds (BT 5.3, ENC)","desc":"True wireless earbuds, Bluetooth 5.3, ENC noise-cancelling mic. 30h playtime with charging case. CE/RoHS/FCC certified. Retail box.","price":"From $7.40/pc","moq":"MOQ: 100pcs","tags":"new oem"},
         ]
       },
     ]

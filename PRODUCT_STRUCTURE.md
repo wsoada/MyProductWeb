@@ -15,7 +15,7 @@ This website is organized for easy product replacement and future expansion.
 - `/products/pet-daily/index.html`
 - `/products/beauty-care/index.html`
 - `/products/craft-decor/index.html`
-- `/products/other-supplies/index.html`
+- `/products/tech-gadget/index.html`
 
 ## Folder logic
 Each sub-category has its own folder and its own `index.html`.
@@ -78,11 +78,9 @@ The product pages will automatically use these files in the product popup galler
 - Party Decorations
 - Handicrafts
 
-### Other Supplies
-- Stationery
-- Electronics Accessories
-- Travel Gear
-- Sports Equipment
+### Tech & Gadget Supplies
+- Car Accessories
+- Consumer Electronics
 
 ## Notes
 - All image paths are relative paths.

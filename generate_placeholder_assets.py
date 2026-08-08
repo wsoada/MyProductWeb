@@ -18,7 +18,7 @@ PALETTES = {
     "pet-daily": ((16, 185, 129), (13, 148, 136), (236, 253, 245)),
     "beauty-care": ((236, 72, 153), (168, 85, 247), (253, 242, 248)),
     "craft-decor": ((245, 158, 11), (249, 115, 22), (255, 247, 237)),
-    "other-supplies": ((99, 102, 241), (59, 130, 246), (238, 242, 255)),
+    "tech-gadget": ((51, 65, 85), (6, 182, 212), (236, 254, 255)),
 }
 
 DETAIL_LABELS = [
@@ -224,7 +224,7 @@ def generate_global_assets() -> dict[str, int]:
         if create_if_missing(path, (1600, 900), title, subtitle, "default", "SourceSure", overlay_style="hero"):
             created["slides"] += 1
 
-    featured_palette_cycle = ["home-daily", "home-daily", "pet-daily", "pet-daily", "beauty-care", "beauty-care", "craft-decor", "other-supplies"]
+    featured_palette_cycle = ["home-daily", "home-daily", "pet-daily", "pet-daily", "beauty-care", "beauty-care", "craft-decor", "tech-gadget"]
     for (filename, title, subtitle), palette_key in zip(FEATURED_PRODUCTS, featured_palette_cycle):
         path = ROOT / "images" / "products" / filename
         if create_if_missing(path, (1200, 900), title, subtitle, palette_key, "Featured"):
