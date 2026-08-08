@@ -16,6 +16,9 @@
     .img-placeholder{background:linear-gradient(135deg,#e8f0fe,#c7d8fd);border:2px dashed #93b4fb;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#165DFF;padding:1rem;text-align:center}
     .filter-btn.active{background:#165DFF;color:#fff;border-color:#165DFF}
   </style>
+  <!-- Vercel Web Analytics -->
+  <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body class="bg-gray-50">
 
@@ -56,11 +59,11 @@
   <div class="max-w-screen-xl mx-auto">
     <div class="flex items-center gap-3 mb-3">
       <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
-        <i class="fa-solid fa-tag text-xl "></i>
+        <i class="fa-solid fa-pen-to-square text-xl "></i>
       </div>
       <h1 class="text-3xl md:text-4xl font-extrabold">Stationery</h1>
     </div>
-    <p class="text-white/80 text-sm max-w-xl">Office and school stationery - pens, notebooks, planners. Custom branding available.</p>
+    <p class="text-white/80 text-sm max-w-xl">Office and school stationery — pens, notebooks, planners. Custom branding available.</p>
     <div class="flex flex-wrap gap-3 mt-5 text-xs">
       <span class="bg-white/20 px-3 py-1.5 rounded-full">✓ ISO 9001 Certified</span>
       <span class="bg-white/20 px-3 py-1.5 rounded-full">✓ OEM / Private Label</span>
@@ -82,19 +85,67 @@
   </div>
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="prod-grid">
     
+    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="hot oem" onclick="openDetail(this)">
+      <div class="relative h-48 overflow-hidden bg-accent">
+        <img src="SN001/main.jpg" alt="Gel Pen Set (48pcs, Assorted Colors)" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+             onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;SN001/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
+        <span class="absolute top-2 left-2 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">HOT</span><span class="absolute top-2 right-2 bg-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">OEM</span>
+      </div>
+      <div class="p-4">
+        <p class="text-[10px] text-gray-400 mb-0.5">SKU: SN001</p>
+        <h3 class="font-semibold text-sm leading-snug mb-1">Gel Pen Set (48pcs, Assorted Colors)</h3>
+        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">0.5mm tip, quick-dry ink. For journal, bullet planner, sketch. OEM barrel printing.</p>
+        <div class="flex items-center justify-between">
+          <span class="text-brand font-bold text-sm">From $0.18/pc</span>
+          <span class="text-[10px] text-gray-400">MOQ: 1000pcs</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="new oem" onclick="openDetail(this)">
+      <div class="relative h-48 overflow-hidden bg-accent">
+        <img src="SN002/main.jpg" alt="A5 Hardcover Dot-Grid Notebook" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+             onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;SN002/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
+        <span class="absolute top-2 left-2 bg-brand text-white text-[10px] font-bold px-2 py-0.5 rounded">NEW</span><span class="absolute top-2 right-2 bg-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">OEM</span>
+      </div>
+      <div class="p-4">
+        <p class="text-[10px] text-gray-400 mb-0.5">SKU: SN002</p>
+        <h3 class="font-semibold text-sm leading-snug mb-1">A5 Hardcover Dot-Grid Notebook</h3>
+        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">160 pages, 100gsm paper, lay-flat binding. 6 cover colours. Custom deboss logo.</p>
+        <div class="flex items-center justify-between">
+          <span class="text-brand font-bold text-sm">From $2.80/pc</span>
+          <span class="text-[10px] text-gray-400">MOQ: 200pcs</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="hot" onclick="openDetail(this)">
+      <div class="relative h-48 overflow-hidden bg-accent">
+        <img src="SN003/main.jpg" alt="Desk Organizer Set (6pcs, Acrylic)" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+             onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;SN003/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
+        <span class="absolute top-2 left-2 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">HOT</span>
+      </div>
+      <div class="p-4">
+        <p class="text-[10px] text-gray-400 mb-0.5">SKU: SN003</p>
+        <h3 class="font-semibold text-sm leading-snug mb-1">Desk Organizer Set (6pcs, Acrylic)</h3>
+        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">Clear acrylic, modular layout. Pen holder, tray, file stand. Office & retail grade.</p>
+        <div class="flex items-center justify-between">
+          <span class="text-brand font-bold text-sm">From $5.50/set</span>
+          <span class="text-[10px] text-gray-400">MOQ: 100sets</span>
+        </div>
+      </div>
+    </div>
     <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="oem" onclick="openDetail(this)">
       <div class="relative h-48 overflow-hidden bg-accent">
-        <img src="ST001/main.jpg" alt="Stationery Product" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-             onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;ST001/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
+        <img src="SN004/main.jpg" alt="Washi Tape Collection (20 rolls)" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+             onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;SN004/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
         <span class="absolute top-2 right-2 bg-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">OEM</span>
       </div>
       <div class="p-4">
-        <p class="text-[10px] text-gray-400 mb-0.5">SKU: ST001</p>
-        <h3 class="font-semibold text-sm leading-snug mb-1">Stationery Product</h3>
-        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">High quality product from trusted suppliers.</p>
+        <p class="text-[10px] text-gray-400 mb-0.5">SKU: SN004</p>
+        <h3 class="font-semibold text-sm leading-snug mb-1">Washi Tape Collection (20 rolls)</h3>
+        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">20 assorted designs, 15mm wide, 10m per roll. For planners, scrapbooking, packaging.</p>
         <div class="flex items-center justify-between">
-          <span class="text-brand font-bold text-sm">Contact for price</span>
-          <span class="text-[10px] text-gray-400">MOQ: Flexible</span>
+          <span class="text-brand font-bold text-sm">From $3.20/set</span>
+          <span class="text-[10px] text-gray-400">MOQ: 100sets</span>
         </div>
       </div>
     </div>

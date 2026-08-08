@@ -1,4 +1,4 @@
-Product: Party Decorations Product
+Product: Balloon Arch Garland Kit (120pcs)
 SKU: PD001
 
 Image files to add:

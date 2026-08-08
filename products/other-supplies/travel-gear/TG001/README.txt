@@ -1,4 +1,4 @@
-Product: Travel Gear Product
+Product: 6-Piece Travel Packing Cube Set
 SKU: TG001
 
 Image files to add:
