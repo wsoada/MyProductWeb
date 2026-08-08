@@ -608,6 +608,7 @@ def seo_meta(title, description, canonical, image, page_type="website"):
     desc_escaped = description.replace('"', "&quot;")
     og_title = title.replace('"', "&quot;")
     return f"""  <meta name="description" content="{desc_escaped}"/>
+  <meta name="msvalidate.01" content="15007313055D749677D41C0A2812B2FA"/>
   <link rel="canonical" href="{canonical}"/>
   <meta property="og:type" content="{page_type}"/>
   <meta property="og:site_name" content="{BRAND}"/>
