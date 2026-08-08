@@ -16,6 +16,9 @@
     .img-placeholder{background:linear-gradient(135deg,#e8f0fe,#c7d8fd);border:2px dashed #93b4fb;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#165DFF;padding:1rem;text-align:center}
     .filter-btn.active{background:#165DFF;color:#fff;border-color:#165DFF}
   </style>
+  <!-- Vercel Web Analytics -->
+  <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body class="bg-gray-50">
 
@@ -56,7 +59,7 @@
   <div class="max-w-screen-xl mx-auto">
     <div class="flex items-center gap-3 mb-3">
       <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
-        <i class="fa-solid fa-tag text-xl "></i>
+        <i class="fa-solid fa-house-chimney text-xl "></i>
       </div>
       <h1 class="text-3xl md:text-4xl font-extrabold">Home Decor</h1>
     </div>
@@ -82,19 +85,67 @@
   </div>
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="prod-grid">
     
-    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="oem" onclick="openDetail(this)">
+    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="hot oem" onclick="openDetail(this)">
       <div class="relative h-48 overflow-hidden bg-accent">
-        <img src="HD001/main.jpg" alt="Home Decor Product" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+        <img src="HD001/main.jpg" alt="Boho Macrame Wall Hanging" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
              onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;HD001/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
-        <span class="absolute top-2 right-2 bg-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">OEM</span>
+        <span class="absolute top-2 left-2 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">HOT</span><span class="absolute top-2 right-2 bg-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">OEM</span>
       </div>
       <div class="p-4">
         <p class="text-[10px] text-gray-400 mb-0.5">SKU: HD001</p>
-        <h3 class="font-semibold text-sm leading-snug mb-1">Home Decor Product</h3>
-        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">High quality product from trusted suppliers.</p>
+        <h3 class="font-semibold text-sm leading-snug mb-1">Boho Macrame Wall Hanging</h3>
+        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">100% natural cotton rope, handcrafted. Driftwood rod included. Gift-box ready. Trending globally.</p>
         <div class="flex items-center justify-between">
-          <span class="text-brand font-bold text-sm">Contact for price</span>
-          <span class="text-[10px] text-gray-400">MOQ: Flexible</span>
+          <span class="text-brand font-bold text-sm">From $1.90/pc</span>
+          <span class="text-[10px] text-gray-400">MOQ: 100pcs</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="new" onclick="openDetail(this)">
+      <div class="relative h-48 overflow-hidden bg-accent">
+        <img src="HD002/main.jpg" alt="Geometric Terracotta Planter Set (3pcs)" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+             onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;HD002/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
+        <span class="absolute top-2 left-2 bg-brand text-white text-[10px] font-bold px-2 py-0.5 rounded">NEW</span>
+      </div>
+      <div class="p-4">
+        <p class="text-[10px] text-gray-400 mb-0.5">SKU: HD002</p>
+        <h3 class="font-semibold text-sm leading-snug mb-1">Geometric Terracotta Planter Set (3pcs)</h3>
+        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">Hand-painted terracotta, drainage hole with plug. S/M/L nested set. 8 colour combos.</p>
+        <div class="flex items-center justify-between">
+          <span class="text-brand font-bold text-sm">From $5.60/set</span>
+          <span class="text-[10px] text-gray-400">MOQ: 50sets</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="hot oem" onclick="openDetail(this)">
+      <div class="relative h-48 overflow-hidden bg-accent">
+        <img src="HD003/main.jpg" alt="Scented Pillar Candle Set (3pcs)" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+             onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;HD003/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
+        <span class="absolute top-2 left-2 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">HOT</span><span class="absolute top-2 right-2 bg-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">OEM</span>
+      </div>
+      <div class="p-4">
+        <p class="text-[10px] text-gray-400 mb-0.5">SKU: HD003</p>
+        <h3 class="font-semibold text-sm leading-snug mb-1">Scented Pillar Candle Set (3pcs)</h3>
+        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">Soy-paraffin blend, cotton wick, 60hr burn time. 10 scents. OEM label printing.</p>
+        <div class="flex items-center justify-between">
+          <span class="text-brand font-bold text-sm">From $3.80/set</span>
+          <span class="text-[10px] text-gray-400">MOQ: 100sets</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="oem" onclick="openDetail(this)">
+      <div class="relative h-48 overflow-hidden bg-accent">
+        <img src="HD004/main.jpg" alt="Rattan Photo Frame Set (5pcs)" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+             onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;HD004/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
+        <span class="absolute top-2 right-2 bg-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">OEM</span>
+      </div>
+      <div class="p-4">
+        <p class="text-[10px] text-gray-400 mb-0.5">SKU: HD004</p>
+        <h3 class="font-semibold text-sm leading-snug mb-1">Rattan Photo Frame Set (5pcs)</h3>
+        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">Natural rattan + MDF. 4x6, 5x7, 8x10 sizes. Tabletop & wall hanging. OEM packaging.</p>
+        <div class="flex items-center justify-between">
+          <span class="text-brand font-bold text-sm">From $4.20/set</span>
+          <span class="text-[10px] text-gray-400">MOQ: 50sets</span>
         </div>
       </div>
     </div>

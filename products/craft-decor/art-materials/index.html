@@ -16,6 +16,9 @@
     .img-placeholder{background:linear-gradient(135deg,#e8f0fe,#c7d8fd);border:2px dashed #93b4fb;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#165DFF;padding:1rem;text-align:center}
     .filter-btn.active{background:#165DFF;color:#fff;border-color:#165DFF}
   </style>
+  <!-- Vercel Web Analytics -->
+  <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body class="bg-gray-50">
 
@@ -56,7 +59,7 @@
   <div class="max-w-screen-xl mx-auto">
     <div class="flex items-center gap-3 mb-3">
       <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
-        <i class="fa-solid fa-tag text-xl "></i>
+        <i class="fa-solid fa-paintbrush text-xl "></i>
       </div>
       <h1 class="text-3xl md:text-4xl font-extrabold">Art Materials</h1>
     </div>
@@ -82,19 +85,67 @@
   </div>
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="prod-grid">
     
-    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="oem" onclick="openDetail(this)">
+    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="hot oem" onclick="openDetail(this)">
       <div class="relative h-48 overflow-hidden bg-accent">
-        <img src="AM001/main.jpg" alt="Art Materials Product" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+        <img src="AM001/main.jpg" alt="Professional Acrylic Paint Set (24 colors)" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
              onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;AM001/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
-        <span class="absolute top-2 right-2 bg-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">OEM</span>
+        <span class="absolute top-2 left-2 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">HOT</span><span class="absolute top-2 right-2 bg-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">OEM</span>
       </div>
       <div class="p-4">
         <p class="text-[10px] text-gray-400 mb-0.5">SKU: AM001</p>
-        <h3 class="font-semibold text-sm leading-snug mb-1">Art Materials Product</h3>
-        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">High quality product from trusted suppliers.</p>
+        <h3 class="font-semibold text-sm leading-snug mb-1">Professional Acrylic Paint Set (24 colors)</h3>
+        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">48ml tubes, lightfast, non-toxic. Artists & students grade. AP certified.</p>
         <div class="flex items-center justify-between">
-          <span class="text-brand font-bold text-sm">Contact for price</span>
-          <span class="text-[10px] text-gray-400">MOQ: Flexible</span>
+          <span class="text-brand font-bold text-sm">From $6.80/set</span>
+          <span class="text-[10px] text-gray-400">MOQ: 100sets</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="new oem" onclick="openDetail(this)">
+      <div class="relative h-48 overflow-hidden bg-accent">
+        <img src="AM002/main.jpg" alt="Artist Brush Set (15pcs)" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+             onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;AM002/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
+        <span class="absolute top-2 left-2 bg-brand text-white text-[10px] font-bold px-2 py-0.5 rounded">NEW</span><span class="absolute top-2 right-2 bg-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">OEM</span>
+      </div>
+      <div class="p-4">
+        <p class="text-[10px] text-gray-400 mb-0.5">SKU: AM002</p>
+        <h3 class="font-semibold text-sm leading-snug mb-1">Artist Brush Set (15pcs)</h3>
+        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">Hand-tied, synthetic/natural mix, wooden handles. Assorted sizes. Velvet roll pouch.</p>
+        <div class="flex items-center justify-between">
+          <span class="text-brand font-bold text-sm">From $4.50/set</span>
+          <span class="text-[10px] text-gray-400">MOQ: 100sets</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="hot" onclick="openDetail(this)">
+      <div class="relative h-48 overflow-hidden bg-accent">
+        <img src="AM003/main.jpg" alt="Watercolor Field Sketch Set" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+             onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;AM003/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
+        <span class="absolute top-2 left-2 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">HOT</span>
+      </div>
+      <div class="p-4">
+        <p class="text-[10px] text-gray-400 mb-0.5">SKU: AM003</p>
+        <h3 class="font-semibold text-sm leading-snug mb-1">Watercolor Field Sketch Set</h3>
+        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">24 pan watercolors, mixing tray, 2 brushes, water brush. Compact tin case. Travel-ready.</p>
+        <div class="flex items-center justify-between">
+          <span class="text-brand font-bold text-sm">From $5.20/set</span>
+          <span class="text-[10px] text-gray-400">MOQ: 50sets</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="oem" onclick="openDetail(this)">
+      <div class="relative h-48 overflow-hidden bg-accent">
+        <img src="AM004/main.jpg" alt="Sketch Pencil Set (24pcs, 6H-8B)" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+             onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;AM004/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
+        <span class="absolute top-2 right-2 bg-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">OEM</span>
+      </div>
+      <div class="p-4">
+        <p class="text-[10px] text-gray-400 mb-0.5">SKU: AM004</p>
+        <h3 class="font-semibold text-sm leading-snug mb-1">Sketch Pencil Set (24pcs, 6H-8B)</h3>
+        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">Cedar wood, break-resistant graphite. 6H to 8B range. Tin case. AP certified.</p>
+        <div class="flex items-center justify-between">
+          <span class="text-brand font-bold text-sm">From $3.80/set</span>
+          <span class="text-[10px] text-gray-400">MOQ: 100sets</span>
         </div>
       </div>
     </div>

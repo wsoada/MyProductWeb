@@ -1,4 +1,4 @@
-Product: Home Decor Product
+Product: Boho Macrame Wall Hanging
 SKU: HD001
 
 Image files to add:

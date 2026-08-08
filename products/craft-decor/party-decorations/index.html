@@ -16,6 +16,9 @@
     .img-placeholder{background:linear-gradient(135deg,#e8f0fe,#c7d8fd);border:2px dashed #93b4fb;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#165DFF;padding:1rem;text-align:center}
     .filter-btn.active{background:#165DFF;color:#fff;border-color:#165DFF}
   </style>
+  <!-- Vercel Web Analytics -->
+  <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body class="bg-gray-50">
 
@@ -56,7 +59,7 @@
   <div class="max-w-screen-xl mx-auto">
     <div class="flex items-center gap-3 mb-3">
       <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
-        <i class="fa-solid fa-tag text-xl "></i>
+        <i class="fa-solid fa-champagne-glasses text-xl "></i>
       </div>
       <h1 class="text-3xl md:text-4xl font-extrabold">Party Decorations</h1>
     </div>
@@ -82,19 +85,67 @@
   </div>
   <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="prod-grid">
     
-    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="oem" onclick="openDetail(this)">
+    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="hot oem" onclick="openDetail(this)">
       <div class="relative h-48 overflow-hidden bg-accent">
-        <img src="PD001/main.jpg" alt="Party Decorations Product" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+        <img src="PD001/main.jpg" alt="Balloon Arch Garland Kit (120pcs)" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
              onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;PD001/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
-        <span class="absolute top-2 right-2 bg-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">OEM</span>
+        <span class="absolute top-2 left-2 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">HOT</span><span class="absolute top-2 right-2 bg-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">OEM</span>
       </div>
       <div class="p-4">
         <p class="text-[10px] text-gray-400 mb-0.5">SKU: PD001</p>
-        <h3 class="font-semibold text-sm leading-snug mb-1">Party Decorations Product</h3>
-        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">High quality product from trusted suppliers.</p>
+        <h3 class="font-semibold text-sm leading-snug mb-1">Balloon Arch Garland Kit (120pcs)</h3>
+        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">Latex & foil mix, assorted sizes and colours. Strip, dots, pump included. 1 arch set.</p>
         <div class="flex items-center justify-between">
-          <span class="text-brand font-bold text-sm">Contact for price</span>
-          <span class="text-[10px] text-gray-400">MOQ: Flexible</span>
+          <span class="text-brand font-bold text-sm">From $4.50/kit</span>
+          <span class="text-[10px] text-gray-400">MOQ: 100kits</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="new oem" onclick="openDetail(this)">
+      <div class="relative h-48 overflow-hidden bg-accent">
+        <img src="PD002/main.jpg" alt="Custom Printed Party Banner" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+             onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;PD002/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
+        <span class="absolute top-2 left-2 bg-brand text-white text-[10px] font-bold px-2 py-0.5 rounded">NEW</span><span class="absolute top-2 right-2 bg-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">OEM</span>
+      </div>
+      <div class="p-4">
+        <p class="text-[10px] text-gray-400 mb-0.5">SKU: PD002</p>
+        <h3 class="font-semibold text-sm leading-snug mb-1">Custom Printed Party Banner</h3>
+        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">Personalized text & design. 300cm length, glitter card or banner fabric. MOQ 50pcs.</p>
+        <div class="flex items-center justify-between">
+          <span class="text-brand font-bold text-sm">From $1.20/pc</span>
+          <span class="text-[10px] text-gray-400">MOQ: 50pcs</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="hot" onclick="openDetail(this)">
+      <div class="relative h-48 overflow-hidden bg-accent">
+        <img src="PD003/main.jpg" alt="Disposable Party Tableware Set (60pcs)" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+             onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;PD003/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
+        <span class="absolute top-2 left-2 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">HOT</span>
+      </div>
+      <div class="p-4">
+        <p class="text-[10px] text-gray-400 mb-0.5">SKU: PD003</p>
+        <h3 class="font-semibold text-sm leading-snug mb-1">Disposable Party Tableware Set (60pcs)</h3>
+        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">Plates, cups, napkins for 10 guests. 5 themed designs. Biodegradable options available.</p>
+        <div class="flex items-center justify-between">
+          <span class="text-brand font-bold text-sm">From $3.80/set</span>
+          <span class="text-[10px] text-gray-400">MOQ: 100sets</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="oem" onclick="openDetail(this)">
+      <div class="relative h-48 overflow-hidden bg-accent">
+        <img src="PD004/main.jpg" alt="LED Fairy String Lights (10m, 100 LEDs)" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+             onerror="this.parentElement.innerHTML='&lt;div class=&quot;img-placeholder w-full h-full&quot;&gt;&lt;i class=&quot;fa-solid fa-image text-3xl mb-2 opacity-30&quot;&gt;&lt;/i&gt;&lt;span class=&quot;text-xs font-medium&quot;&gt;PD004/main.jpg&lt;/span&gt;&lt;/div&gt;'"/>
+        <span class="absolute top-2 right-2 bg-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">OEM</span>
+      </div>
+      <div class="p-4">
+        <p class="text-[10px] text-gray-400 mb-0.5">SKU: PD004</p>
+        <h3 class="font-semibold text-sm leading-snug mb-1">LED Fairy String Lights (10m, 100 LEDs)</h3>
+        <p class="text-[11px] text-gray-500 mb-3 line-clamp-2">USB + AA battery dual power. 8 flash modes. Indoor/outdoor IP44. OEM packaging.</p>
+        <div class="flex items-center justify-between">
+          <span class="text-brand font-bold text-sm">From $2.20/pc</span>
+          <span class="text-[10px] text-gray-400">MOQ: 200pcs</span>
         </div>
       </div>
     </div>

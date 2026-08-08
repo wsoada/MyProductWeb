@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beauty & Personal Care — SourceSure | Yiwu Juncheng Co., Ltd.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <script>tailwind.config={theme:{extend:{colors:{brand:{DEFAULT:'#165DFF',dark:'#0E3ECC'},accent:'#F0F7FF'},fontFamily:{sans:['Inter','sans-serif']}}}}</script>
+  <style>
+    body{font-family:'Inter',sans-serif;color:#333}
+    .thumb{cursor:pointer;border:2px solid transparent;border-radius:8px;transition:border-color 0.2s}
+    .thumb.active,.thumb:hover{border-color:#165DFF}
+    .prod-card{transition:transform 0.2s,box-shadow 0.2s}
+    .prod-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(22,93,255,0.15)}
+    .img-placeholder{background:linear-gradient(135deg,#e8f0fe,#c7d8fd);border:2px dashed #93b4fb;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#165DFF;padding:1rem;text-align:center}
+    .filter-btn.active{background:#165DFF;color:#fff;border-color:#165DFF}
+  </style>
+  <!-- Vercel Web Analytics -->
+  <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body class="bg-gray-50">
+<div class="bg-brand text-white text-xs py-2 px-4 text-center">
+  🚢 Trusted Factory Network · Global Shipping · MOQ Flexible
+</div>
+<nav class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8 flex items-center justify-between h-16">
+    <a href="../../index.html" class="flex items-center gap-2">
+      <img src="../../images/logo/logo.png" alt="SourceSure Logo" class="h-9 w-auto"
+           onerror="this.style.display='none';document.getElementById('lt').style.display='flex'"/>
+      <div id="lt" class="hidden items-center gap-2">
+        <div class="w-9 h-9 rounded-lg bg-brand flex items-center justify-center"><svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M12 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-1 6.07V11H7a1 1 0 1 0 0 2h4v7.93A9.01 9.01 0 0 1 3.05 13H5a1 1 0 1 0 0-2H3.05A9.01 9.01 0 0 1 11 3.07V11h2V3.07A9.01 9.01 0 0 1 20.95 11H19a1 1 0 1 0 0 2h1.95A9.01 9.01 0 0 1 13 20.93V13h4a1 1 0 1 0 0-2h-4v-2.93z"/></svg></div>
+        <div class="leading-none">
+          <div class="font-extrabold text-base text-brand">SourceSure</div>
+          <div class="text-[9px] text-gray-400 font-medium tracking-wide">ONE-STOP SOURCING SERVICE IN CHINA</div>
+        </div>
+      </div>
+    </a>
+    <div class="hidden md:flex items-center gap-2 text-sm text-gray-500">
+      <a href="../../index.html" class="hover:text-brand">Home</a>
+      <i class="fa-solid fa-chevron-right text-[10px]"></i>
+      <span class="text-brand font-medium">Beauty & Personal Care</span>
+    </div>
+    <a href="../../index.html#contact" class="bg-brand text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Send Inquiry</a>
+  </div>
+</nav>
+
+<section class="bg-gradient-to-r from-pink-500 to-rose-400 text-white py-14 px-4">
+  <div class="max-w-screen-xl mx-auto text-center">
+    <div class="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center mx-auto mb-4">
+      <i class="fa-solid fa-spa text-3xl "></i>
+    </div>
+    <h1 class="text-4xl font-extrabold mb-3">Beauty & Personal Care</h1>
+    <p class="text-white/80 max-w-xl mx-auto text-sm">Skincare, haircare, and cosmetics — paraben-free formulas, private label ready.</p>
+  </div>
+</section>
+<main class="max-w-screen-xl mx-auto px-4 lg:px-8 py-14">
+  <div class="text-center mb-10">
+    <span class="inline-block bg-accent text-brand text-xs font-semibold px-4 py-1.5 rounded-full mb-3 uppercase tracking-widest">Select a Sub-Category</span>
+    <h2 class="text-2xl font-extrabold">Browse <span class="text-brand">Beauty & Personal Care</span></h2>
+    <div class="w-12 h-1 bg-brand rounded-full mx-auto mt-3"></div>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+    
+    <a href="skincare/index.html"
+       class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-200 flex flex-col items-center text-center gap-3">
+      <div class="w-14 h-14 rounded-2xl bg-accent flex items-center justify-center">
+        <i class="fa-solid fa-droplet text-2xl text-brand"></i>
+      </div>
+      <h3 class="font-bold text-base">Skincare</h3>
+      <p class="text-xs text-gray-500 line-clamp-2">Dermatologist-tested formulas. Paraben-free, cruelty-free. Private label MOQ 200 sets.</p>
+      <span class="text-brand text-xs font-semibold mt-auto flex items-center gap-1">
+        View Products <i class="fa-solid fa-arrow-right text-[10px]"></i>
+      </span>
+    </a>
+    <a href="haircare/index.html"
+       class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-200 flex flex-col items-center text-center gap-3">
+      <div class="w-14 h-14 rounded-2xl bg-accent flex items-center justify-center">
+        <i class="fa-solid fa-wind text-2xl text-brand"></i>
+      </div>
+      <h3 class="font-bold text-base">Haircare</h3>
+      <p class="text-xs text-gray-500 line-clamp-2">Sulfate-free salon-grade shampoo, conditioner and treatment. Custom fragrance options.</p>
+      <span class="text-brand text-xs font-semibold mt-auto flex items-center gap-1">
+        View Products <i class="fa-solid fa-arrow-right text-[10px]"></i>
+      </span>
+    </a>
+    <a href="makeup/index.html"
+       class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-200 flex flex-col items-center text-center gap-3">
+      <div class="w-14 h-14 rounded-2xl bg-accent flex items-center justify-center">
+        <i class="fa-solid fa-wand-sparkles text-2xl text-brand"></i>
+      </div>
+      <h3 class="font-bold text-base">Makeup</h3>
+      <p class="text-xs text-gray-500 line-clamp-2">Long-wear, cruelty-free cosmetics. OEM formula development and custom packaging.</p>
+      <span class="text-brand text-xs font-semibold mt-auto flex items-center gap-1">
+        View Products <i class="fa-solid fa-arrow-right text-[10px]"></i>
+      </span>
+    </a>
+    <a href="bath-body/index.html"
+       class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-200 flex flex-col items-center text-center gap-3">
+      <div class="w-14 h-14 rounded-2xl bg-accent flex items-center justify-center">
+        <i class="fa-solid fa-soap text-2xl text-brand"></i>
+      </div>
+      <h3 class="font-bold text-base">Bath & Body</h3>
+      <p class="text-xs text-gray-500 line-clamp-2">Luxurious bath bombs, body scrubs, and shower gels. Natural ingredients, gift-set packaging.</p>
+      <span class="text-brand text-xs font-semibold mt-auto flex items-center gap-1">
+        View Products <i class="fa-solid fa-arrow-right text-[10px]"></i>
+      </span>
+    </a>
+    <a href="fragrances/index.html"
+       class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-200 flex flex-col items-center text-center gap-3">
+      <div class="w-14 h-14 rounded-2xl bg-accent flex items-center justify-center">
+        <i class="fa-solid fa-bottle-droplet text-2xl text-brand"></i>
+      </div>
+      <h3 class="font-bold text-base">Fragrances</h3>
+      <p class="text-xs text-gray-500 line-clamp-2">Eau de Parfum, reed diffusers, and car fresheners. Custom scent development available.</p>
+      <span class="text-brand text-xs font-semibold mt-auto flex items-center gap-1">
+        View Products <i class="fa-solid fa-arrow-right text-[10px]"></i>
+      </span>
+    </a>
+  </div>
+  <div class="mt-14 bg-accent rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-5">
+    <div>
+      <h3 class="font-bold text-lg mb-1">Looking for Beauty & Personal Care at wholesale prices?</h3>
+      <p class="text-gray-500 text-sm">Contact us now — we reply within 2 hours during business hours.</p>
+    </div>
+    <div class="flex gap-3 flex-shrink-0">
+      <a href="https://wa.me/8618735731692?text=Hi%21%20I%20am%20interested%20in%20your%20Beauty%20%26%20Personal%20Care%20products.%20Please%20send%20catalog." target="_blank"
+         class="flex items-center gap-2 bg-[#25D366] text-white font-semibold px-5 py-2.5 rounded-xl text-sm hover:opacity-90">
+        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.570-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.570-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg> WhatsApp Now
+      </a>
+      <a href="../../index.html#contact" class="bg-brand text-white font-semibold px-5 py-2.5 rounded-xl text-sm hover:bg-blue-700 transition-colors">Send Inquiry</a>
+    </div>
+  </div>
+</main>
+<a href="https://wa.me/8618735731692" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-xl z-50 hover:scale-110 transition-transform" aria-label="WhatsApp"><svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.570-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.570-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+</body></html>

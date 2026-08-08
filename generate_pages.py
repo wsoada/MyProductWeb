@@ -621,6 +621,9 @@ def head_html(title):
     .img-placeholder{{background:linear-gradient(135deg,#e8f0fe,#c7d8fd);border:2px dashed #93b4fb;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#165DFF;padding:1rem;text-align:center}}
     .filter-btn.active{{background:#165DFF;color:#fff;border-color:#165DFF}}
   </style>
+  <!-- Vercel Web Analytics -->
+  {script_open}>window.va=window.va||function(){{(window.vaq=window.vaq||[]).push(arguments);}};{script_close}
+  {script_open} defer src="/_vercel/insights/script.js">{script_close}
 </head>
 <body class="bg-gray-50">"""
 

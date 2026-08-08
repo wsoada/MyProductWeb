@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SourceSure — One-Stop Sourcing Service in China</title>
+  <meta name="description" content="SourceSure by Yiwu Juncheng Co., Ltd. China sourcing partner connecting global buyers with trusted large-scale factories across home essentials, pet products, beauty & personal care, craft & decor, and more." />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+    /* ── Tailwind custom config ── */
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand:  { DEFAULT: '#165DFF', light: '#4080FF', dark: '#0E3ECC' },
+            accent: '#F0F7FF',
+            body:   '#333333',
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ════════════════════════════════
+       Global resets & base
+    ════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: #333333; background: #ffffff; overflow-x: hidden; }
+
+    /* ════════════════════════════════
+       Ocean / cargo-ship background SVG
+       Placed at 10–15 % opacity so it
+       never distracts from content.
+    ════════════════════════════════ */
+    .ocean-bg {
+      position: relative;
+      overflow: hidden;
+    }
+    .ocean-bg::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 260px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 260'%3E%3C!-- Waves --%3E%3Cpath fill='%23165DFF' fill-opacity='0.08' d='M0,160 C240,200 480,100 720,140 C960,180 1200,100 1440,130 L1440,260 L0,260 Z'/%3E%3Cpath fill='%23165DFF' fill-opacity='0.05' d='M0,200 C360,160 720,240 1080,190 C1260,165 1380,210 1440,200 L1440,260 L0,260 Z'/%3E%3C!-- Cargo ship silhouette --%3E%3Cg opacity='0.12' fill='%23165DFF'%3E%3Crect x='600' y='155' width='240' height='30' rx='4'/%3E%3Crect x='620' y='125' width='180' height='30' rx='3'/%3E%3Crect x='640' y='105' width='40' height='25' rx='2'/%3E%3Crect x='700' y='100' width='30' height='30' rx='2'/%3E%3Crect x='760' y='108' width='20' height='22' rx='2'/%3E%3Crect x='590' y='182' width='260' height='12' rx='6'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: cover;
+      background-repeat: no-repeat;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Wave divider */
+    .wave-divider svg { display: block; }
+
+    /* ════════════════════════════════
+       Top announcement bar
+    ════════════════════════════════ */
+    #top-bar { background: #165DFF; color: #fff; font-size: 0.8rem; }
+
+    /* ════════════════════════════════
+       Navigation
+    ════════════════════════════════ */
+    #navbar {
+      position: sticky; top: 0; z-index: 999;
+      background: #ffffff;
+      box-shadow: 0 2px 12px rgba(22,93,255,0.10);
+      transition: box-shadow 0.3s;
+    }
+    #navbar.scrolled { box-shadow: 0 4px 24px rgba(22,93,255,0.18); }
+
+    /* Hide scrollbar for navigation */
+    #desktop-nav::-webkit-scrollbar { display: none; }
+
+    /* Dropdown */
+    .nav-item { position: relative; }
+    .dropdown-menu {
+      position: absolute; top: calc(100% + 4px); left: 0;
+      min-width: 200px;
+      background: #fff;
+      border-top: 3px solid #165DFF;
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 8px 32px rgba(22,93,255,0.12);
+      opacity: 0; visibility: hidden;
+      transform: translateY(-8px);
+      transition: all 0.22s ease;
+      z-index: 1000;
+    }
+    .nav-item:hover .dropdown-menu,
+    .nav-item:focus-within .dropdown-menu {
+      opacity: 1; visibility: visible; transform: translateY(0);
+    }
+    .dropdown-menu a {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 18px;
+      font-size: 0.875rem;
+      color: #333;
+      transition: background 0.15s, color 0.15s;
+      text-decoration: none;
+    }
+    .dropdown-menu a:hover { background: #F0F7FF; color: #165DFF; }
+    .dropdown-menu a .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #165DFF; flex-shrink: 0; opacity: 0.6;
+    }
+
+    /* Mobile nav */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: block; }
+    .mobile-sub { display: none; }
+    .mobile-sub.open { display: block; }
+
+    /* ════════════════════════════════
+       Hero Slideshow
+    ════════════════════════════════ */
+    #hero { position: relative; overflow: hidden; background: #1a1a2e; }
+    .slide {
+      position: absolute; inset: 0;
+      opacity: 0; transition: opacity 1.2s ease-in-out;
+    }
+    .slide.active { opacity: 1; position: relative; }
+    .slide img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      display: block;
+    }
+
+    /* Slide overlay gradient — subtle dark tint for text readability */
+    .slide-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.40) 100%);
+    }
+
+    /* Slide indicators */
+    .slide-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255,255,255,0.45);
+      cursor: pointer; transition: all 0.25s;
+      border: none; outline: none;
+    }
+    .slide-dot.active { background: #fff; transform: scale(1.3); }
+
+    /* ════════════════════════════════
+       Services / USP strip
+    ════════════════════════════════ */
+    .usp-card {
+      border-radius: 12px;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .usp-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(22,93,255,0.14); }
+
+    /* ════════════════════════════════
+       Product cards
+    ════════════════════════════════ */
+    .product-card {
+      border-radius: 14px; overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(22,93,255,0.16); }
+    .product-card .img-wrap {
+      height: 200px; overflow: hidden;
+      background: #F0F7FF;
+    }
+    .product-card .img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .product-card:hover .img-wrap img { transform: scale(1.06); }
+    .badge-new  { background: #165DFF; color: #fff; font-size: 0.7rem; }
+    .badge-hot  { background: #FF6B35; color: #fff; font-size: 0.7rem; }
+
+    /* ════════════════════════════════
+       Category tabs
+    ════════════════════════════════ */
+    .cat-tab {
+      cursor: pointer; padding: 8px 20px;
+      border-radius: 999px; font-size: 0.875rem; font-weight: 500;
+      border: 2px solid #e5eaf5;
+      transition: all 0.2s;
+      background: transparent; color: #555;
+    }
+    .cat-tab.active, .cat-tab:hover {
+      background: #165DFF; color: #fff; border-color: #165DFF;
+    }
+
+    /* ════════════════════════════════
+       Factory / Cert section
+    ════════════════════════════════ */
+    .factory-img-placeholder {
+      background: linear-gradient(135deg, #e8f0fe 0%, #c7d8fd 100%);
+      border: 2px dashed #93b4fb;
+      border-radius: 12px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: #165DFF; font-size: 0.8rem;
+    }
+    .cert-card {
+      background: #fff; border-radius: 12px;
+      border: 1px solid #e5eaf5;
+      padding: 20px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cert-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(22,93,255,0.12); }
+    .cert-placeholder {
+      width: 100px; height: 130px;
+      background: linear-gradient(135deg, #F0F7FF 0%, #dce9ff 100%);
+      border: 2px dashed #93b4fb;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ════════════════════════════════
+       Stats counter strip
+    ════════════════════════════════ */
+    .stat-card { border-left: 3px solid rgba(255,255,255,0.3); }
+    .stat-card:first-child { border-left: none; }
+
+    /* ════════════════════════════════
+       Testimonials
+    ════════════════════════════════ */
+    .testimonial-card {
+      border-radius: 14px;
+      transition: transform 0.25s;
+    }
+    .testimonial-card:hover { transform: translateY(-4px); }
+
+    /* ════════════════════════════════
+       Footer wave
+    ════════════════════════════════ */
+    #footer-wave { line-height: 0; }
+
+    /* ════════════════════════════════
+       WhatsApp floating button
+    ════════════════════════════════ */
+    #wa-btn {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 56px; height: 56px;
+      background: #25D366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+      z-index: 9999;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    #wa-btn:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(37,211,102,0.6); }
+    #wa-btn svg { width: 30px; height: 30px; fill: #fff; }
+
+    /* ════════════════════════════════
+       Back-to-top
+    ════════════════════════════════ */
+    #back-top {
+      position: fixed; bottom: 96px; right: 28px;
+      width: 44px; height: 44px;
+      background: #165DFF; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 9999;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.2s;
+      border: none;
+    }
+    #back-top.visible { opacity: 1; pointer-events: auto; }
+    #back-top:hover { transform: scale(1.1); }
+
+    /* ════════════════════════════════
+       Section headings
+    ════════════════════════════════ */
+    .section-label {
+      display: inline-block;
+      background: #F0F7FF; color: #165DFF;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 14px; border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800; color: #111827; line-height: 1.2;
+    }
+    .section-title span { color: #165DFF; }
+    .divider-line {
+      width: 56px; height: 4px;
+      background: linear-gradient(90deg, #165DFF, #4080FF);
+      border-radius: 999px; margin: 14px auto 0;
+    }
+
+    /* ════════════════════════════════
+       Animations
+    ════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeUp { animation: fadeUp 0.6s ease forwards; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.22s; }
+    .delay-3 { animation-delay: 0.34s; }
+
+    /* ════════════════════════════════
+       Responsive helpers
+    ════════════════════════════════ */
+    @media (max-width: 768px) {
+      .hide-mobile { display: none !important; }
+    }
+  </style>
+</head>
+
+<body class="font-sans">
+
+<!-- ══════════════════════════════════════════
+     TOP ANNOUNCEMENT BAR
+══════════════════════════════════════════ -->
+<div id="top-bar" class="py-2 px-4 text-center">
+  <span>🚢 SourceSure · One-Stop Sourcing Service in China · Trusted Factory Network · Global Shipping</span>
+</div>
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION BAR
+══════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8 flex items-center justify-between h-16">
+
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center gap-3 flex-shrink-0 min-w-0 mr-4">
+      <img src="images/logo/logo.png" alt="SourceSure Logo" class="h-10 w-auto"
+           onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex';"/>
+      <div id="logo-fallback" class="hidden items-center gap-2">
+        <div class="w-9 h-9 rounded-lg bg-brand flex items-center justify-center">
+          <svg class="w-5 h-5 text-white fill-current" viewBox="0 0 24 24"><path d="M12 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-1 6.07V11H7a1 1 0 1 0 0 2h4v7.93A9.01 9.01 0 0 1 3.05 13H5a1 1 0 1 0 0-2H3.05A9.01 9.01 0 0 1 11 3.07V11h2V3.07A9.01 9.01 0 0 1 20.95 11H19a1 1 0 1 0 0 2h1.95A9.01 9.01 0 0 1 13 20.93V13h4a1 1 0 1 0 0-2h-4v-2.93z"/></svg>
+        </div>
+      </div>
+      <div class="leading-none min-w-0">
+        <div class="font-extrabold text-base xl:text-lg text-brand tracking-tight whitespace-nowrap">SourceSure</div>
+        <div class="hidden 2xl:block text-[10px] text-gray-500 font-semibold tracking-[0.18em] uppercase whitespace-nowrap">One-Stop Sourcing Service in China</div>
+      </div>
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="hidden lg:flex flex-1 items-center justify-start gap-0 text-xs xl:gap-1 xl:text-sm font-medium min-w-0 overflow-x-auto" id="desktop-nav" style="scrollbar-width: none; -ms-overflow-style: none;">
+      <li class="nav-item shrink-0">
+        <a href="products/home-daily-essentials/index.html" class="flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg hover:bg-accent hover:text-brand transition-colors duration-150 text-body whitespace-nowrap">
+          <i class="fa-solid fa-box mr-1.5 text-brand flex-shrink-0"></i><span class="whitespace-nowrap">Home & Daily Essentials</span>
+          <i class="fa-solid fa-chevron-down text-[10px] opacity-60 ml-1 flex-shrink-0"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="products/home-daily-essentials/kitchenware/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Kitchenware</a>
+          <a href="products/home-daily-essentials/bedding/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Bedding</a>
+          <a href="products/home-daily-essentials/bathroom-supplies/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Bathroom Supplies</a>
+          <a href="products/home-daily-essentials/cleaning-products/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Cleaning Products</a>
+          <a href="products/home-daily-essentials/storage-solutions/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Storage Solutions</a>
+        </div>
+      </li>
+      <li class="nav-item shrink-0">
+        <a href="products/pet-daily-needs/index.html" class="flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg hover:bg-accent hover:text-brand transition-colors duration-150 text-body whitespace-nowrap">
+          <i class="fa-solid fa-box mr-1.5 text-brand flex-shrink-0"></i><span class="whitespace-nowrap">Pet Daily Needs</span>
+          <i class="fa-solid fa-chevron-down text-[10px] opacity-60 ml-1 flex-shrink-0"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="products/pet-daily-needs/food-treats/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Food & Treats</a>
+          <a href="products/pet-daily-needs/grooming-tools/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Grooming Tools</a>
+          <a href="products/pet-daily-needs/toys/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Toys</a>
+          <a href="products/pet-daily-needs/beds-furniture/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Beds & Furniture</a>
+          <a href="products/pet-daily-needs/health-care/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Health Care</a>
+        </div>
+      </li>
+      <li class="nav-item shrink-0">
+        <a href="products/beauty-personal-care/index.html" class="flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg hover:bg-accent hover:text-brand transition-colors duration-150 text-body whitespace-nowrap">
+          <i class="fa-solid fa-box mr-1.5 text-brand flex-shrink-0"></i><span class="whitespace-nowrap">Beauty & Personal Care</span>
+          <i class="fa-solid fa-chevron-down text-[10px] opacity-60 ml-1 flex-shrink-0"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="products/beauty-personal-care/skincare/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Skincare</a>
+          <a href="products/beauty-personal-care/haircare/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Haircare</a>
+          <a href="products/beauty-personal-care/makeup/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Makeup</a>
+          <a href="products/beauty-personal-care/bath-body/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Bath & Body</a>
+          <a href="products/beauty-personal-care/fragrances/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Fragrances</a>
+        </div>
+      </li>
+      <li class="nav-item shrink-0">
+        <a href="products/craft-decor/index.html" class="flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg hover:bg-accent hover:text-brand transition-colors duration-150 text-body whitespace-nowrap">
+          <i class="fa-solid fa-box mr-1.5 text-brand flex-shrink-0"></i><span class="whitespace-nowrap">Craft & Decor</span>
+          <i class="fa-solid fa-chevron-down text-[10px] opacity-60 ml-1 flex-shrink-0"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="products/craft-decor/home-decor/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Home Decor</a>
+          <a href="products/craft-decor/diy-supplies/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>DIY Supplies</a>
+          <a href="products/craft-decor/art-materials/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Art Materials</a>
+          <a href="products/craft-decor/party-decorations/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Party Decorations</a>
+          <a href="products/craft-decor/handicrafts/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Handicrafts</a>
+        </div>
+      </li>
+      <li class="nav-item shrink-0">
+        <a href="products/other-supplies/index.html" class="flex items-center gap-1 px-2 xl:px-3 py-2 rounded-lg hover:bg-accent hover:text-brand transition-colors duration-150 text-body whitespace-nowrap">
+          <i class="fa-solid fa-box mr-1.5 text-brand flex-shrink-0"></i><span class="whitespace-nowrap">Other Supplies</span>
+          <i class="fa-solid fa-chevron-down text-[10px] opacity-60 ml-1 flex-shrink-0"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="products/other-supplies/stationery/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Stationery</a>
+          <a href="products/other-supplies/electronics-accessories/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Electronics Accessories</a>
+          <a href="products/other-supplies/travel-gear/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Travel Gear</a>
+          <a href="products/other-supplies/sports-equipment/index.html"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Sports Equipment</a>
+        </div>
+      </li>
+
+    </ul>
+
+    <!-- Mobile hamburger -->
+    <button id="hamburger" class="lg:hidden ml-2 p-2 rounded-lg hover:bg-accent transition-colors flex-shrink-0" aria-label="Open menu">
+      <i class="fa-solid fa-bars text-xl text-brand"></i>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="lg:hidden bg-white border-t border-gray-100 px-4 py-3">
+    <!-- Mobile categories (accordion) -->
+    <div class="space-y-1" id="mobile-nav-items">
+      <div class="mobile-nav-group">
+        <button class="mobile-toggle w-full flex justify-between items-center py-2.5 text-sm font-semibold text-body">
+          <span class="flex items-center"><i class="fa-solid fa-box mr-2 text-brand flex-shrink-0"></i>Home & Daily Essentials</span> <i class="fa-solid fa-chevron-down text-[10px] text-brand flex-shrink-0"></i>
+        </button>
+        <div class="mobile-sub pl-4 space-y-1 pb-2">
+          <a href="products/home-daily-essentials/kitchenware/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Kitchenware</a>
+          <a href="products/home-daily-essentials/bedding/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Bedding</a>
+          <a href="products/home-daily-essentials/bathroom-supplies/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Bathroom Supplies</a>
+          <a href="products/home-daily-essentials/cleaning-products/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Cleaning Products</a>
+          <a href="products/home-daily-essentials/storage-solutions/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Storage Solutions</a>
+        </div>
+      </div>
+      <div class="mobile-nav-group">
+        <button class="mobile-toggle w-full flex justify-between items-center py-2.5 text-sm font-semibold text-body">
+          <span class="flex items-center"><i class="fa-solid fa-box mr-2 text-brand flex-shrink-0"></i>Pet Daily Needs</span> <i class="fa-solid fa-chevron-down text-[10px] text-brand flex-shrink-0"></i>
+        </button>
+        <div class="mobile-sub pl-4 space-y-1 pb-2">
+          <a href="products/pet-daily-needs/food-treats/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Food & Treats</a>
+          <a href="products/pet-daily-needs/grooming-tools/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Grooming Tools</a>
+          <a href="products/pet-daily-needs/toys/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Toys</a>
+          <a href="products/pet-daily-needs/beds-furniture/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Beds & Furniture</a>
+          <a href="products/pet-daily-needs/health-care/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Health Care</a>
+        </div>
+      </div>
+      <div class="mobile-nav-group">
+        <button class="mobile-toggle w-full flex justify-between items-center py-2.5 text-sm font-semibold text-body">
+          <span class="flex items-center"><i class="fa-solid fa-box mr-2 text-brand flex-shrink-0"></i>Beauty & Personal Care</span> <i class="fa-solid fa-chevron-down text-[10px] text-brand flex-shrink-0"></i>
+        </button>
+        <div class="mobile-sub pl-4 space-y-1 pb-2">
+          <a href="products/beauty-personal-care/skincare/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Skincare</a>
+          <a href="products/beauty-personal-care/haircare/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Haircare</a>
+          <a href="products/beauty-personal-care/makeup/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Makeup</a>
+          <a href="products/beauty-personal-care/bath-body/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Bath & Body</a>
+          <a href="products/beauty-personal-care/fragrances/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Fragrances</a>
+        </div>
+      </div>
+      <div class="mobile-nav-group">
+        <button class="mobile-toggle w-full flex justify-between items-center py-2.5 text-sm font-semibold text-body">
+          <span class="flex items-center"><i class="fa-solid fa-box mr-2 text-brand flex-shrink-0"></i>Craft & Decor</span> <i class="fa-solid fa-chevron-down text-[10px] text-brand flex-shrink-0"></i>
+        </button>
+        <div class="mobile-sub pl-4 space-y-1 pb-2">
+          <a href="products/craft-decor/home-decor/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Home Decor</a>
+          <a href="products/craft-decor/diy-supplies/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>DIY Supplies</a>
+          <a href="products/craft-decor/art-materials/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Art Materials</a>
+          <a href="products/craft-decor/party-decorations/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Party Decorations</a>
+          <a href="products/craft-decor/handicrafts/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Handicrafts</a>
+        </div>
+      </div>
+      <div class="mobile-nav-group">
+        <button class="mobile-toggle w-full flex justify-between items-center py-2.5 text-sm font-semibold text-body">
+          <span class="flex items-center"><i class="fa-solid fa-box mr-2 text-brand flex-shrink-0"></i>Other Supplies</span> <i class="fa-solid fa-chevron-down text-[10px] text-brand flex-shrink-0"></i>
+        </button>
+        <div class="mobile-sub pl-4 space-y-1 pb-2">
+          <a href="products/other-supplies/stationery/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Stationery</a>
+          <a href="products/other-supplies/electronics-accessories/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Electronics Accessories</a>
+          <a href="products/other-supplies/travel-gear/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Travel Gear</a>
+          <a href="products/other-supplies/sports-equipment/index.html" class="flex items-center py-1.5 text-sm text-gray-600 hover:text-brand"><i class="fa-solid fa-tag mr-2 text-brand flex-shrink-0"></i>Sports Equipment</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4 pt-4 border-t border-gray-100 grid grid-cols-2 gap-3">
+      <a href="products/index.html" class="border border-brand text-brand text-center text-sm font-semibold px-4 py-2.5 rounded-lg">
+        View Catalog
+      </a>
+      <a href="#contact" class="bg-brand text-white text-center text-sm font-semibold px-4 py-2.5 rounded-lg">
+        Get a Quote
+      </a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════
+     HERO SLIDER
+     ── To add slides: put images in images/slides/
+        and add a new <div class="slide"> block below.
+══════════════════════════════════════════ -->
+<section id="hero" class="relative" style="height: clamp(480px, 70vh, 780px);">
+
+  <!-- ── SLIDE CONTAINER ── -->
+  <div id="slide-container" class="absolute inset-0">
+
+    <!--
+      ┌─────────────────────────────────────────────────────────────┐
+      │  HOW TO ADD SLIDES                                          │
+      │  1. Save your image to  images/slides/your-image.jpg       │
+      │  2. Copy one <div class="slide"> block below               │
+      │  3. Change  background-image  to your file path            │
+      │  4. Update  data-title  and  data-desc                     │
+      └─────────────────────────────────────────────────────────────┘
+    -->
+
+    <!-- Slide 1 — replace src with: images/slides/slide1.jpg -->
+    <div class="slide active"
+         data-title="China Sourcing. World Delivered."
+         data-desc="Over 5,000 SKUs across 5 categories — matched with trusted large-scale factories, quality-checked, and shipped globally.">
+      <img src="images/slides/slide1.jpg" alt="China Sourcing" />
+    </div>
+
+    <!-- Slide 2 — replace src with: images/slides/slide2.jpg -->
+    <div class="slide"
+         data-title="Home &amp; Daily Essentials"
+         data-desc="Kitchenware, bedding, bathroom supplies and more — built for everyday comfort and international market standards.">
+      <img src="images/slides/slide2.jpg" alt="Home Daily Essentials" />
+    </div>
+
+    <!-- Slide 3 — replace src with: images/slides/slide3.jpg -->
+    <div class="slide"
+         data-title="Pet Daily Needs"
+         data-desc="Premium pet food, toys, grooming tools and accessories — sourced from certified factories, ready for global retail.">
+      <img src="images/slides/slide3.jpg" alt="Pet Daily Needs" />
+    </div>
+
+    <!-- Slide 4 — replace src with: images/slides/slide4.jpg -->
+    <div class="slide"
+         data-title="Beauty &amp; Personal Care"
+         data-desc="Skincare, haircare, makeup and fragrance lines — OEM/ODM with private label support for global brands.">
+      <img src="images/slides/slide4.jpg" alt="Beauty Personal Care" />
+    </div>
+
+  </div><!-- /slide-container -->
+
+  <!-- Gradient overlay on each active slide -->
+  <div class="slide-overlay absolute inset-0 pointer-events-none"></div>
+
+  <!-- Slide text content -->
+  <div class="absolute inset-0 flex flex-col justify-center items-start px-6 md:px-16 lg:px-24 z-10">
+    <div class="max-w-2xl text-white">
+      <span class="inline-block bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-4 py-1.5 rounded-full mb-4 tracking-widest uppercase">
+        SourceSure by Yiwu Juncheng Co., Ltd.
+      </span>
+      <h1 id="slide-title" class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 drop-shadow-lg">
+        China Sourcing.<br/>World Delivered.
+      </h1>
+      <p id="slide-desc" class="text-base md:text-lg text-white/85 mb-3 max-w-xl leading-relaxed">
+        Over 5,000 SKUs across 5 categories — matched with trusted large-scale factories, quality-checked, and shipped globally.
+      </p>
+      <p class="text-sm md:text-base text-white/75 mb-8 max-w-xl leading-relaxed">
+        One-Stop Sourcing Service in China for global wholesalers, importers, and private-label buyers.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="#products" class="bg-white text-brand font-bold px-7 py-3 rounded-xl hover:bg-accent transition-colors shadow-lg text-sm">
+          Explore Products
+        </a>
+        <a href="#contact" class="border-2 border-white/70 text-white font-semibold px-7 py-3 rounded-xl hover:bg-white/10 transition-colors text-sm">
+          Request a Quote
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Prev / Next buttons -->
+  <button id="slide-prev" aria-label="Previous slide"
+          class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white w-11 h-11 rounded-full flex items-center justify-center transition-colors">
+    <i class="fa fa-chevron-left"></i>
+  </button>
+  <button id="slide-next" aria-label="Next slide"
+          class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white w-11 h-11 rounded-full flex items-center justify-center transition-colors">
+    <i class="fa fa-chevron-right"></i>
+  </button>
+
+  <!-- Dot indicators -->
+  <div id="slide-dots" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+    <!-- Dots generated by JS -->
+  </div>
+
+  <!-- Bottom wave -->
+  <div class="absolute bottom-0 left-0 right-0 pointer-events-none z-10">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="w-full h-12">
+      <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#ffffff"/>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     ONE-STOP SERVICES STRIP  (prominent placement)
+══════════════════════════════════════════ -->
+<section id="services" class="py-16 bg-white">
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8">
+
+    <div class="text-center mb-12">
+      <span class="section-label">Why Choose Us</span>
+      <h2 class="section-title">One-Stop <span>Sourcing Solution</span></h2>
+      <div class="divider-line"></div>
+      <p class="mt-5 text-gray-500 max-w-2xl mx-auto text-sm md:text-base">
+        From product design to your customer's doorstep — we handle every step so you can focus on growing your business.
+      </p>
+    </div>
+
+    <!-- Service cards grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5 lg:gap-8">
+
+      <!-- Card: Customization -->
+      <div class="usp-card bg-accent p-6 text-center">
+        <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto mb-4 overflow-hidden">
+          <img src="images/icons/oem-odm.png" alt="OEM / ODM" class="w-full h-full object-contain" />
+        </div>
+        <h3 class="font-bold text-base mb-2">OEM / ODM</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">Custom branding, packaging design, and private-label manufacturing tailored to your requirements.</p>
+      </div>
+
+      <!-- Card: Quality Control -->
+      <div class="usp-card bg-accent p-6 text-center">
+        <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto mb-4 overflow-hidden">
+          <img src="images/icons/quality-control.png" alt="Quality Control" class="w-full h-full object-contain" />
+        </div>
+        <h3 class="font-bold text-base mb-2">Quality Control</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">Inline inspection, pre-shipment audits, and third-party lab testing to guarantee product compliance.</p>
+      </div>
+
+      <!-- Card: Logistics -->
+      <div class="usp-card bg-accent p-6 text-center">
+        <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto mb-4 overflow-hidden">
+          <img src="images/icons/global-logistics.png" alt="Global Logistics" class="w-full h-full object-contain" />
+        </div>
+        <h3 class="font-bold text-base mb-2">Global Logistics</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">Sea freight, air freight, express — we coordinate door-to-door delivery to 80+ countries worldwide.</p>
+      </div>
+
+      <!-- Card: After-sales -->
+      <div class="usp-card bg-accent p-6 text-center">
+        <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto mb-4 overflow-hidden">
+          <img src="images/icons/after-sales.png" alt="After-Sales Support" class="w-full h-full object-contain" />
+        </div>
+        <h3 class="font-bold text-base mb-2">After-Sales Support</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">Dedicated account manager, warranty handling, and fast replacement policy for every order.</p>
+      </div>
+
+      <!-- Card: Sourcing -->
+      <div class="usp-card bg-accent p-6 text-center">
+        <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto mb-4 overflow-hidden">
+          <img src="images/icons/product-sourcing.png" alt="Product Sourcing" class="w-full h-full object-contain" />
+        </div>
+        <h3 class="font-bold text-base mb-2">Product Sourcing</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">Can't find what you need? Send us a request — our sourcing team will locate it within 48 hours.</p>
+      </div>
+
+      <!-- Card: Low MOQ -->
+      <div class="usp-card bg-accent p-6 text-center">
+        <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto mb-4 overflow-hidden">
+          <img src="images/icons/flexible-moq.png" alt="Flexible MOQ" class="w-full h-full object-contain" />
+        </div>
+        <h3 class="font-bold text-base mb-2">Flexible MOQ</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">We support small starter orders with competitive pricing — perfect for new market testing.</p>
+      </div>
+
+      <!-- Card: Compliance -->
+      <div class="usp-card bg-accent p-6 text-center">
+        <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto mb-4 overflow-hidden">
+          <img src="images/icons/certifications.png" alt="Certifications" class="w-full h-full object-contain" />
+        </div>
+        <h3 class="font-bold text-base mb-2">Certifications</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">ISO 9001, CE, RoHS, FDA, and more — we help you meet the compliance requirements of your target market.</p>
+      </div>
+
+      <!-- Card: Trade Assurance -->
+      <div class="usp-card bg-accent p-6 text-center">
+        <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center mx-auto mb-4 overflow-hidden">
+          <img src="images/icons/trade-assurance.png" alt="Trade Assurance" class="w-full h-full object-contain" />
+        </div>
+        <h3 class="font-bold text-base mb-2">Trade Assurance</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">Secure payment terms, clear contracts, and on-time delivery guarantees backed by our track record.</p>
+      </div>
+
+    </div><!-- /grid -->
+  </div>
+</section>
+
+
+<!-- Stats strip -->
+<section class="bg-brand py-10">
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-0">
+      <div class="stat-card text-center py-4 px-6 text-white">
+        <div class="text-4xl font-extrabold mb-1">5000<span class="text-white/70 text-2xl">+</span></div>
+        <div class="text-white/70 text-sm uppercase tracking-wide">SKUs Available</div>
+      </div>
+      <div class="stat-card text-center py-4 px-6 text-white">
+        <div class="text-4xl font-extrabold mb-1">80<span class="text-white/70 text-2xl">+</span></div>
+        <div class="text-white/70 text-sm uppercase tracking-wide">Countries Served</div>
+      </div>
+      <div class="stat-card text-center py-4 px-6 text-white">
+        <div class="text-4xl font-extrabold mb-1">12<span class="text-white/70 text-2xl">+</span></div>
+        <div class="text-white/70 text-sm uppercase tracking-wide">Years of Experience</div>
+      </div>
+      <div class="stat-card text-center py-4 px-6 text-white">
+        <div class="text-4xl font-extrabold mb-1">98<span class="text-white/70 text-2xl">%</span></div>
+        <div class="text-white/70 text-sm uppercase tracking-wide">On-time Delivery Rate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     PRODUCT SHOWCASE
+══════════════════════════════════════════ -->
+<section id="products" class="py-20 bg-white ocean-bg">
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8 relative z-10">
+
+    <div class="text-center mb-10">
+      <span class="section-label">Our Products</span>
+      <h2 class="section-title">Featured <span>Product Lines</span></h2>
+      <div class="divider-line"></div>
+      <p class="mt-5 text-gray-500 max-w-xl mx-auto text-sm">
+        Browse our best-selling items across all categories.
+      </p>
+    </div>
+
+    <!-- Category filter tabs -->
+    <div class="flex flex-wrap justify-center gap-2 mb-10" id="cat-tabs">
+      <button class="cat-tab active" data-cat="all">All Products</button>
+      <button class="cat-tab" data-cat="home">Home &amp; Daily</button>
+      <button class="cat-tab" data-cat="pet">Pet Needs</button>
+      <button class="cat-tab" data-cat="beauty">Beauty &amp; Care</button>
+      <button class="cat-tab" data-cat="craft">Craft &amp; Decor</button>
+      <button class="cat-tab" data-cat="other">Other Supplies</button>
+    </div>
+
+    <!-- Product grid
+         ──────────────────────────────────────────────────────────────
+         To add a product:
+           1. Copy a .product-card block
+           2. Set  data-cat  to: home | pet | beauty | craft | other
+           3. Replace img src with: images/products/your-product.jpg
+           4. Update name, price, description
+         ──────────────────────────────────────────────────────────────
+    -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="product-grid">
+
+<!-- Product 1 -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="home" onclick="openProductModal(this)">
+        <div class="img-wrap relative">
+          <img src="images/products/product_29_c85add6b.jpg" alt="Aluminum Non-Stick Burger Press" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Aluminum+Non-Stick+B'"/>
+          
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-body mb-1 truncate">Aluminum Non-Stick Burger Press</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">- Made of heavy-duty aluminum with wooden handle, durable an...</p>
+          
+          
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">From $2.00/pc</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
+          </div>
+        </div>
+      </div>
+
+<!-- Product 2 -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="pet" onclick="openProductModal(this)">
+        <div class="img-wrap relative">
+          <img src="images/products/product_37_b66099c3.webp" alt="Bunny Toy Loofah Pet Rabbit Toys" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Bunny+Toy+Loofah+Pet'"/>
+          
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-body mb-1 truncate">Bunny Toy Loofah Pet Rabbit Toys</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">Bunny Toy Loofah Pet Rabbit Toys provide a fun, safe, and be...</p>
+          
+          
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">From $1.00/pc</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
+          </div>
+        </div>
+      </div>
+
+<!-- Product 3 -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="home" onclick="openProductModal(this)">
+        <div class="img-wrap relative">
+          <img src="images/products/product_27_c883589b.jpg" alt="Butter Slicer" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Butter+Slicer'"/>
+          
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-body mb-1 truncate">Butter Slicer</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">A durable, food-safe multi-use slicer for perfect, uniform c...</p>
+          
+          
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">From $2.00/pc</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
+          </div>
+        </div>
+      </div>
+
+<!-- Product 4 -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="pet" onclick="openProductModal(this)">
+        <div class="img-wrap relative">
+          <img src="images/products/product_38_0962ffb8.webp" alt="Cat House Bed Cute Pet Cave Dog Bed" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Cat+House+Bed+Cute+P'"/>
+          
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-body mb-1 truncate">Cat House Bed Cute Pet Cave Dog Bed</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">offers a cozy and playful retreat for pets with its house-sh...</p>
+          
+          
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">From $30.00/pc</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
+          </div>
+        </div>
+      </div>
+
+<!-- Product 5 -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="home" onclick="openProductModal(this)">
+        <div class="img-wrap relative">
+          <img src="images/products/product_34_27b799b0.jpg" alt="Compressed Black Cellulose Sponge" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Compressed+Black+Cel'"/>
+          
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-body mb-1 truncate">Compressed Black Cellulose Sponge</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">- Made of compressed cellulose sponge, expands when soaked i...</p>
+          
+          
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">From $1.00/pc</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
+          </div>
+        </div>
+      </div>
+
+<!-- Product 6 -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="home" onclick="openProductModal(this)">
+        <div class="img-wrap relative">
+          <img src="images/products/product_36_bd635672.jpg" alt="Food Grade Silicone Cleaning Gloves" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Food+Grade+Silicone+'"/>
+          
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-body mb-1 truncate">Food Grade Silicone Cleaning Gloves</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">- Made of food-grade silicone, waterproof, durable and heat ...</p>
+          
+          
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">From $1.50/pc</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
+          </div>
+        </div>
+      </div>
+
+<!-- Product 7 -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="home" onclick="openProductModal(this)">
+        <div class="img-wrap relative">
+          <img src="images/products/product_32_0f268d43.jpg" alt="Multi-Use Food Clip" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Multi-Use+Food+Clip'"/>
+          
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-body mb-1 truncate">Multi-Use Food Clip</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">- Made of thickened food-grade stainless steel, sturdy, rust...</p>
+          
+          
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">From $2.00/pc</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
+          </div>
+        </div>
+      </div>
+
+<!-- Product 8 -->
+      <div class="product-card bg-white border border-gray-100 shadow-sm" data-cat="home" onclick="openProductModal(this)">
+        <div class="img-wrap relative">
+          <img src="images/products/product_35_7866194c.jpg" alt="Potato Cutter, French Fry Cutter" loading="lazy"
+               onerror="this.src='https://placehold.co/400x300/F0F7FF/165DFF?text=Potato+Cutter,+Frenc'"/>
+          
+        </div>
+        <div class="p-4">
+          <h3 class="font-semibold text-body mb-1 truncate">Potato Cutter, French Fry Cutter</h3>
+          <p class="text-xs text-gray-500 mb-2 line-clamp-2">- Multifunctional cutter for making perfect fries, sticks of...</p>
+          
+          
+          <div class="flex items-center justify-between mt-2">
+            <span class="text-brand font-bold text-sm">From $2.00/pc</span>
+            <span class="text-xs bg-brand text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-colors cursor-pointer">View</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /product-grid -->
+
+    <div class="text-center mt-10">
+      <a href="products/index.html" class="inline-flex items-center gap-2 bg-brand text-white font-semibold px-8 py-3 rounded-xl hover:bg-brand-dark transition-colors shadow-md">
+        <i class="fa fa-list"></i> View Full Catalog
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PRODUCT DETAIL MODAL (for homepage products)
+══════════════════════════════════════════ -->
+<div id="product-modal" class="hidden fixed inset-0 bg-black/60 z-[999] overflow-y-auto">
+  <div class="min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-3xl w-full shadow-2xl relative">
+      <button onclick="closeProductModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center z-10">
+        <i class="fa fa-times text-gray-600"></i>
+      </button>
+      <div class="grid md:grid-cols-2 gap-0">
+        <div class="p-6 border-r border-gray-100">
+          <div class="rounded-xl overflow-hidden bg-accent h-64 mb-3">
+            <img id="modal-main-img" src="" alt="" class="w-full h-full object-contain"/>
+          </div>
+          <div id="modal-thumbs" class="grid grid-cols-6 gap-1.5"></div>
+          <p class="text-[10px] text-gray-400 mt-2 text-center">Click thumbnail to switch image</p>
+        </div>
+        <div class="p-6">
+          <p id="modal-sku" class="text-xs text-gray-400 mb-1"></p>
+          <h3 id="modal-name" class="text-xl font-bold mb-3"></h3>
+          <p id="modal-desc" class="text-sm text-gray-500 leading-relaxed mb-4"></p>
+          <div id="modal-features" class="mb-4"></div>
+          <div id="modal-specs" class="mb-4"></div>
+          <div class="bg-accent rounded-xl p-4 mb-4">
+            <div class="flex justify-between text-sm mb-2">
+              <span class="text-gray-500">Unit Price</span>
+              <span id="modal-price" class="font-bold text-brand"></span>
+            </div>
+            <div class="flex justify-between text-sm">
+              <span class="text-gray-500">MOQ</span>
+              <span id="modal-moq" class="font-medium text-gray-700"></span>
+            </div>
+          </div>
+          <a id="modal-wa" href="https://wa.me/8618735731692" target="_blank"
+             class="flex items-center justify-center gap-2 w-full bg-[#25D366] text-white font-bold py-3 rounded-xl mb-2 hover:opacity-90 text-sm">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.570-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.570-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            Chat on WhatsApp
+          </a>
+          <a href="#contact" onclick="closeProductModal()" class="flex items-center justify-center gap-2 w-full border-2 border-brand text-brand font-semibold py-2.5 rounded-xl hover:bg-accent text-sm">
+            <i class="fa fa-envelope"></i> Send Email Inquiry
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Wave divider -->
+<div class="wave-divider bg-white">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="w-full h-12">
+    <path d="M0,30 C360,0 1080,60 1440,30 L1440,0 L0,0 Z" fill="#F0F7FF"/>
+  </svg>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     FACTORY & PRODUCTION CAPABILITY
+══════════════════════════════════════════ -->
+<section id="factory" class="py-20 bg-accent">
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8">
+
+    <div class="text-center mb-12">
+      <span class="section-label">Factory Network</span>
+      <h2 class="section-title">Trusted <span>Manufacturing Partners</span></h2>
+      <div class="divider-line"></div>
+      <p class="mt-5 text-gray-500 max-w-2xl mx-auto text-sm">
+        We work with large factories across different industries in China, helping buyers compare, source, quality-check, and ship with one coordinated team.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+
+      <!-- Factory images grid -->
+      <div class="grid grid-cols-2 gap-3">
+        <div class="relative h-48 col-span-2 rounded-xl overflow-hidden bg-white">
+          <img src="images/factory/factory-main.jpg" alt="Factory overview" loading="lazy" class="w-full h-full object-cover rounded-xl"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+          <div class="factory-img-placeholder h-full w-full hidden">
+            <i class="fa fa-industry text-4xl mb-2 opacity-40"></i>
+            <span class="font-medium">Factory Overview Photo</span>
+            <span class="opacity-50 text-xs">images/factory/factory-main.jpg</span>
+          </div>
+        </div>
+        <div class="relative h-36 rounded-xl overflow-hidden bg-white">
+          <img src="images/factory/production.jpg" alt="Production line" loading="lazy" class="w-full h-full object-cover rounded-xl"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+          <div class="factory-img-placeholder h-full w-full hidden">
+            <i class="fa fa-cogs text-3xl mb-1 opacity-40"></i>
+            <span>Production Line</span>
+            <span class="opacity-50 text-xs">images/factory/production.jpg</span>
+          </div>
+        </div>
+        <div class="relative h-36 rounded-xl overflow-hidden bg-white">
+          <img src="images/factory/warehouse.jpg" alt="Warehouse" loading="lazy" class="w-full h-full object-cover rounded-xl"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+          <div class="factory-img-placeholder h-full w-full hidden">
+            <i class="fa fa-warehouse text-3xl mb-1 opacity-40"></i>
+            <span>Warehouse</span>
+            <span class="opacity-50 text-xs">images/factory/warehouse.jpg</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Capability details -->
+      <div>
+        <h3 class="text-2xl font-bold mb-6 text-gray-900">How We Support Your Sourcing</h3>
+        <div class="space-y-4">
+
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fa fa-network-wired text-brand"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm">Multi-Factory Matching</h4>
+              <p class="text-gray-500 text-xs mt-1">We connect your project with suitable large-scale factories by category, capability, MOQ, and target price.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fa fa-list-check text-brand"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm">Sampling & Comparison</h4>
+              <p class="text-gray-500 text-xs mt-1">Compare different factories, materials, and quotations before you confirm the final production plan.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fa fa-shield-halved text-brand"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm">Production Follow-Up & QC</h4>
+              <p class="text-gray-500 text-xs mt-1">We follow production progress, inspect quality, and coordinate packaging, labeling, and shipment readiness.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fa fa-boxes-packing text-brand"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm">Consolidation & Shipping</h4>
+              <p class="text-gray-500 text-xs mt-1">Combine products from multiple suppliers, streamline export documents, and arrange reliable international delivery.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <i class="fa fa-comments text-brand"></i>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm">One Team, Clear Communication</h4>
+              <p class="text-gray-500 text-xs mt-1">You work with one sourcing team while we coordinate the factory side, timelines, and issue resolution for you.</p>
+            </div>
+          </div>
+
+        </div><!-- /capability list -->
+
+        <a href="#contact" class="inline-flex items-center gap-2 mt-8 bg-brand text-white font-semibold px-6 py-3 rounded-xl hover:bg-brand-dark transition-colors text-sm">
+          <i class="fa fa-calendar-check"></i> Request Factory Matching
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Wave divider -->
+<div class="wave-divider bg-accent">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="w-full h-12">
+    <path d="M0,0 C360,60 1080,0 1440,40 L1440,60 L0,60 Z" fill="#ffffff"/>
+  </svg>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     CERTIFICATIONS
+══════════════════════════════════════════ -->
+<section id="certifications" class="py-20 bg-white">
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8">
+
+    <div class="text-center mb-12">
+      <span class="section-label">Compliance &amp; Trust</span>
+      <h2 class="section-title">Our <span>Certifications</span></h2>
+      <div class="divider-line"></div>
+      <p class="mt-5 text-gray-500 max-w-xl mx-auto text-sm">
+        Independently verified to meet the strictest international quality and safety standards.
+      </p>
+    </div>
+
+    <!--
+      Certificate cards
+      ── Replace each cert-placeholder with:
+         <img src="images/certs/iso9001.jpg" class="w-full h-full object-contain" alt="ISO 9001"/>
+    -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+
+      <div class="cert-card">
+        <div class="cert-placeholder mb-4 overflow-hidden">
+          <img src="images/certs/iso9001.jpg" alt="ISO 9001" class="w-full h-full object-contain bg-white"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+          <div class="hidden w-full h-full items-center justify-center">
+            <i class="fa fa-certificate text-3xl text-brand opacity-40"></i>
+          </div>
+        </div>
+        <h4 class="font-bold text-sm">ISO 9001</h4>
+        <p class="text-xs text-gray-400 mt-1 text-center">Quality Management System</p>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-placeholder mb-4 overflow-hidden">
+          <img src="images/certs/ce.jpg" alt="CE Mark" class="w-full h-full object-contain bg-white"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+          <div class="hidden w-full h-full items-center justify-center">
+            <i class="fa fa-certificate text-3xl text-brand opacity-40"></i>
+          </div>
+        </div>
+        <h4 class="font-bold text-sm">CE Mark</h4>
+        <p class="text-xs text-gray-400 mt-1 text-center">European Conformity</p>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-placeholder mb-4 overflow-hidden">
+          <img src="images/certs/rohs.jpg" alt="RoHS" class="w-full h-full object-contain bg-white"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+          <div class="hidden w-full h-full items-center justify-center">
+            <i class="fa fa-certificate text-3xl text-brand opacity-40"></i>
+          </div>
+        </div>
+        <h4 class="font-bold text-sm">RoHS</h4>
+        <p class="text-xs text-gray-400 mt-1 text-center">Hazardous Substances Restricted</p>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-placeholder mb-4 overflow-hidden">
+          <img src="images/certs/oeko-tex.jpg" alt="OEKO-TEX" class="w-full h-full object-contain bg-white"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+          <div class="hidden w-full h-full items-center justify-center">
+            <i class="fa fa-certificate text-3xl text-brand opacity-40"></i>
+          </div>
+        </div>
+        <h4 class="font-bold text-sm">OEKO-TEX</h4>
+        <p class="text-xs text-gray-400 mt-1 text-center">Textile Sustainability Standard</p>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-placeholder mb-4 overflow-hidden">
+          <img src="images/certs/sgs.jpg" alt="SGS Audited" class="w-full h-full object-contain bg-white"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+          <div class="hidden w-full h-full items-center justify-center">
+            <i class="fa fa-certificate text-3xl text-brand opacity-40"></i>
+          </div>
+        </div>
+        <h4 class="font-bold text-sm">SGS Audited</h4>
+        <p class="text-xs text-gray-400 mt-1 text-center">Third-Party Factory Audit</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════════ -->
+<section id="testimonials" class="py-20 bg-accent">
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8">
+
+    <div class="text-center mb-12">
+      <span class="section-label">Client Feedback</span>
+      <h2 class="section-title">What Our <span>Partners Say</span></h2>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="testimonial-card bg-white p-6 shadow-sm">
+        <div class="flex text-yellow-400 gap-0.5 mb-3 text-sm">
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+        </div>
+        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+          "We've been sourcing home products through SourceSure for 3 years. Consistent quality, transparent pricing, and no surprises on delivery. Highly recommend."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-brand/10 flex items-center justify-center font-bold text-brand text-sm">JM</div>
+          <div>
+            <div class="font-semibold text-sm">James M.</div>
+            <div class="text-xs text-gray-400">Retail Buyer, UK</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card bg-white p-6 shadow-sm">
+        <div class="flex text-yellow-400 gap-0.5 mb-3 text-sm">
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+        </div>
+        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+          "Their OEM service is excellent. We launched our private-label pet brand in under 60 days with their help — from design to the final packaged product."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-brand/10 flex items-center justify-center font-bold text-brand text-sm">SL</div>
+          <div>
+            <div class="font-semibold text-sm">Sophie L.</div>
+            <div class="text-xs text-gray-400">Brand Owner, Australia</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card bg-white p-6 shadow-sm">
+        <div class="flex text-yellow-400 gap-0.5 mb-3 text-sm">
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-stroke"></i>
+        </div>
+        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+          "Flexible MOQ made it easy for us to test new categories without heavy upfront investment. The team is responsive and professional every step of the way."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-brand/10 flex items-center justify-center font-bold text-brand text-sm">AK</div>
+          <div>
+            <div class="font-semibold text-sm">Ahmed K.</div>
+            <div class="text-xs text-gray-400">E-commerce Seller, UAE</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     CONTACT / QUOTE FORM
+══════════════════════════════════════════ -->
+<section id="contact" class="py-20 bg-white">
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8">
+
+    <div class="max-w-5xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+
+        <!-- Left: Contact info -->
+        <div>
+          <span class="section-label">Get in Touch</span>
+          <h2 class="section-title text-left mt-2 mb-4">Request a <span>Free Quote</span></h2>
+          <p class="text-gray-500 text-sm mb-8 leading-relaxed">
+            Tell us about your requirements and we'll get back to you within 24 hours with pricing, lead time, and sample availability.
+          </p>
+
+          <div class="space-y-5">
+            <!-- Email -->
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center flex-shrink-0">
+                <i class="fa fa-envelope text-brand text-lg"></i>
+              </div>
+              <div>
+                <div class="font-semibold text-sm mb-0.5">Email Us</div>
+                <a href="mailto:18735731692@163.com" class="text-brand text-sm hover:underline break-all">18735731692@163.com</a>
+                <p class="text-xs text-gray-400 mt-0.5">Response within 24 hours</p>
+              </div>
+            </div>
+
+            <!-- WhatsApp -->
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-[#25D366]/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 fill-[#25D366]" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.570-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.570-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+              </div>
+              <div>
+                <div class="font-semibold text-sm mb-0.5">WhatsApp</div>
+                <a href="https://wa.me/8618735731692" target="_blank" rel="noopener"
+                   class="text-[#25D366] text-sm font-medium hover:underline">
+                  +86 18735731692
+                </a>
+                <p class="text-xs text-gray-400 mt-0.5">Chat directly — fastest response</p>
+              </div>
+            </div>
+
+            <!-- Working hours -->
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center flex-shrink-0">
+                <i class="fa fa-clock text-brand text-lg"></i>
+              </div>
+              <div>
+                <div class="font-semibold text-sm mb-0.5">Business Hours</div>
+                <p class="text-sm text-gray-600">Mon – Fri: 08:00 – 18:00 (UTC+8)</p>
+                <p class="text-xs text-gray-400 mt-0.5">Emails answered on weekends too</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Quote form -->
+        <div class="bg-accent rounded-2xl p-8">
+          <h3 class="font-bold text-lg mb-6">Send an Inquiry</h3>
+          <form id="quote-form" class="space-y-4" novalidate>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1.5" for="f-name">Full Name *</label>
+                <input id="f-name" type="text" placeholder="Your name" required
+                       class="w-full text-sm border border-gray-200 rounded-lg px-4 py-2.5 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand bg-white"/>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1.5" for="f-company">Company</label>
+                <input id="f-company" type="text" placeholder="Company name"
+                       class="w-full text-sm border border-gray-200 rounded-lg px-4 py-2.5 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand bg-white"/>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1.5" for="f-email">Email Address *</label>
+              <input id="f-email" type="email" placeholder="you@company.com" required
+                     class="w-full text-sm border border-gray-200 rounded-lg px-4 py-2.5 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand bg-white"/>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1.5" for="f-category">Product Category *</label>
+              <select id="f-category" required
+                      class="w-full text-sm border border-gray-200 rounded-lg px-4 py-2.5 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand bg-white text-gray-600">
+                <option value="">Select a category…</option>
+                <option>Home &amp; Daily Essentials</option>
+                <option>Pet Daily Needs</option>
+                <option>Beauty &amp; Personal Care</option>
+                <option>Craft &amp; Decor</option>
+                <option>Other Supplies</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1.5" for="f-qty">Estimated Quantity</label>
+              <input id="f-qty" type="text" placeholder="e.g. 500 pcs / 10 cartons"
+                     class="w-full text-sm border border-gray-200 rounded-lg px-4 py-2.5 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand bg-white"/>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1.5" for="f-message">Your Requirements *</label>
+              <textarea id="f-message" rows="4" placeholder="Describe the products you need, any customization, target market, etc." required
+                        class="w-full text-sm border border-gray-200 rounded-lg px-4 py-2.5 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand bg-white resize-none"></textarea>
+            </div>
+
+            <button type="submit"
+                    class="w-full bg-brand text-white font-bold py-3 rounded-xl hover:bg-brand-dark transition-colors shadow-md text-sm">
+              <i class="fa fa-paper-plane mr-2"></i> Send Inquiry
+            </button>
+
+            <p class="text-xs text-gray-400 text-center">
+              By submitting you agree to our privacy policy. We never share your information.
+            </p>
+          </form>
+          <!-- Success message (hidden by default) -->
+          <div id="form-success" class="hidden text-center py-8">
+            <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+              <i class="fa fa-check text-green-500 text-2xl"></i>
+            </div>
+            <h4 class="font-bold text-lg mb-2">Message Sent!</h4>
+            <p class="text-gray-500 text-sm">Thank you — we'll get back to you within 24 hours.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<div id="footer-wave" class="bg-white">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="w-full h-16">
+    <path d="M0,40 C480,80 960,0 1440,40 L1440,80 L0,80 Z" fill="#0a1628"/>
+  </svg>
+</div>
+
+<footer class="bg-[#0a1628] text-white pt-12 pb-6 relative overflow-hidden">
+
+  <!-- Subtle cargo ship watermark in footer -->
+  <div class="absolute inset-0 pointer-events-none opacity-[0.06] flex items-end justify-end pr-8 pb-8">
+    <svg viewBox="0 0 400 180" class="w-96 h-auto" fill="white">
+      <!-- Ship silhouette -->
+      <rect x="60" y="95" width="280" height="40" rx="6"/>
+      <rect x="80" y="60" width="210" height="40" rx="4"/>
+      <rect x="100" y="35" width="50" height="30" rx="3"/>
+      <rect x="175" y="28" width="35" height="37" rx="3"/>
+      <rect x="240" y="40" width="25" height="25" rx="3"/>
+      <rect x="50" y="133" width="300" height="16" rx="8"/>
+      <!-- Waves -->
+      <path d="M0,155 Q50,145 100,155 Q150,165 200,155 Q250,145 300,155 Q350,165 400,155 L400,180 L0,180 Z" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <div class="max-w-screen-xl mx-auto px-4 lg:px-8 relative z-10">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="images/logo/logo.png" alt="SourceSure Logo" class="h-10 w-auto"
+               onerror="this.style.display='none'; document.getElementById('footer-logo-fallback').style.display='flex';"/>
+          <div id="footer-logo-fallback" class="hidden w-9 h-9 rounded-lg bg-brand items-center justify-center">
+            <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M12 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-1 6.07V11H7a1 1 0 1 0 0 2h4v7.93A9.01 9.01 0 0 1 3.05 13H5a1 1 0 1 0 0-2H3.05A9.01 9.01 0 0 1 11 3.07V11h2V3.07A9.01 9.01 0 0 1 20.95 11H19a1 1 0 1 0 0 2h1.95A9.01 9.01 0 0 1 13 20.93V13h4a1 1 0 1 0 0-2h-4v-2.93z"/></svg>
+          </div>
+          <div>
+            <div class="font-extrabold text-xl">Source<span class="text-brand">Sure</span></div>
+            <div class="text-[10px] uppercase tracking-[0.18em] text-white/50 font-semibold">One-Stop Sourcing Service in China</div>
+          </div>
+        </div>
+        <p class="text-white/60 text-sm leading-relaxed mb-2">
+          SourceSure is the export brand of Yiwu Juncheng Co., Ltd., providing factory-direct wholesale sourcing for home, pet, beauty, craft, and daily-use products.
+        </p>
+        <p class="text-white/40 text-xs leading-relaxed mb-5">
+          Company: Yiwu Juncheng Co., Ltd.
+        </p>
+        <div class="space-y-2.5">
+          <a href="mailto:18735731692@163.com"
+             class="flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors">
+            <i class="fa fa-envelope text-brand w-4"></i> 18735731692@163.com
+          </a>
+          <a href="https://wa.me/8618735731692" target="_blank" rel="noopener"
+             class="flex items-center gap-2 text-sm text-[#25D366] hover:opacity-80 transition-opacity font-medium">
+            <svg class="w-4 h-4 fill-current flex-shrink-0" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.570-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.570-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            +86 18735731692
+          </a>
+        </div>
+      </div>
+
+      <!-- Products -->
+      <div>
+        <h4 class="font-bold text-sm uppercase tracking-wider mb-4 text-white/80">Product Categories</h4>
+        <ul class="space-y-2 text-sm text-white/55">
+          <li><a href="products/home-daily-essentials/index.html" class="hover:text-white transition-colors">Home &amp; Daily Essentials</a></li>
+          <li><a href="products/pet-daily-needs/index.html" class="hover:text-white transition-colors">Pet Daily Needs</a></li>
+          <li><a href="products/beauty-personal-care/index.html" class="hover:text-white transition-colors">Beauty &amp; Personal Care</a></li>
+          <li><a href="products/craft-decor/index.html" class="hover:text-white transition-colors">Craft &amp; Decor</a></li>
+          <li><a href="products/other-supplies/index.html" class="hover:text-white transition-colors">Other Supplies</a></li>
+        </ul>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h4 class="font-bold text-sm uppercase tracking-wider mb-4 text-white/80">Our Services</h4>
+        <ul class="space-y-2 text-sm text-white/55">
+          <li><a href="#services" class="hover:text-white transition-colors">OEM / ODM Manufacturing</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Quality Control &amp; Inspection</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Global Freight &amp; Logistics</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Private Label Branding</a></li>
+          <li><a href="#contact"  class="hover:text-white transition-colors">Custom Product Sourcing</a></li>
+        </ul>
+      </div>
+
+      <!-- Quick links & certs -->
+      <div>
+        <h4 class="font-bold text-sm uppercase tracking-wider mb-4 text-white/80">Company</h4>
+        <ul class="space-y-2 text-sm text-white/55 mb-6">
+          <li><a href="#factory"        class="hover:text-white transition-colors">Factory Overview</a></li>
+          <li><a href="#certifications" class="hover:text-white transition-colors">Certifications</a></li>
+          <li><a href="#testimonials"   class="hover:text-white transition-colors">Client Reviews</a></li>
+          <li><a href="#contact"        class="hover:text-white transition-colors">Contact Us</a></li>
+        </ul>
+        <!-- Cert badges row -->
+        <div class="flex flex-wrap gap-2">
+          <span class="text-xs bg-white/10 text-white/70 px-2.5 py-1 rounded-full">ISO 9001</span>
+          <span class="text-xs bg-white/10 text-white/70 px-2.5 py-1 rounded-full">CE</span>
+          <span class="text-xs bg-white/10 text-white/70 px-2.5 py-1 rounded-full">RoHS</span>
+          <span class="text-xs bg-white/10 text-white/70 px-2.5 py-1 rounded-full">OEKO-TEX</span>
+        </div>
+      </div>
+
+    </div><!-- /grid -->
+
+    <!-- Footer bottom bar -->
+    <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/40">
+      <span>© 2026 Yiwu Juncheng Co., Ltd. · Brand: SourceSure · All rights reserved.</span>
+      <div class="flex gap-5">
+        <a href="#" class="hover:text-white/70 transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-white/70 transition-colors">Terms of Service</a>
+        <a href="#contact" class="hover:text-white/70 transition-colors">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════
+     FLOATING BUTTONS
+══════════════════════════════════════════ -->
+
+<!-- WhatsApp floating button -->
+<a id="wa-btn" href="https://wa.me/8618735731692" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.570-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.570-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+<!-- Back to top -->
+<button id="back-top" aria-label="Back to top">
+  <i class="fa fa-chevron-up text-white text-sm"></i>
+</button>
+
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════ -->
+<script>
+/* ════════════════════════════════
+   1. Navbar: scroll effect + sticky
+════════════════════════════════ */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+/* ════════════════════════════════
+   2. Mobile hamburger menu
+════════════════════════════════ */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open');
+  hamburger.querySelector('i').classList.toggle('fa-bars');
+  hamburger.querySelector('i').classList.toggle('fa-xmark');
+});
+
+// Mobile accordion sub-menus
+document.querySelectorAll('.mobile-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const sub = btn.nextElementSibling;
+    sub.classList.toggle('open');
+    const icon = btn.querySelector('i');
+    icon.style.transform = sub.classList.contains('open') ? 'rotate(180deg)' : '';
+  });
+});
+
+// Close mobile menu on nav link click
+mobileMenu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+});
+
+/* ════════════════════════════════
+   3. Hero Slideshow
+   ── slides[] is built dynamically from
+      all .slide elements, so adding new
+      <div class="slide"> blocks will
+      automatically be picked up.
+════════════════════════════════ */
+(function initSlider() {
+  const container  = document.getElementById('slide-container');
+  const dotsWrap   = document.getElementById('slide-dots');
+  const titleEl    = document.getElementById('slide-title');
+  const descEl     = document.getElementById('slide-desc');
+  const prevBtn    = document.getElementById('slide-prev');
+  const nextBtn    = document.getElementById('slide-next');
+  const slides     = Array.from(container.querySelectorAll('.slide'));
+  let   current    = 0;
+  let   timer      = null;
+  const INTERVAL   = 5000; // ms between auto-advances
+
+  if (!slides.length) return;
+
+  // Build dot indicators
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+
+  // Preload all slide images before starting the slideshow
+  let loadedCount = 0;
+  const totalSlides = slides.length;
+  
+  slides.forEach(function(slide) {
+    const imgEl = slide.querySelector('img');
+    if (imgEl) {
+      const preloader = new Image();
+      preloader.onload = function() {
+        loadedCount++;
+        if (loadedCount >= totalSlides) {
+          startTimer();
+        }
+      };
+      preloader.onerror = function() {
+        loadedCount++;
+        if (loadedCount >= totalSlides) {
+          startTimer();
+        }
+      };
+      preloader.src = imgEl.src;
+    } else {
+      loadedCount++;
+      if (loadedCount >= totalSlides) {
+        startTimer();
+      }
+    }
+  });
+
+  function goTo(idx) {
+    slides[current].classList.remove('active');
+    dotsWrap.children[current].classList.remove('active');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotsWrap.children[current].classList.add('active');
+
+    // Update text from data attributes
+    const s = slides[current];
+    if (s.dataset.title) titleEl.innerHTML = s.dataset.title;
+    if (s.dataset.desc)  descEl.textContent = s.dataset.desc;
+  }
+
+  function startTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), INTERVAL);
+  }
+
+  prevBtn.addEventListener('click', () => { goTo(current - 1); startTimer(); });
+  nextBtn.addEventListener('click', () => { goTo(current + 1); startTimer(); });
+
+  // Pause on hover
+  container.addEventListener('mouseenter', () => clearInterval(timer));
+  container.addEventListener('mouseleave', startTimer);
+
+  // Touch / swipe support
+  let touchStartX = 0;
+  container.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  container.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) { goTo(dx < 0 ? current + 1 : current - 1); startTimer(); }
+  });
+
+})();
+
+/* ════════════════════════════════
+   4. Product category filter tabs
+════════════════════════════════ */
+(function initTabs() {
+  const tabs  = document.querySelectorAll('.cat-tab');
+  const cards = document.querySelectorAll('#product-grid .product-card');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat = tab.dataset.cat;
+      cards.forEach(card => {
+        const show = cat === 'all' || card.dataset.cat === cat;
+        card.style.display = show ? '' : 'none';
+        card.style.opacity = show ? '' : '0';
+      });
+    });
+  });
+})();
+
+/* ════════════════════════════════
+   5. Quote form — basic validation
+   (Wire up to your backend / Formspree
+    by changing the form action attribute)
+════════════════════════════════ */
+document.getElementById('quote-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const required = this.querySelectorAll('[required]');
+  let valid = true;
+  required.forEach(el => {
+    if (!el.value.trim()) {
+      el.classList.add('border-red-400', 'ring-red-300');
+      valid = false;
+    } else {
+      el.classList.remove('border-red-400', 'ring-red-300');
+    }
+  });
+  if (!valid) return;
+  // Show success state
+  this.style.display = 'none';
+  document.getElementById('form-success').classList.remove('hidden');
+  // TODO: replace with real fetch() to your backend or Formspree endpoint
+});
+
+/* ════════════════════════════════
+   6. Back-to-top button
+════════════════════════════════ */
+const backTop = document.getElementById('back-top');
+window.addEventListener('scroll', () => {
+  backTop.classList.toggle('visible', window.scrollY > 300);
+});
+backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ════════════════════════════════
+   7. Scroll-based fade-in
+   (IntersectionObserver for sections)
+════════════════════════════════ */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.usp-card, .product-card, .cert-card, .testimonial-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+
+/* ════════════════════════════════
+   8. Product Modal (for homepage)
+════════════════════════════════ */
+function openProductModal(card) {
+  const img = card.querySelector('img');
+  const imgSrc = img ? img.src : '';
+  const name = card.querySelector('h3').textContent;
+  const descEl = card.querySelector('p.line-clamp-2');
+  const desc = descEl ? descEl.textContent : '';
+  const priceEl = card.querySelector('.text-brand');
+  const price = priceEl ? priceEl.textContent : '';
+  const galleryData = card.dataset.gallery;
+  
+  // Get features and specs from the card
+  const featuresEl = card.querySelector('p.text-green-600');
+  const features = featuresEl ? featuresEl.innerHTML : '';
+  const specsEl = card.querySelector('p.text-blue-600');
+  const specs = specsEl ? specsEl.innerHTML : '';
+  
+  document.getElementById('modal-name').textContent = name;
+  document.getElementById('modal-desc').textContent = desc;
+  document.getElementById('modal-price').textContent = price;
+  document.getElementById('modal-moq').textContent = 'MOQ: Flexible';
+  document.getElementById('modal-sku').textContent = '';
+  document.getElementById('modal-main-img').src = imgSrc;
+  document.getElementById('modal-main-img').alt = name;
+  
+  // Set features and specs
+  document.getElementById('modal-features').innerHTML = features ? `<div class="text-xs text-green-600 mb-2">${features}</div>` : '';
+  document.getElementById('modal-specs').innerHTML = specs ? `<div class="text-xs text-blue-600 mb-2">${specs}</div>` : '';
+  
+  // Build thumbnail gallery
+  const tw = document.getElementById('modal-thumbs');
+  tw.innerHTML = '';
+  
+  let imageList = [imgSrc];
+  if (galleryData) {
+    try {
+      const gallery = JSON.parse(galleryData);
+      if (Array.isArray(gallery) && gallery.length > 0) {
+        imageList = [imgSrc, ...gallery];
+      }
+    } catch (e) {}
+  }
+  
+  imageList.forEach((src, i) => {
+    const im = document.createElement('img');
+    im.src = src;
+    im.className = 'thumb w-full h-12 object-cover rounded-lg cursor-pointer border-2 border-transparent hover:border-brand' + (i === 0 ? ' border-brand' : '');
+    im.onerror = function() { this.remove(); };
+    im.onclick = function(e) {
+      e.stopPropagation();
+      document.getElementById('modal-main-img').src = this.src;
+      tw.querySelectorAll('.thumb').forEach(t => t.classList.remove('border-brand'));
+      this.classList.add('border-brand');
+    };
+    tw.appendChild(im);
+  });
+  
+  document.getElementById('modal-wa').href = 'https://wa.me/8618735731692?text=' + encodeURIComponent('Hi! I am interested in: ' + name + '. Please send pricing and availability.');
+  document.getElementById('product-modal').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProductModal() {
+  document.getElementById('product-modal').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('product-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeProductModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProductModal(); });
+
+</script>
+</body>
+</html>
