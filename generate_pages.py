@@ -641,6 +641,10 @@ def head_html(title, description=SLOGAN, canonical=None, image=None, page_type="
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{title} — {BRAND} | {COMPANY}</title>
   {seo}
+  <!-- Google Analytics 4 -->
+  {script_open} async src="https://www.googletagmanager.com/gtag/js?id=G-DMZGD9YKJK">{script_close}
+  {script_open}>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','G-DMZGD9YKJK');{script_close}
+  <!-- End GA4 -->
   {script_open} src="https://cdn.tailwindcss.com">{script_close}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
