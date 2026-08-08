@@ -679,10 +679,10 @@ def product_cards_html(products, sku_prefix, cat=None, sub=None):
             # 构建图库图片URL列表 (detail1.jpg, detail2.jpg, ...)
             gallery_urls = []
             for i in range(len(p['gallery'])):
-                gallery_urls.append(f"/images/{cat['slug']}/{sub['slug']}/{sku}/detail{i+1}.jpg")
+                gallery_urls.append(f"{sku}/detail{i+1}.jpg")
             gallery_data = f' data-gallery=\'{json.dumps(gallery_urls)}\''
         
-        img_src = f"/images/{cat['slug']}/{sub['slug']}/{sku}/main.jpg"
+        img_src = f"{sku}/main.jpg"
         cards += f"""
     <div class="prod-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 cursor-pointer" data-tag="{tags}"{gallery_data} onclick="openDetail(this)">
       <div class="relative h-48 overflow-hidden bg-accent">
