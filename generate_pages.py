@@ -741,7 +741,7 @@ def sub_page_html(cat, sub, root):
 
     sub_desc = f"{sub['title']} {cat['title'].lower()} products. {BRAND} supplies wholesale {sub['title'].lower()} from certified Chinese factories with OEM/private label. Request a quote."
     sub_canon = f"{SITE_URL}/products/{cat['slug']}/{sub['slug']}/"
-    sub_img = f"{SITE_URL}/images/{cat['slug']}/{sub['slug']}/SK001/main.jpg"
+    sub_img = f"{SITE_URL}/images/logo/logo.png"
     return f"""{head_html(f"{sub['title']} {cat['title']}", sub_desc, sub_canon, sub_img)}
 {navbar_html(root, cat['title'], f"{root}products/{cat['slug']}/index.html", sub['title'])}
 <section class="bg-gradient-to-r from-brand to-blue-500 text-white py-12 px-4">
@@ -801,7 +801,7 @@ def cat_index_html(cat, root):
     wa_msg = quote(f"Hi! I am interested in your {cat['title']} products. Please send catalog.")
     cat_desc = f"{cat['title']} sourcing & manufacturing. {BRAND} connects global buyers with trusted Chinese factories for {cat['title'].lower()} products. OEM, private label, flexible MOQ. Request a quote."
     cat_canon = f"{SITE_URL}/products/{cat['slug']}/"
-    cat_img = f"{SITE_URL}/images/{cat['slug']}/{cat['slug']}_1.jpg"
+    cat_img = f"{SITE_URL}/images/logo/logo.png"
     return f"""{head_html(cat['title'], cat_desc, cat_canon, cat_img)}
 <div class="bg-brand text-white text-xs py-2 px-4 text-center">
   🚢 Trusted Factory Network · Global Shipping · MOQ Flexible
